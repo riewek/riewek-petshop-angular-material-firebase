@@ -2,6 +2,10 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.2.1.
 
+## Setup Firebase
+
+https://github.com/angular/angularfire/blob/main/docs/install-and-setup.md
+
 ## Development server
 
 To start a local development server, run:

@@ -1,2 +1,7 @@
 <h1>Hello, riewek-petshop-angular-material-firebase</h1>
+<ul>
+  @for (item of items$ | async; track item) {
+  <li>{{ item.value }}</li>
+  }
+</ul>
 <router-outlet />
