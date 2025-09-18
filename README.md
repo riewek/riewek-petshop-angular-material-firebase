@@ -6,6 +6,9 @@ This project was generated using [Angular CLI](https://github.com/angular/angula
 
 https://github.com/angular/angularfire/blob/main/docs/install-and-setup.md
 
+firebase init hosting
+firebase deploy --only hosting
+
 ## Development server
 
 To start a local development server, run:
