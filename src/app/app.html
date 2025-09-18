@@ -1,7 +1,22 @@
 <h1>Hello, riewek-petshop-angular-material-firebase2</h1>
+<h2>Firebase Demo</h2>
 <ul>
   @for (item of items$ | async; track item) {
   <li>{{ item.value }}</li>
   }
 </ul>
+<h2>Material3 Demo</h2>
+<mat-toolbar color="primary">Material Demo</mat-toolbar>
+
+<div style="padding: 16px">
+  <mat-slide-toggle>Toggle me!</mat-slide-toggle>
+
+  <div style="margin-top: 16px">
+    <button mat-flat-button>Primary</button>
+    <button mat-flat-button>Accent</button>
+    <button mat-flat-button class="root">Warn</button>
+    <button mat-flat-button class="custom-tertiary">Tertiary</button>
+  </div>
+</div>
+
 <router-outlet />
