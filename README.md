@@ -6,8 +6,16 @@ This project was generated using [Angular CLI](https://github.com/angular/angula
 
 https://github.com/angular/angularfire/blob/main/docs/install-and-setup.md
 
-firebase init hosting
-firebase deploy --only hosting
+Firebase Deployment
+
+- firebase init hosting
+- firebase.json/"public": "dist/riewek-petshop-angular-firebase/browser",
+- firebase deploy --only hosting
+
+Firebase Emulators
+
+- firebase init emulators
+- firebase emulators:start
 
 ## Development server
 
