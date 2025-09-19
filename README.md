@@ -1,6 +1,10 @@
-# RiewekPetshopAngularFirebase
+# Setup
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.2.1.
+## Setup Angular
+
+- zoneless, signals werden überall genutzt
+- scss
+- kein ssr
 
 ## Setup Firebase
 
@@ -22,6 +26,10 @@ AngularFirestore
 - Besser zum mocken als Firestore
 - firebase.config.ts: AngularFirestore registrieren
 
+## Setup Angular Material
+
+- styles.scss
+
 ## Setup Jest instead of Karma/Jasmine
 
 - https://medium.com/@abhijit_chikane/set-up-jest-in-angular-v20-project-zoneless-replace-karma-jasmine-5ddd5552f2cb
@@ -35,6 +43,12 @@ Cypress hinzufügen
 - npm install -D @angular/platform-browser-dynamic --legacy-peer-deps
 - npm install -D cypress-visual-regression --legacy-peer-deps
 - https://github.com/cypress-visual-regression/cypress-visual-regression
+
+## Setup Lint
+
+- npm install --save-dev @angular-eslint/schematics @angular-eslint/builder --legacy-peer-deps
+- npm install --save-dev eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin --legacy-peer-deps
+- npm install --save-dev @angular-eslint/builder @angular-eslint/eslint-plugin @angular-eslint/eslint-plugin-template @angular-eslint/template-parser --legacy-peer-deps
 
 ## Ports
 
@@ -52,6 +66,10 @@ Cypress hinzufügen
 | Cypress                        | Host:Port |
 | ------------------------------ | --------- |
 | Cypress Component Testing (CT) | Random    |
+
+# RiewekPetshopAngularFirebase
+
+This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.2.1.
 
 ## Development server
 
