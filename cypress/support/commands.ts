@@ -35,12 +35,6 @@
 //     }
 //   }
 // }
-Cypress.Commands.add('dataCy', (value) => {
-  return cy.get(`[data-cy=${value}]`);
-});
-Cypress.Commands.add('dataCy2', (value, value2) => {
-  return cy.get(`[data-cy=${value}] ${value2}`);
-});
 declare global {
   namespace Cypress {
     interface Chainable {
@@ -49,3 +43,12 @@ declare global {
     }
   }
 }
+
+Cypress.Commands.add('dataCy', (value) => {
+  return cy.get(`[data-cy=${value}]`);
+});
+Cypress.Commands.add('dataCy2', (value, value2) => {
+  return cy.get(`[data-cy=${value}] ${value2}`);
+});
+
+export {};
