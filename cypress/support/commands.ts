@@ -35,3 +35,17 @@
 //     }
 //   }
 // }
+Cypress.Commands.add('dataCy', (value) => {
+  return cy.get(`[data-cy=${value}]`);
+});
+Cypress.Commands.add('dataCy2', (value, value2) => {
+  return cy.get(`[data-cy=${value}] ${value2}`);
+});
+declare global {
+  namespace Cypress {
+    interface Chainable {
+      dataCy(value: string): Chainable<JQuery<HTMLElement>>;
+      dataCy2(value: string, value2: string): Chainable<JQuery<HTMLElement>>;
+    }
+  }
+}

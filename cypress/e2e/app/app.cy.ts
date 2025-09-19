@@ -1,8 +1,20 @@
 /// <reference types="cypress" />
+const enum DataCy {
+  BtnPrimary = 'btn-primary',
+  BtnAccent = 'btn-accent',
+  BtnWarn = 'btn-warn',
+  BtnTertiary = 'btn-tertiary',
+  ToggleMode = 'toggle-mode',
+}
 
 describe('App Component', () => {
   beforeEach(() => {
     cy.visit('http://localhost:4200/');
+  });
+
+  it('makes a screenshot', () => {
+    cy.get('ul li').should('have.length', 2);
+    cy.screenshot('app/app', { overwrite: true });
   });
 
   it('displays a title', () => {
@@ -25,7 +37,7 @@ describe('App Component', () => {
   });
 
   it('should toggle the slide toggle', () => {
-    cy.get('[data-cy=toggle-mode] button')
+    cy.dataCy2(DataCy.ToggleMode, 'button')
       .should('have.attr', 'aria-checked', 'false')
       .click()
       .should('have.attr', 'aria-checked', 'true')
@@ -35,10 +47,10 @@ describe('App Component', () => {
 
   it('should have 4 buttons with correct text', () => {
     cy.get('button[mat-flat-button]').should('have.length', 4);
-    cy.get('[data-cy=btn-primary]').should('contain.text', 'Primary');
-    cy.get('[data-cy=btn-accent]').should('contain.text', 'Accent');
-    cy.get('[data-cy=btn-warn]').should('contain.text', 'Warn');
-    cy.get('[data-cy=btn-tertiary]').should('contain.text', 'Tertiary');
+    cy.dataCy(DataCy.BtnPrimary).should('contain.text', 'Primary');
+    cy.dataCy(DataCy.BtnAccent).should('contain.text', 'Accent');
+    cy.dataCy(DataCy.BtnWarn).should('contain.text', 'Warn');
+    cy.dataCy(DataCy.BtnTertiary).should('contain.text', 'Tertiary');
   });
 
   it('should have correct classes on buttons', () => {
