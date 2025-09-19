@@ -17,6 +17,14 @@ Firebase Emulators
 - firebase init emulators
 - firebase emulators:start
 
+Jest instead of Karma/Jasmine
+
+- https://medium.com/@abhijit_chikane/set-up-jest-in-angular-v20-project-zoneless-replace-karma-jasmine-5ddd5552f2cb
+
+AngularFirestore
+
+- firebase.config.ts: AngularFirestore registrieren
+
 ## Development server
 
 To start a local development server, run:

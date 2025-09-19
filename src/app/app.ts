@@ -1,11 +1,11 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Firestore, collection, collectionData } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatButtonModule } from '@angular/material/button';
+import { FirebaseService, Item } from './services/firebase.service';
 
 @Component({
   selector: 'app-root',
@@ -14,13 +14,10 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrl: './app.scss',
 })
 export class App {
-  protected readonly title = signal('riewek-petshop-angular-firebase');
-  firestore: Firestore = inject(Firestore);
-  items$: Observable<any[]>;
+  public readonly title = signal('riewek-petshop-angular-material-firebase');
+  items$: Observable<Item[]>;
 
-  constructor() {
-    console.log('Firestore', this.firestore);
-    const aCollection = collection(this.firestore, 'items');
-    this.items$ = collectionData(aCollection);
+  constructor(private firebaseService: FirebaseService) {
+    this.items$ = this.firebaseService.getItems();
   }
 }
