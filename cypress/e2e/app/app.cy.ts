@@ -17,6 +17,11 @@ describe('App Component', () => {
     cy.screenshot('app/app', { overwrite: true });
   });
 
+  it('regresses to snapshot', () => {
+    cy.get('ul li').should('have.length', 2);
+    cy.compareSnapshot('app-snapshot', { overwrite: true });
+  });
+
   it('displays a title', () => {
     cy.get('h1')
       .first()

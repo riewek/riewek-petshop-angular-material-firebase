@@ -46,3 +46,9 @@ Thumbs.db
 .firebase
 *-debug.log
 .runtimeconfig.json
+local
+firebase-export**
+
+# Cypress
+
+cypress/snapshots/actual

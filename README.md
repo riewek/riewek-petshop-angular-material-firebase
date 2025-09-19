@@ -33,6 +33,8 @@ Cypress hinzufügen
 - npm install --save-dev cypress@15.2.0
 - npm install -D @angular-devkit/build-angular --legacy-peer-deps
 - npm install -D @angular/platform-browser-dynamic --legacy-peer-deps
+- npm install -D cypress-visual-regression --legacy-peer-deps
+- https://github.com/cypress-visual-regression/cypress-visual-regression
 
 ## Ports
 
