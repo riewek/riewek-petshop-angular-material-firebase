@@ -17,13 +17,39 @@ Firebase Emulators
 - firebase init emulators
 - firebase emulators:start
 
-Jest instead of Karma/Jasmine
+AngularFirestore
+
+- Besser zum mocken als Firestore
+- firebase.config.ts: AngularFirestore registrieren
+
+## Setup Jest instead of Karma/Jasmine
 
 - https://medium.com/@abhijit_chikane/set-up-jest-in-angular-v20-project-zoneless-replace-karma-jasmine-5ddd5552f2cb
 
-AngularFirestore
+## Setup Cypress
 
-- firebase.config.ts: AngularFirestore registrieren
+Cypress hinzufügen
+
+- npm install --save-dev cypress@15.2.0
+- npm install -D @angular-devkit/build-angular --legacy-peer-deps
+- npm install -D @angular/platform-browser-dynamic --legacy-peer-deps
+
+## Ports
+
+| Frontend    | Host:Port                   |
+| ----------- | --------------------------- |
+| Local       | http://localhost:4200/      |
+| Local Login | http://localhost:4200/login |
+
+| Emulator         | Host:Port              | View in Emulator UI                             |
+| ---------------- | ---------------------- | ----------------------------------------------- |
+| View Emulator UI | http://localhost:4000/ | [View Emulator UI](http://127.0.0.1:4000/)      |
+| Authentication   | 127.0.0.1:9099         | [Auth UI](http://127.0.0.1:4000/auth)           |
+| Firestore        | 127.0.0.1:8080         | [Firestore UI](http://127.0.0.1:4000/firestore) |
+
+| Cypress                        | Host:Port |
+| ------------------------------ | --------- |
+| Cypress Component Testing (CT) | Random    |
 
 ## Development server
 
