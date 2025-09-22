@@ -52,10 +52,11 @@ Cypress hinzufügen
 
 ## Ports
 
-| Frontend    | Host:Port                   |
-| ----------- | --------------------------- |
-| Local       | http://localhost:4200/      |
-| Local Login | http://localhost:4200/login |
+| Frontend    | Host:Port                               |
+| ----------- | --------------------------------------- |
+| Local       | http://localhost:4200/                  |
+| Local Login | http://localhost:4200/login             |
+| Prod        | https://petshop-firebase-3a57b.web.app/ |
 
 | Emulator         | Host:Port              | View in Emulator UI                             |
 | ---------------- | ---------------------- | ----------------------------------------------- |

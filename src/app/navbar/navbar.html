@@ -1,0 +1,94 @@
+<mat-sidenav-container fullscreen>
+  <mat-sidenav #sidenav>
+    <mat-nav-list (click)="sidenav.close()">
+      <a mat-list-item routerLink="">
+        <mat-icon>library_books</mat-icon>
+        <span>Dashboard</span>
+      </a>
+      <a mat-list-item routerLink="">
+        <mat-icon>library_books</mat-icon>
+        <span>Tiere</span>
+      </a>
+      <a mat-list-item routerLink="">
+        <mat-icon>library_books</mat-icon>
+        <span>Tierheime</span>
+      </a>
+      <a mat-list-item routerLink="">
+        <mat-icon>library_books</mat-icon>
+        <span>Interessenten</span>
+      </a>
+      <a mat-list-item routerLink="">
+        <mat-icon>library_books</mat-icon>
+        <span>Anträge</span>
+      </a>
+      <a mat-list-item routerLink="">
+        <mat-icon>library_books</mat-icon>
+        <span>Adoptionen</span>
+      </a>
+      <a mat-list-item routerLink="">
+        <mat-icon>library_books</mat-icon>
+        <span>Gesundheit</span>
+      </a>
+      <a mat-list-item routerLink="">
+        <mat-icon>question_answer</mat-icon>
+        <span>Reporting</span>
+      </a>
+      <a mat-list-item routerLink="">
+        <mat-icon>person_add</mat-icon>
+        <span>Register</span>
+      </a>
+      <a mat-list-item routerLink="">
+        <mat-icon>account_circle</mat-icon>
+        <span>Login</span>
+      </a>
+      <a mat-list-item routerLink="">
+        <mat-icon>account_circle</mat-icon>
+        <span>Logout</span>
+      </a>
+      <a mat-list-item routerLink="">
+        <mat-icon>account_circle</mat-icon>
+        <span>About</span>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-toolbar color="primary">
+    <button mat-icon-button (click)="sidenav.open()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <a mat-button [matMenuTriggerFor]="dropdown">
+      <mat-icon>person_add</mat-icon>
+      <span>Screens</span>
+    </a>
+    <mat-menu #dropdown>
+      <button mat-menu-item routerLink="">Dashboard</button>
+      <button mat-menu-item routerLink="">Tiere</button>
+      <button mat-menu-item routerLink="">Tierheime</button>
+      <button mat-menu-item routerLink="">Interessenten</button>
+      <button mat-menu-item routerLink="">Anträge</button>
+      <button mat-menu-item routerLink="">Adoptionen</button>
+      <button mat-menu-item routerLink="">Gesundheit</button>
+      <button mat-menu-item routerLink="">Reporting</button>
+    </mat-menu>
+    <a mat-button routerLink="">
+      <mat-icon>person_add</mat-icon>
+      <span>Demos</span>
+    </a>
+    <a mat-button routerLink="">
+      <mat-icon>person_add</mat-icon>
+      <span>Register</span>
+    </a>
+    <a mat-button routerLink="">
+      <mat-icon>account_circle</mat-icon>
+      <span>Login</span>
+    </a>
+    <a mat-button routerLink="">
+      <mat-icon>account_circle</mat-icon>
+      <span>Logout</span>
+    </a>
+    <a mat-button routerLink="">
+      <mat-icon>account_circle</mat-icon>
+      <span>About</span>
+    </a>
+  </mat-toolbar>
+  <router-outlet />
+</mat-sidenav-container>

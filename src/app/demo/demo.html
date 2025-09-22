@@ -1,0 +1,20 @@
+<h1>Hello, {{ title() }}</h1>
+<h2>Firebase Demo</h2>
+<ul>
+  @for (item of items$ | async; track item) {
+  <li>{{ item.value }}</li>
+  }
+</ul>
+<h2>Material3 Demo</h2>
+<mat-toolbar color="primary" data-cy="main-toolbar"> Material Demo </mat-toolbar>
+
+<div style="padding: 16px">
+  <mat-slide-toggle data-cy="toggle-mode">Toggle me!</mat-slide-toggle>
+
+  <div style="margin-top: 16px">
+    <button mat-flat-button data-cy="btn-primary">Primary</button>
+    <button mat-flat-button data-cy="btn-accent">Accent</button>
+    <button mat-flat-button class="root" data-cy="btn-warn">Warn</button>
+    <button mat-flat-button class="custom-tertiary" data-cy="btn-tertiary">Tertiary</button>
+  </div>
+</div>
