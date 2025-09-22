@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
+import { menuItems } from '../../config/menu/menu.items';
 
 @Component({
   selector: 'app-navbar',
@@ -25,4 +26,6 @@ import { MatMenuModule } from '@angular/material/menu';
   templateUrl: './navbar.html',
   styleUrl: './navbar.scss',
 })
-export class Navbar {}
+export class Navbar {
+  public menuItems = menuItems;
+}

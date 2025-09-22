@@ -1,58 +1,12 @@
 <mat-sidenav-container fullscreen>
   <mat-sidenav #sidenav>
     <mat-nav-list (click)="sidenav.close()">
-      <a mat-list-item routerLink="/dashboard">
-        <mat-icon>dashboard</mat-icon>
-        <span>Dashboard</span>
+      @for (menuItem of menuItems; track $index) {
+      <a mat-list-item [routerLink]="menuItem.route">
+        <mat-icon>{{ menuItem.icon }}</mat-icon>
+        <span>{{ menuItem.title }}</span>
       </a>
-      <a mat-list-item routerLink="/animals">
-        <mat-icon>pets</mat-icon>
-        <span>Tiere</span>
-      </a>
-      <a mat-list-item routerLink="/shelters">
-        <mat-icon>home</mat-icon>
-        <span>Tierheime</span>
-      </a>
-      <a mat-list-item routerLink="/adopters">
-        <mat-icon>groups</mat-icon>
-        <span>Interessenten</span>
-      </a>
-      <a mat-list-item routerLink="/assignment">
-        <mat-icon>assignment</mat-icon>
-        <span>Anträge</span>
-      </a>
-      <a mat-list-item routerLink="/adoptions">
-        <mat-icon>favorite</mat-icon>
-        <span>Adoptionen</span>
-      </a>
-      <a mat-list-item routerLink="/health">
-        <mat-icon>local_hospital</mat-icon>
-        <span>Gesundheit</span>
-      </a>
-      <a mat-list-item routerLink="/reports">
-        <mat-icon>bar_chart</mat-icon>
-        <span>Reporting</span>
-      </a>
-      <a mat-list-item routerLink="/settings">
-        <mat-icon>settings</mat-icon>
-        <span>Einstellungen</span>
-      </a>
-      <a mat-list-item routerLink="/register">
-        <mat-icon>person_add</mat-icon>
-        <span>Register</span>
-      </a>
-      <a mat-list-item routerLink="/login">
-        <mat-icon>login</mat-icon>
-        <span>Login</span>
-      </a>
-      <a mat-list-item routerLink="/logout">
-        <mat-icon>logout</mat-icon>
-        <span>Logout</span>
-      </a>
-      <a mat-list-item routerLink="/about">
-        <mat-icon>info</mat-icon>
-        <span>About</span>
-      </a>
+      }
     </mat-nav-list>
   </mat-sidenav>
   <mat-toolbar color="primary">
@@ -64,49 +18,19 @@
       <span>Screens</span>
     </a>
     <mat-menu #dropdown>
-      <button mat-menu-item routerLink="/dashboard">
-        <mat-icon>dashboard</mat-icon> Dashboard
+      @for (menuItem of menuItems; track $index) { @if(menuItem.screens) {
+      <button mat-menu-item [routerLink]="menuItem.route">
+        <mat-icon>{{ menuItem.icon }}</mat-icon
+        >{{ menuItem.title }}
       </button>
-      <button mat-menu-item routerLink="/animals"><mat-icon>pets</mat-icon> Tiere</button>
-      <button mat-menu-item routerLink="/shelters"><mat-icon>home</mat-icon> Tierheime</button>
-      <button mat-menu-item routerLink="/adopters">
-        <mat-icon>groups</mat-icon> Interessenten
-      </button>
-      <button mat-menu-item routerLink="/assignments">
-        <mat-icon>assignment</mat-icon> Anträge
-      </button>
-      <button mat-menu-item routerLink="/adoptions">
-        <mat-icon>favorite</mat-icon> Adoptionen
-      </button>
-      <button mat-menu-item routerLink="/health">
-        <mat-icon>local_hospital</mat-icon> Gesundheit
-      </button>
-      <button mat-menu-item routerLink="/reports"><mat-icon>bar_chart</mat-icon> Reporting</button>
+      } }
     </mat-menu>
-    <a mat-button routerLink="/demo">
-      <mat-icon>smart_toy</mat-icon>
-      <span>Demos</span>
+    @for (menuItem of menuItems; track $index) { @if(!menuItem.screens) {
+    <a mat-button [routerLink]="menuItem.route">
+      <mat-icon>{{ menuItem.icon }}</mat-icon>
+      <span>{{ menuItem.title }}</span>
     </a>
-    <a mat-button routerLink="/register">
-      <mat-icon>person_add</mat-icon>
-      <span>Register</span>
-    </a>
-    <a mat-button routerLink="/login">
-      <mat-icon>login</mat-icon>
-      <span>Login</span>
-    </a>
-    <a mat-button routerLink="/logout">
-      <mat-icon>logout</mat-icon>
-      <span>Logout</span>
-    </a>
-    <a mat-button routerLink="/settings">
-      <mat-icon>settings</mat-icon>
-      <span>Einstellungen</span>
-    </a>
-    <a mat-button routerLink="/about">
-      <mat-icon>info</mat-icon>
-      <span>About</span>
-    </a>
+    } }
   </mat-toolbar>
   <router-outlet />
 </mat-sidenav-container>
