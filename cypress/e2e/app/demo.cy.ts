@@ -9,6 +9,7 @@ const enum DataCy {
 
 describe('Demo Component', () => {
   beforeEach(() => {
+    cy.viewport(1920, 1080);
     cy.visit('http://localhost:4200/demo');
   });
 
