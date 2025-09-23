@@ -1,12 +1,12 @@
 <mat-paginator
   class="mat-elevation-z8"
-  [length]="animalsAll().length"
+  [length]="dataAll().length"
   [pageSize]="pageSize"
   [pageSizeOptions]="pageSizeOptions"
 >
 </mat-paginator>
 
-<table mat-table [dataSource]="animalsPagedSortedFiltered()">
+<table mat-table [dataSource]="dataPagedSortedFiltered()">
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef>#</th>
     <td mat-cell *matCellDef="let animal">

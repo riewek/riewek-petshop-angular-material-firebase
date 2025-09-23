@@ -1,4 +1,4 @@
-import { Component, signal, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { FakeData } from '../../faker/fake.data';
 import { Animal } from '../../model/animal';
 import { MatTableModule } from '@angular/material/table';
@@ -7,6 +7,7 @@ import { RouterLink } from '@angular/router';
 import { MatIcon } from '@angular/material/icon';
 import { AgePipe } from '../../shared/age.pipe';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { TableComponent } from '../../shared/table.component';
 
 @Component({
   selector: 'app-animals',
@@ -14,38 +15,17 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
   templateUrl: './animals.html',
   styleUrl: './animals.scss',
 })
-export class Animals {
-  public animalsAll = signal<Animal[]>([]);
-  public animalsPagedSortedFiltered = signal<Animal[]>([]);
-  public displayedColumns = [
-    'id',
-    'species',
-    'breed',
-    'birthDate',
-    'age',
-    'sex',
-    'intakeDate',
-    'healthStatus',
-    'enclosureId',
-    'photos',
-    'adoptable',
-  ];
+export class Animals extends TableComponent<Animal> implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  pageSize = 10;
-  pageSizeOptions = [5, 10, 15];
 
   constructor() {
-    const fakeData = new FakeData();
-    this.animalsPagedSortedFiltered.set(fakeData.animals.slice(0, 10));
-    this.animalsAll.set(fakeData.animals);
+    super(
+      'id species breed birthDate age sex intakeDate healthStatus enclosureId photos adoptable',
+      new FakeData().animals
+    );
   }
 
   ngAfterViewInit() {
-    this.paginator.page.subscribe((page) => {
-      const start = page.pageIndex * page.pageSize;
-      const end = start + page.pageSize;
-      const animals = this.animalsAll().slice(start, end);
-      this.animalsPagedSortedFiltered.set(animals);
-    });
+    this.ngAfterViewInitHook(this.paginator);
   }
 }
