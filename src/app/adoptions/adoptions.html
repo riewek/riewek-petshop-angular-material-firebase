@@ -1,1 +1,42 @@
-<p>adoptions works!</p>
+<mat-paginator
+  class="mat-elevation-z8"
+  [length]="dataAll().length"
+  [pageSize]="pageSize"
+  [pageSizeOptions]="pageSizeOptions"
+>
+</mat-paginator>
+
+<table mat-table [dataSource]="dataPagedSortedFiltered()">
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef>#</th>
+    <td mat-cell *matCellDef="let adoptionContract">
+      <a [routerLink]="['/adoptions', adoptionContract.id]">
+        {{ adoptionContract.id }}
+      </a>
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="adoptionApplicationId">
+    <th mat-header-cell *matHeaderCellDef>Adoption Application Id</th>
+    <td mat-cell *matCellDef="let adoptionContract">
+      <a [routerLink]="['/assignments', adoptionContract.adoptionApplicationId]">
+        {{ adoptionContract.adoptionApplicationId }}
+      </a>
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="contractUrl">
+    <th mat-header-cell *matHeaderCellDef>Contract Url</th>
+    <td mat-cell *matCellDef="let adoptionContract">{{ adoptionContract.contractUrl }}</td>
+  </ng-container>
+  <ng-container matColumnDef="signedAt">
+    <th mat-header-cell *matHeaderCellDef>Signed At</th>
+    <td mat-cell *matCellDef="let adoptionContract">
+      {{ adoptionContract.signedAt | date : dateFormat }}
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="fee">
+    <th mat-header-cell *matHeaderCellDef>Fee</th>
+    <td mat-cell *matCellDef="let adoptionContract">{{ adoptionContract.fee }}</td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let adoptionContract; columns: displayedColumns"></tr>
+</table>

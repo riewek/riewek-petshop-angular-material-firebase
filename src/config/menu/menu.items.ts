@@ -3,6 +3,7 @@ import { createMenuItem, MenuItem } from '../../shared/menu';
 export const dashboardMenuItem = createMenuItem('Dashboard', 'dashboard', '/dashboard');
 export const animalsMenuItem = createMenuItem('Tiere', 'pets', '/animals');
 export const sheltersMenuItem = createMenuItem('Tierheime', 'home', '/shelters');
+export const enclosuresMenuItem = createMenuItem('Gehege', 'home', '/enclosures');
 export const adoptersMenuItem = createMenuItem('Interessenten', 'groups', '/adopters');
 export const assignmentsMenuItem = createMenuItem('Anträge', 'assignment', '/assignments');
 export const adoptionsMenuItem = createMenuItem('Adoptionen', 'favorite', '/adoptions');
@@ -19,6 +20,7 @@ export const menuItems: MenuItem[] = [
   dashboardMenuItem,
   animalsMenuItem,
   sheltersMenuItem,
+  enclosuresMenuItem,
   adoptersMenuItem,
   assignmentsMenuItem,
   adoptionsMenuItem,

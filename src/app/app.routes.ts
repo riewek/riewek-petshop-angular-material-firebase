@@ -13,6 +13,7 @@ import { Register } from './register/register';
 import { Login } from './login/login';
 import { Logout } from './logout/logout';
 import { Assignments } from './assignments/assignments';
+import { Enclosures } from './enclosures/enclosures';
 
 export const routes: Routes = [
   {
@@ -42,6 +43,10 @@ export const routes: Routes = [
   {
     path: 'shelters',
     component: Shelters,
+  },
+  {
+    path: 'enclosures',
+    component: Enclosures,
   },
   {
     path: 'adopters',

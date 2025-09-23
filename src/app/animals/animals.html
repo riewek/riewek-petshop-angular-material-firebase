@@ -27,7 +27,7 @@
   <ng-container matColumnDef="birthDate">
     <th mat-header-cell *matHeaderCellDef>Birth Date</th>
     <td mat-cell *matCellDef="let animal">
-      {{ animal.birthDate | date : 'dd.MM.yyyy' }}
+      {{ animal.birthDate | date : dateFormat }}
     </td>
   </ng-container>
   <ng-container matColumnDef="age">
@@ -50,7 +50,7 @@
   </ng-container>
   <ng-container matColumnDef="intakeDate">
     <th mat-header-cell *matHeaderCellDef>Intake Date</th>
-    <td mat-cell *matCellDef="let animal">{{ animal.intakeDate | date : 'dd.MM.yyyy' }}</td>
+    <td mat-cell *matCellDef="let animal">{{ animal.intakeDate | date : dateFormat }}</td>
   </ng-container>
   <ng-container matColumnDef="healthStatus">
     <th mat-header-cell *matHeaderCellDef>Health Status</th>

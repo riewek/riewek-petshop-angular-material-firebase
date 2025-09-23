@@ -8,6 +8,7 @@ export abstract class TableComponent<T extends FirebaseEntity> {
   displayedColumns: string[];
   dataAll = signal<T[]>([]);
   dataPagedSortedFiltered = signal<T[]>([]);
+  dateFormat = 'dd.MM.yyyy';
 
   constructor(displayedColumns: string, data: T[]) {
     this.pageSize = 10;

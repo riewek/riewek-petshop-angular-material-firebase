@@ -1,11 +1,29 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { FakeData } from '../../faker/fake.data';
+import { HealthRecord } from '../../model/healthRecord';
+import { MatTableModule } from '@angular/material/table';
+import { DatePipe } from '@angular/common';
+import { RouterLink } from '@angular/router';
+import { MatIcon } from '@angular/material/icon';
+import { AgePipe } from '../../shared/age.pipe';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { TableComponent } from '../../shared/table.component';
 
 @Component({
   selector: 'app-health',
-  imports: [],
+  imports: [MatTableModule, MatPaginatorModule, MatIcon, RouterLink, DatePipe, AgePipe],
   templateUrl: './health.html',
-  styleUrl: './health.scss'
+  styleUrl: './health.scss',
 })
-export class Health {
+//FIXME: rename component
+export class Health extends TableComponent<HealthRecord> implements AfterViewInit {
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
+  constructor() {
+    super('id animalId type notes vet meds', new FakeData().healthRecords);
+  }
+
+  ngAfterViewInit() {
+    this.ngAfterViewInitHook(this.paginator);
+  }
 }
