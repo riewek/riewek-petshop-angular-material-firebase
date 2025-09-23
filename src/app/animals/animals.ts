@@ -1,5 +1,4 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
-import { FakeData } from '../../faker/fake.data';
 import { Animal } from '../../model/animal';
 import { MatTableModule } from '@angular/material/table';
 import { DatePipe } from '@angular/common';
@@ -8,6 +7,7 @@ import { MatIcon } from '@angular/material/icon';
 import { AgePipe } from '../../shared/age.pipe';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { TableComponent } from '../../shared/table.component';
+import { DataService } from '../services/dataService';
 
 @Component({
   selector: 'app-animals',
@@ -18,10 +18,10 @@ import { TableComponent } from '../../shared/table.component';
 export class Animals extends TableComponent<Animal> implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor() {
+  constructor(dataService: DataService) {
     super(
       'id species breed birthDate age sex intakeDate healthStatus enclosureId photos adoptable',
-      new FakeData().animals
+      dataService.animals
     );
   }
 

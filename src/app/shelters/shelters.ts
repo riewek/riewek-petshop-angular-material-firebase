@@ -1,10 +1,10 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
-import { FakeData } from '../../faker/fake.data';
 import { Shelter } from '../../model/shelter';
 import { MatTableModule } from '@angular/material/table';
 import { RouterLink } from '@angular/router';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { TableComponent } from '../../shared/table.component';
+import { DataService } from '../services/dataService';
 
 @Component({
   selector: 'app-shelters',
@@ -15,8 +15,8 @@ import { TableComponent } from '../../shared/table.component';
 export class Shelters extends TableComponent<Shelter> implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor() {
-    super('id name location enclosureIds', new FakeData().shelters);
+  constructor(dataService: DataService) {
+    super('id name location enclosureIds', dataService.shelters);
   }
 
   ngAfterViewInit() {

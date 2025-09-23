@@ -1,9 +1,11 @@
 import { FirebaseEntity } from '../shared/firebase.model';
 
+export type HealthRecordType = 'checkup' | 'vaccination' | 'injury';
+
 export interface HealthRecord extends FirebaseEntity {
   animalId: string;
   date: Date;
-  type: 'checkup' | 'vaccination' | 'injury';
+  type: HealthRecordType;
   notes: string;
   vet?: string;
   meds?: string[];

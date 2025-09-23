@@ -1,10 +1,10 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
-import { FakeData } from '../../faker/fake.data';
 import { Adopter } from '../../model/adopter';
 import { MatTableModule } from '@angular/material/table';
 import { RouterLink } from '@angular/router';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { TableComponent } from '../../shared/table.component';
+import { DataService } from '../services/dataService';
 
 @Component({
   selector: 'app-adopters',
@@ -15,8 +15,8 @@ import { TableComponent } from '../../shared/table.component';
 export class Adopters extends TableComponent<Adopter> implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor() {
-    super('id name contact address housing experience', new FakeData().adopters);
+  constructor(dataService: DataService) {
+    super('id name contact address housing experience', dataService.adopters);
   }
 
   ngAfterViewInit() {
