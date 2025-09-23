@@ -1,18 +1,4 @@
-export interface MenuItem {
-  title: string;
-  icon: string;
-  route: string;
-  screens: boolean;
-}
-
-function createMenuItem(
-  title: string,
-  icon: string,
-  route: string,
-  screens: boolean = true
-): MenuItem {
-  return { title, icon, route, screens };
-}
+import { createMenuItem, MenuItem } from '../../shared/menu';
 
 export const dashboardMenuItem = createMenuItem('Dashboard', 'dashboard', '/dashboard');
 export const animalsMenuItem = createMenuItem('Tiere', 'pets', '/animals');

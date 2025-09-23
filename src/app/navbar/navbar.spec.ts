@@ -4,6 +4,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { menuItems } from '../../config/menu/menu.items';
+import { buttonAndClick, linkAndClick, DummyComponent } from '../../shared/test.util';
 
 describe('Navbar', () => {
   let component: Navbar;
@@ -35,24 +36,30 @@ describe('Navbar', () => {
     expect(component).toBeTruthy();
   });
 
+  menuItems.forEach((item) => {
+    it(`menus should navigate to ${item.title} when clicked`, async () => {
+      await buttonAndClick('menu', fixture);
+      await linkAndClick(item.title, fixture);
+      expect(router.url).toBe(item.route);
+    });
+  });
+
+  menuItems
+    .filter((item) => item.screens)
+    .forEach((item) => {
+      it(`screen menus should navigate to ${item.title} when clicked`, async () => {
+        await linkAndClick('Screens', fixture);
+        await linkAndClick(item.title, fixture);
+        expect(router.url).toBe(item.route);
+      });
+    });
+
   menuItems
     .filter((item) => !item.screens)
     .forEach((item) => {
       it(`not screen menus should navigate to ${item.title} when clicked`, async () => {
-        const link = Array.from(fixture.nativeElement.querySelectorAll('a')).find((el) =>
-          (el as HTMLElement).textContent?.includes(item.title)
-        ) as HTMLAnchorElement;
-        expect(link).toBeTruthy();
-        link.click();
-        fixture.detectChanges();
-        // Warte bis die Navigation abgeschlossen ist
-        await fixture.whenStable();
+        await linkAndClick(item.title, fixture);
         expect(router.url).toBe(item.route);
       });
     });
 });
-
-// DummyComponent für RouterTestingModule
-import { Component } from '@angular/core';
-@Component({ template: '' })
-class DummyComponent {}
