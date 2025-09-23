@@ -50,6 +50,10 @@ Cypress hinzufügen
 - npm install --save-dev eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin --legacy-peer-deps
 - npm install --save-dev @angular-eslint/builder @angular-eslint/eslint-plugin @angular-eslint/eslint-plugin-template @angular-eslint/template-parser --legacy-peer-deps
 
+## Setup Faker
+
+- npm install @faker-js/faker --save-dev --legacy-peer-deps
+
 ## Ports
 
 | Frontend    | Host:Port                               |
