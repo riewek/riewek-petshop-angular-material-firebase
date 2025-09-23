@@ -6,7 +6,7 @@ export interface Animal extends FirebaseEntity {
   birthDate: Date;
   sex: 'male' | 'female' | 'unknown';
   intakeDate: Date;
-  healthStatus: string;
+  healthStatus: 'Healthy' | 'Warning' | 'Critical' | 'Unknown';
   enclosureId?: string;
   photos: string[];
   adoptable: boolean;
