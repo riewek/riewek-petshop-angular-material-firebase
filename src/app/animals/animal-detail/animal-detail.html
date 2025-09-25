@@ -4,13 +4,86 @@
 <h1>edit animal {{ id() }}</h1>
 }
 
-<p>Id: {{ animal().id }}</p>
-<p>species: {{ animal().species }}</p>
-<p>breed: {{ animal().breed }}</p>
-<p>birthDate: {{ animal().birthDate }}</p>
-<p>sex: {{ animal().sex }}</p>
-<p>intakeDate: {{ animal().intakeDate }}</p>
-<p>healthStatus: {{ animal().healthStatus }}</p>
-<p>enclosureId: {{ animal().enclosureId }}</p>
-<p>photos: {{ animal().photos }}</p>
-<p>adoptable: {{ animal().adoptable }}</p>
+<div [formGroup]="form">
+  <mat-form-field appearance="fill" floatLabel="always">
+    <mat-label>Species</mat-label>
+    <input matInput formControlName="species" #species />
+    <mat-hint align="end">{{ species.value.length }} / 60</mat-hint>
+    @if (animalSpecies.errors?.['required']) {
+    <mat-error> Species is required! </mat-error>
+    }
+  </mat-form-field>
+  <br />
+
+  <mat-form-field appearance="fill" floatLabel="always">
+    <mat-label>Breed</mat-label>
+    <input matInput formControlName="breed" #breed />
+    <mat-hint align="end">{{ breed.value.length }} / 60</mat-hint>
+    @if (animalBreed.errors?.['required']) {
+    <mat-error> Breed is required! </mat-error>
+    }
+  </mat-form-field>
+  <br />
+
+  <mat-form-field appearance="fill" floatLabel="always">
+    <mat-label>Birth Date</mat-label>
+    <input matInput [matDatepicker]="birthDatePicker" formControlName="birthDate" />
+    <mat-hint align="end">MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="birthDatePicker"></mat-datepicker-toggle>
+    <mat-datepicker #birthDatePicker></mat-datepicker>
+  </mat-form-field>
+  <br />
+
+  <div>
+    <mat-label>Sex</mat-label>
+    <mat-radio-group
+      aria-label="Select an option"
+      aria-labelledby="example-radio-group-label"
+      class="example-radio-group"
+      formControlName="sex"
+    >
+      <mat-radio-button class="example-radio-button" value="male">Male</mat-radio-button>
+      <mat-radio-button class="example-radio-button" value="female">Female</mat-radio-button>
+      <mat-radio-button class="example-radio-button" value="unknown">Unknown</mat-radio-button>
+    </mat-radio-group>
+  </div>
+  <br />
+
+  <mat-form-field appearance="fill" floatLabel="always">
+    <mat-label>Intake Date</mat-label>
+    <input matInput [matDatepicker]="intakeDatePicker" formControlName="intakeDate" />
+    <mat-hint align="end">MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="intakeDatePicker"></mat-datepicker-toggle>
+    <mat-datepicker #intakeDatePicker></mat-datepicker>
+  </mat-form-field>
+  <br />
+
+  <div>
+    <mat-label>Health Status</mat-label>
+    <mat-radio-group
+      aria-label="Select an option"
+      aria-labelledby="example-radio-group-label"
+      class="example-radio-group"
+      formControlName="healthStatus"
+    >
+      <mat-radio-button class="example-radio-button" value="Healthy">Healthy</mat-radio-button>
+      <mat-radio-button class="example-radio-button" value="Warning">Warning</mat-radio-button>
+      <mat-radio-button class="example-radio-button" value="Critical">Critical</mat-radio-button>
+      <mat-radio-button class="example-radio-button" value="Unknown">Unknown</mat-radio-button>
+    </mat-radio-group>
+  </div>
+  <br />
+
+  <mat-form-field appearance="fill" floatLabel="always">
+    <mat-label>EnclosureId</mat-label>
+    <input matInput formControlName="enclosureId" #enclosureId />
+    <mat-hint align="end">{{ species.value.length }} / 60</mat-hint>
+    @if (animalEnclosureId.errors?.['required']) {
+    <mat-error> EnclosureId is required! </mat-error>
+    }
+  </mat-form-field>
+  <br />
+  <h2 style="color: red">FIXME: Photos missing</h2>
+
+  <mat-checkbox formControlName="adoptable"> Adoptable </mat-checkbox>
+</div>

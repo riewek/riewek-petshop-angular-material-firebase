@@ -83,6 +83,11 @@ export class DataService {
     return this.animals.find((animal) => animal.id === id)!;
   }
 
+  deleteAnimal(id: string): void {
+    this.animals = this.animals.filter((animal) => animal.id !== id);
+    //FIXME updateSignal
+  }
+
   findAllAnimalHealths(): AnimalHealth[] {
     return this.animalHealths;
   }
