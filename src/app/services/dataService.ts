@@ -4,7 +4,7 @@ import { AdoptionApplication, AdoptionApplicationStatus } from '../../model/adop
 import { AdoptionContract } from '../../model/adoptionContract';
 import { Animal, AnimalHealthStatus, AnimalSex } from '../../model/animal';
 import { Enclosure, EnclosureType } from '../../model/enclosure';
-import { AnimalHealth, HealthRecordType } from '../../model/animalHealth';
+import { AnimalHealth, AnimalHealthType } from '../../model/animalHealth';
 import { Shelter } from '../../model/shelter';
 import { Injectable } from '@angular/core';
 
@@ -40,11 +40,11 @@ export class DataService {
         healthStatus: animal.healthStatus as AnimalHealthStatus,
       };
     });
-    this.animalHealths = fakeData.healthRecords.map((healthRecord) => {
+    this.animalHealths = fakeData.animalHealths.map((animalHealth) => {
       return {
-        ...healthRecord,
-        date: new Date(healthRecord.date),
-        type: healthRecord.type as HealthRecordType,
+        ...animalHealth,
+        date: new Date(animalHealth.date),
+        type: animalHealth.type as AnimalHealthType,
       };
     });
     this.adopters = fakeData.adopters.map((adopter) => {
@@ -77,6 +77,10 @@ export class DataService {
 
   findAllAnimals(): Animal[] {
     return this.animals;
+  }
+
+  findAnimal(id: string): Animal {
+    return this.animals.find((animal) => animal.id === id)!;
   }
 
   findAllAnimalHealths(): AnimalHealth[] {

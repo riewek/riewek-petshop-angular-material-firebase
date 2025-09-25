@@ -14,6 +14,7 @@ import { Login } from './login/login';
 import { Logout } from './logout/logout';
 import { AdoptionApplications as AdoptionApplications } from './adoptionApplications/adoptionApplications';
 import { Enclosures } from './enclosures/enclosures';
+import { AnimalDetail } from './animals/animal-detail/animal-detail';
 
 export const routes: Routes = [
   {
@@ -39,6 +40,10 @@ export const routes: Routes = [
   {
     path: 'animals',
     component: Animals,
+  },
+  {
+    path: 'animals/:id',
+    component: AnimalDetail,
   },
   {
     path: 'shelters',

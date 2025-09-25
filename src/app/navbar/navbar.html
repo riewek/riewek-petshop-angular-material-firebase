@@ -1,4 +1,4 @@
-<mat-sidenav-container fullscreen>
+<mat-sidenav-container fullscreen class="mat-app-background">
   <mat-sidenav #sidenav>
     <mat-nav-list (click)="sidenav.close()">
       @for (menuItem of menuItems; track $index) {
@@ -32,5 +32,7 @@
     </a>
     } }
   </mat-toolbar>
-  <router-outlet />
+  <div class="outlet-wrapper">
+    <router-outlet />
+  </div>
 </mat-sidenav-container>

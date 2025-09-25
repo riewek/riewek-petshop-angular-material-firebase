@@ -1,19 +1,27 @@
-<mat-paginator
-  class="mat-elevation-z8"
-  [length]="dataAll().length"
-  [pageSize]="pageSize"
-  [pageSizeOptions]="pageSizeOptions"
->
-</mat-paginator>
+<mat-toolbar>
+  <button matIconButton data-cy="btn-create" [routerLink]="['create']">
+    <mat-icon>add</mat-icon>
+  </button>
+  <span class="spacer"></span>
+  <mat-paginator
+    class="mat-elevation-z8"
+    [length]="dataAll().length"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="pageSizeOptions"
+  >
+  </mat-paginator>
+</mat-toolbar>
 
 <table mat-table [dataSource]="dataPagedSortedFiltered()">
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef>#</th>
     <td mat-cell *matCellDef="let animal">
-      <a [routerLink]="['/animals', animal.id]">
-        {{ animal.id }}
-      </a>
-      <a [routerLink]="['/demo']">Link</a>
+      <button matIconButton data-cy="btn-edit" [routerLink]="[animal.id]" class="btn-spacing">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button matIconButton data-cy="btn-delete">
+        <mat-icon>delete</mat-icon>
+      </button>
     </td>
   </ng-container>
   <ng-container matColumnDef="species">
@@ -69,9 +77,14 @@
   <ng-container matColumnDef="enclosureId">
     <th mat-header-cell *matHeaderCellDef>Enclosure Id</th>
     <td mat-cell *matCellDef="let animal">
-      <a [routerLink]="['/demo', animal.enclosureId]">
-        {{ animal.enclosureId }}
-      </a>
+      <button
+        matIconButton
+        data-cy="btn-enclosureId"
+        [routerLink]="['/enclosures', animal.enclosureId]"
+      >
+        <mat-icon>arrow_forward</mat-icon>
+      </button>
+      Title of {{ animal.enclosureId }}
     </td>
   </ng-container>
   <ng-container matColumnDef="photos">

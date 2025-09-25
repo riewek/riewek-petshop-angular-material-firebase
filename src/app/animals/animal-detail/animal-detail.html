@@ -1,0 +1,16 @@
+@if(mode() === "create") {
+<h1>create animal</h1>
+} @else {
+<h1>edit animal {{ id() }}</h1>
+}
+
+<p>Id: {{ animal().id }}</p>
+<p>species: {{ animal().species }}</p>
+<p>breed: {{ animal().breed }}</p>
+<p>birthDate: {{ animal().birthDate }}</p>
+<p>sex: {{ animal().sex }}</p>
+<p>intakeDate: {{ animal().intakeDate }}</p>
+<p>healthStatus: {{ animal().healthStatus }}</p>
+<p>enclosureId: {{ animal().enclosureId }}</p>
+<p>photos: {{ animal().photos }}</p>
+<p>adoptable: {{ animal().adoptable }}</p>
