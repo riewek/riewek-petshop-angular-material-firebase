@@ -17,7 +17,7 @@ export class Enclosures extends TableComponent<Enclosure> implements AfterViewIn
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(dataService: DataService) {
-    super('id name type capacity occupied notes', dataService.enclosures);
+    super('id name type capacity occupied notes', dataService.findAllEnclosures());
   }
 
   ngAfterViewInit() {

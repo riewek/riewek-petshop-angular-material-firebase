@@ -2,7 +2,7 @@ import { FirebaseEntity } from '../shared/firebase.model';
 
 export type HealthRecordType = 'checkup' | 'vaccination' | 'injury';
 
-export interface HealthRecord extends FirebaseEntity {
+export interface AnimalHealth extends FirebaseEntity {
   animalId: string;
   date: Date;
   type: HealthRecordType;

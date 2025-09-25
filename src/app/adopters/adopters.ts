@@ -16,7 +16,7 @@ export class Adopters extends TableComponent<Adopter> implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(dataService: DataService) {
-    super('id name contact address housing experience', dataService.adopters);
+    super('id name contact address housing experience', dataService.findAllAdopters());
   }
 
   ngAfterViewInit() {

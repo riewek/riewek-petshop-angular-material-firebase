@@ -4,15 +4,15 @@ import { Dashboard } from './dashboard/dashboard';
 import { Animals } from './animals/animals';
 import { Shelters } from './shelters/shelters';
 import { Adopters } from './adopters/adopters';
-import { Adoptions } from './adoptions/adoptions';
-import { Health } from './health/health';
+import { AdoptionContracts as AdoptionContracts } from './adoptionContracts/adoptionContracts';
+import { AnimalHealths as AnimalHealths } from './animalHealths/animalHealths';
 import { Settings } from './settings/settings';
 import { Reports } from './reports/reports';
 import { About } from './about/about';
 import { Register } from './register/register';
 import { Login } from './login/login';
 import { Logout } from './logout/logout';
-import { Assignments } from './assignments/assignments';
+import { AdoptionApplications as AdoptionApplications } from './adoptionApplications/adoptionApplications';
 import { Enclosures } from './enclosures/enclosures';
 
 export const routes: Routes = [
@@ -53,16 +53,16 @@ export const routes: Routes = [
     component: Adopters,
   },
   {
-    path: 'assignments',
-    component: Assignments,
+    path: 'adoptionApplications',
+    component: AdoptionApplications,
   },
   {
-    path: 'adoptions',
-    component: Adoptions,
+    path: 'adoptionContracts',
+    component: AdoptionContracts,
   },
   {
-    path: 'health',
-    component: Health,
+    path: 'animalHealths',
+    component: AnimalHealths,
   },
   {
     path: 'reports',

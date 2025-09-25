@@ -4,7 +4,7 @@ import { AdoptionApplication, AdoptionApplicationStatus } from '../../model/adop
 import { AdoptionContract } from '../../model/adoptionContract';
 import { Animal, AnimalHealthStatus, AnimalSex } from '../../model/animal';
 import { Enclosure, EnclosureType } from '../../model/enclosure';
-import { HealthRecord, HealthRecordType } from '../../model/healthRecord';
+import { AnimalHealth, HealthRecordType } from '../../model/animalHealth';
 import { Shelter } from '../../model/shelter';
 import { Injectable } from '@angular/core';
 
@@ -12,13 +12,13 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class DataService {
-  enclosures: Enclosure[];
-  shelters: Shelter[];
-  animals: Animal[];
-  healthRecords: HealthRecord[];
-  adopters: Adopter[];
-  adoptionApplications: AdoptionApplication[];
-  adoptionContracts: AdoptionContract[];
+  private enclosures: Enclosure[];
+  private shelters: Shelter[];
+  private animals: Animal[];
+  private animalHealths: AnimalHealth[];
+  private adopters: Adopter[];
+  private adoptionApplications: AdoptionApplication[];
+  private adoptionContracts: AdoptionContract[];
   constructor() {
     this.enclosures = fakeData.enclosures.map((enclosure) => {
       return {
@@ -40,7 +40,7 @@ export class DataService {
         healthStatus: animal.healthStatus as AnimalHealthStatus,
       };
     });
-    this.healthRecords = fakeData.healthRecords.map((healthRecord) => {
+    this.animalHealths = fakeData.healthRecords.map((healthRecord) => {
       return {
         ...healthRecord,
         date: new Date(healthRecord.date),
@@ -65,5 +65,33 @@ export class DataService {
         signedAt: new Date(adoptionContract.signedAt),
       };
     });
+  }
+
+  findAllEnclosures(): Enclosure[] {
+    return this.enclosures;
+  }
+
+  findAllShelters(): Shelter[] {
+    return this.shelters;
+  }
+
+  findAllAnimals(): Animal[] {
+    return this.animals;
+  }
+
+  findAllAnimalHealths(): AnimalHealth[] {
+    return this.animalHealths;
+  }
+
+  findAllAdopters(): Adopter[] {
+    return this.adopters;
+  }
+
+  findAllAdoptionApplications(): AdoptionApplication[] {
+    return this.adoptionApplications;
+  }
+
+  findAllAdoptionContracts(): AdoptionContract[] {
+    return this.adoptionContracts;
   }
 }

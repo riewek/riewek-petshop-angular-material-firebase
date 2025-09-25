@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
-import { HealthRecord } from '../../model/healthRecord';
+import { AnimalHealth } from '../../model/animalHealth';
 import { MatTableModule } from '@angular/material/table';
 import { DatePipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
@@ -9,17 +9,16 @@ import { TableComponent } from '../../shared/table.component';
 import { DataService } from '../services/dataService';
 
 @Component({
-  selector: 'app-health',
+  selector: 'app-animalHealths',
   imports: [MatTableModule, MatPaginatorModule, MatIcon, RouterLink, DatePipe],
-  templateUrl: './health.html',
-  styleUrl: './health.scss',
+  templateUrl: './animalHealths.html',
+  styleUrl: './animalHealths.scss',
 })
-//FIXME: rename component
-export class Health extends TableComponent<HealthRecord> implements AfterViewInit {
+export class AnimalHealths extends TableComponent<AnimalHealth> implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(dataService: DataService) {
-    super('id animalId type notes vet meds', dataService.healthRecords);
+    super('id animalId type notes vet meds', dataService.findAllAnimalHealths());
   }
 
   ngAfterViewInit() {

@@ -16,7 +16,7 @@ export class Shelters extends TableComponent<Shelter> implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(dataService: DataService) {
-    super('id name location enclosureIds', dataService.shelters);
+    super('id name location enclosureIds', dataService.findAllShelters());
   }
 
   ngAfterViewInit() {

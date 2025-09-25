@@ -5,9 +5,17 @@ export const animalsMenuItem = createMenuItem('Tiere', 'pets', '/animals');
 export const sheltersMenuItem = createMenuItem('Tierheime', 'home', '/shelters');
 export const enclosuresMenuItem = createMenuItem('Gehege', 'home', '/enclosures');
 export const adoptersMenuItem = createMenuItem('Interessenten', 'groups', '/adopters');
-export const assignmentsMenuItem = createMenuItem('Anträge', 'assignment', '/assignments');
-export const adoptionsMenuItem = createMenuItem('Adoptionen', 'favorite', '/adoptions');
-export const healthMenuItem = createMenuItem('Gesundheit', 'local_hospital', '/health');
+export const adoptionApplicationsMenuItem = createMenuItem(
+  'Anträge',
+  'assignment',
+  '/adoptionApplications'
+);
+export const adoptionContractsMenuItem = createMenuItem(
+  'Adoptionen',
+  'favorite',
+  '/adoptionContracts'
+);
+export const healthMenuItem = createMenuItem('Gesundheit', 'local_hospital', '/animalHealths');
 export const reportsMenuItem = createMenuItem('Reporting', 'bar_chart', '/reports');
 export const settingsMenuItem = createMenuItem('Einstellungen', 'settings', '/settings');
 export const registerMenuItem = createMenuItem('Register', 'person_add', '/register', false);
@@ -22,8 +30,8 @@ export const menuItems: MenuItem[] = [
   sheltersMenuItem,
   enclosuresMenuItem,
   adoptersMenuItem,
-  assignmentsMenuItem,
-  adoptionsMenuItem,
+  adoptionApplicationsMenuItem,
+  adoptionContractsMenuItem,
   healthMenuItem,
   reportsMenuItem,
   settingsMenuItem,

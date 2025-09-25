@@ -7,7 +7,7 @@ describe('Animals Component', () => {
   });
 
   it('makes a screenshot', () => {
-    cy.screenshot('app/animals', { overwrite: true });
+    cy.screenshot('animals/home', { overwrite: true });
   });
 
   it('regresses to snapshot', () => {

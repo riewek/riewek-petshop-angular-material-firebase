@@ -8,17 +8,19 @@ import { TableComponent } from '../../shared/table.component';
 import { DataService } from '../services/dataService';
 
 @Component({
-  selector: 'app-adoptions',
+  selector: 'app-adoptionContracts',
   imports: [MatTableModule, MatPaginatorModule, RouterLink, DatePipe],
-  templateUrl: './adoptions.html',
-  styleUrl: './adoptions.scss',
+  templateUrl: './adoptionContracts.html',
+  styleUrl: './adoptionContracts.scss',
 })
-//FIXME: rename component
-export class Adoptions extends TableComponent<AdoptionContract> implements AfterViewInit {
+export class AdoptionContracts extends TableComponent<AdoptionContract> implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(dataService: DataService) {
-    super('id adoptionApplicationId contractUrl signedAt fee', dataService.adoptionContracts);
+    super(
+      'id adoptionApplicationId contractUrl signedAt fee',
+      dataService.findAllAdoptionContracts()
+    );
   }
 
   ngAfterViewInit() {

@@ -3,12 +3,12 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { FirebaseEntity } from './firebase.model';
 
 export abstract class TableComponent<T extends FirebaseEntity> {
-  pageSize: number;
-  pageSizeOptions: number[];
-  displayedColumns: string[];
-  dataAll = signal<T[]>([]);
-  dataPagedSortedFiltered = signal<T[]>([]);
-  dateFormat = 'dd.MM.yyyy';
+  readonly pageSize: number;
+  readonly pageSizeOptions: number[];
+  readonly displayedColumns: string[];
+  readonly dataAll = signal<T[]>([]);
+  readonly dataPagedSortedFiltered = signal<T[]>([]);
+  readonly dateFormat = 'dd.MM.yyyy';
 
   constructor(displayedColumns: string, data: T[]) {
     this.pageSize = 10;

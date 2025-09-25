@@ -21,7 +21,7 @@ export class Animals extends TableComponent<Animal> implements AfterViewInit {
   constructor(dataService: DataService) {
     super(
       'id species breed birthDate age sex intakeDate healthStatus enclosureId photos adoptable',
-      dataService.animals
+      dataService.findAllAnimals()
     );
   }
 
