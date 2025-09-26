@@ -1,1 +1,46 @@
-<p>shelter-detail works!</p>
+@if(mode() === "create") {
+<h1>Neues Tierheim erstellen</h1>
+} @else {
+<h1>Tierheim bearbeiten</h1>
+}
+
+<div [formGroup]="form" class="form-grid">
+  <!-- Name -->
+  <mat-form-field appearance="fill" floatLabel="always">
+    <mat-label>Name</mat-label>
+    <input matInput formControlName="name" #name />
+    <mat-hint align="end">{{ name.value.length }} / 60</mat-hint>
+    @if (form.get('name')?.hasError('required')) {
+    <mat-error> Name is required! </mat-error>
+    }
+  </mat-form-field>
+
+  <!-- Location -->
+  <mat-form-field appearance="fill" floatLabel="always">
+    <mat-label>Location</mat-label>
+    <input matInput formControlName="location" #location />
+    <mat-hint align="end">{{ location.value.length }} / 60</mat-hint>
+    @if (form.get('location')?.hasError('required')) {
+    <mat-error> Locationis required! </mat-error>
+    }
+  </mat-form-field>
+
+  <!-- EnclosureId -->
+  <div>
+    <h2 style="color: red">FIXME: EnclosureIds missing</h2>
+  </div>
+
+  <!--
+  <mat-form-field appearance="fill" floatLabel="always">
+    <mat-label>Enclosure Ids</mat-label>
+    <mat-select formControlName="enclosureIds" #enclosureIds multiple>
+      @for (enclosure of enclosures(); track enclosure.id) {
+      <mat-option [value]="enclosure.id">{{ enclosure.name }}</mat-option>
+      }
+    </mat-select>
+    @if (form.get('enclosureIds')?.hasError('required')) {
+    <mat-error> EnclosureIds is required! </mat-error>
+    }
+  </mat-form-field>
+  -->
+</div>

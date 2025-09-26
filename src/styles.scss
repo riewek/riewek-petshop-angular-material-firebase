@@ -62,3 +62,23 @@ body {
   overflow: hidden; /* falls Text zu lang */
   text-overflow: ellipsis;
 }
+
+//for details pages
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* zwei gleich breite Spalten */
+  gap: 1.5rem; /* Abstand zwischen den Feldern */
+  align-items: start; /* verhindert Stretching bei Radiogroups */
+}
+
+.form-grid > * {
+  width: 100%; /* sorgt dafür, dass mat-form-fields die Spalte ausfüllen */
+  min-width: 0; /* wichtig für mat-form-field in grid */
+}
+
+/* Responsiv: auf kleinen Screens nur eine Spalte */
+@media (max-width: 768px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}

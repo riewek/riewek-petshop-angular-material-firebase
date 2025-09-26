@@ -1,1 +1,57 @@
-<p>adopter-detail works!</p>
+@if(mode() === "create") {
+<h1>Neues Interessent erstellen</h1>
+} @else {
+<h1>Interessent bearbeiten</h1>
+}
+
+<div [formGroup]="form" class="form-grid">
+  <!-- Name -->
+  <mat-form-field appearance="fill" floatLabel="always">
+    <mat-label>Name</mat-label>
+    <input matInput formControlName="name" #name />
+    <mat-hint align="end">{{ name.value.length }} / 60</mat-hint>
+    @if (form.get('name')?.hasError('required')) {
+    <mat-error> Name is required! </mat-error>
+    }
+  </mat-form-field>
+
+  <!-- Contact -->
+  <mat-form-field appearance="fill" floatLabel="always">
+    <mat-label>Contact</mat-label>
+    <input matInput formControlName="contact" #contact />
+    <mat-hint align="end">{{ contact.value.length }} / 60</mat-hint>
+    @if (form.get('contact')?.hasError('required')) {
+    <mat-error> Contact is required! </mat-error>
+    }
+  </mat-form-field>
+
+  <!-- Address -->
+  <mat-form-field appearance="fill" floatLabel="always">
+    <mat-label>Address</mat-label>
+    <input matInput formControlName="address" #address />
+    <mat-hint align="end">{{ address.value.length }} / 60</mat-hint>
+    @if (form.get('address')?.hasError('required')) {
+    <mat-error> Address is required! </mat-error>
+    }
+  </mat-form-field>
+
+  <!-- Housing -->
+  <mat-form-field appearance="fill" floatLabel="always">
+    <mat-label>Housing</mat-label>
+    <input matInput formControlName="housing" #housing />
+    <mat-hint align="end">{{ housing.value.length }} / 60</mat-hint>
+    @if (form.get('housing')?.hasError('required')) {
+    <mat-error> Housing is required! </mat-error>
+    }
+  </mat-form-field>
+
+  <!-- Experience -->
+  <mat-form-field appearance="fill" floatLabel="always">
+    <mat-label>Experience</mat-label>
+    <input matInput formControlName="experience" #experience />
+    <mat-hint align="end">{{ experience.value.length }} / 60</mat-hint>
+    @if (form.get('experience')?.hasError('required')) {
+    <mat-error> Experience is required! </mat-error>
+    }
+  </mat-form-field>
+</div>

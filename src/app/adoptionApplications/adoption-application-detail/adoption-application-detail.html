@@ -1,1 +1,58 @@
-<p>adoption-application-detail works!</p>
+@if(mode() === "create") {
+<h1>Neues Antrag erstellen</h1>
+} @else {
+<h1>Antrag bearbeiten</h1>
+}
+
+<div [formGroup]="form" class="form-grid">
+  <!-- Adopter Id -->
+  <mat-form-field appearance="fill" floatLabel="always">
+    <mat-label>EnclosureId</mat-label>
+    <mat-select formControlName="enclosureId" #enclosureId>
+      <mat-option>--</mat-option>
+      @for (enclosure of enclosures(); track enclosure.id) {
+      <mat-option [value]="enclosure.id">{{ enclosure.name }}</mat-option>
+      }
+    </mat-select>
+    @if (form.get('enclosureId')?.hasError('required')) {
+    <mat-error> EnclosureId is required! </mat-error>
+    }
+  </mat-form-field>
+
+  <!-- Animal Id -->
+  <mat-form-field appearance="fill" floatLabel="always">
+    <mat-label>EnclosureId</mat-label>
+    <mat-select formControlName="enclosureId" #enclosureId>
+      <mat-option>--</mat-option>
+      @for (enclosure of enclosures(); track enclosure.id) {
+      <mat-option [value]="enclosure.id">{{ enclosure.name }}</mat-option>
+      }
+    </mat-select>
+    @if (form.get('enclosureId')?.hasError('required')) {
+    <mat-error> EnclosureId is required! </mat-error>
+    }
+  </mat-form-field>
+
+  <!-- Birth Date -->
+  <mat-form-field appearance="fill" floatLabel="always">
+    <mat-label>Birth Date</mat-label>
+    <input matInput [matDatepicker]="birthDatePicker" formControlName="birthDate" />
+    <mat-hint align="end">MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="birthDatePicker"></mat-datepicker-toggle>
+    <mat-datepicker #birthDatePicker></mat-datepicker>
+    @if (form.get('birthDate')?.hasError('required')) {
+    <mat-error> Birth Date is required! </mat-error>
+    }
+  </mat-form-field>
+
+  <!-- Sex -->
+  <div>
+    <mat-label>Sex</mat-label>
+    <br />
+    <mat-radio-group formControlName="sex">
+      <mat-radio-button value="male">Male</mat-radio-button>
+      <mat-radio-button value="female">Female</mat-radio-button>
+      <mat-radio-button value="unknown">Unknown</mat-radio-button>
+    </mat-radio-group>
+  </div>
+</div>

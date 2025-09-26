@@ -71,6 +71,10 @@ export class DataService {
     return this.enclosures;
   }
 
+  findEnclosure(id: string): Enclosure {
+    return this.enclosures.find((enclosure) => enclosure.id === id)!;
+  }
+
   findAllShelters(): Shelter[] {
     return this.shelters;
   }
@@ -100,10 +104,17 @@ export class DataService {
     return this.adopters;
   }
 
+  findAdopter(id: string): Adopter {
+    return this.adopters.find((adopter) => adopter.id === id)!;
+  }
+
   findAllAdoptionApplications(): AdoptionApplication[] {
     return this.adoptionApplications;
   }
 
+  findAdoptionApplication(id: string): AdoptionApplication {
+    return this.adoptionApplications.find((adoptionApplication) => adoptionApplication.id === id)!;
+  }
   findAllAdoptionContracts(): AdoptionContract[] {
     return this.adoptionContracts;
   }
