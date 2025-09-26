@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Animal } from '../../../model/animal';
 import { DataService } from '../../services/dataService';
@@ -13,8 +13,10 @@ import {
   MatDatepickerInput,
   MatDatepickerModule,
 } from '@angular/material/datepicker';
+import { MatSelectModule } from '@angular/material/select';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { EditComponent } from '../../../shared/edit.component';
+import { Enclosure } from '../../../model/enclosure';
 
 @Component({
   selector: 'app-animal-detail',
@@ -30,11 +32,14 @@ import { EditComponent } from '../../../shared/edit.component';
     MatDatepickerToggle,
     MatDatepickerInput,
     MatDatepickerModule,
+    MatSelectModule,
   ],
   templateUrl: './animal-detail.html',
   styleUrl: './animal-detail.scss',
 })
 export class AnimalDetail extends EditComponent<Animal> {
+  enclosures = signal<Enclosure[]>([]);
+
   constructor(
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
@@ -55,5 +60,6 @@ export class AnimalDetail extends EditComponent<Animal> {
       route,
       (id) => dataService.findAnimal(id)
     );
+    this.enclosures.set(dataService.findAllEnclosures());
   }
 }

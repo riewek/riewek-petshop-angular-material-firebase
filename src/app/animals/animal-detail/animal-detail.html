@@ -75,8 +75,12 @@
   <!-- EnclosureId -->
   <mat-form-field appearance="fill" floatLabel="always">
     <mat-label>EnclosureId</mat-label>
-    <input matInput formControlName="enclosureId" #enclosureId />
-    <mat-hint align="end">{{ enclosureId.value.length }} / 60</mat-hint>
+    <mat-select formControlName="enclosureId" #enclosureId>
+      <mat-option>--</mat-option>
+      @for (enclosure of enclosures(); track enclosure.id) {
+      <mat-option [value]="enclosure.id">{{ enclosure.name }}</mat-option>
+      }
+    </mat-select>
     @if (form.get('enclosureId')?.hasError('required')) {
     <mat-error> EnclosureId is required! </mat-error>
     }
