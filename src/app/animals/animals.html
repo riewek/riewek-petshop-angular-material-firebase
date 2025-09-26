@@ -85,8 +85,10 @@
         [routerLink]="['/enclosures', animal.enclosureId]"
       >
         <mat-icon>arrow_forward</mat-icon>
+        <!--
+        {{ dataService.findShelter(animal.enclosureId)!.id }}
+         -->
       </button>
-      Title of {{ animal.enclosureId }}
     </td>
   </ng-container>
   <ng-container matColumnDef="photos">

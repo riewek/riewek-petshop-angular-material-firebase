@@ -1,34 +1,58 @@
-<mat-paginator
-  class="mat-elevation-z8"
-  [length]="dataAll().length"
-  [pageSize]="pageSize"
-  [pageSizeOptions]="pageSizeOptions"
->
-</mat-paginator>
+<h2>Anträge</h2>
+
+<mat-toolbar>
+  <button matIconButton data-cy="btn-create" [routerLink]="['create']">
+    <mat-icon>add</mat-icon>
+  </button>
+  <span class="spacer"></span>
+  <mat-paginator
+    class="mat-elevation-z8"
+    [length]="dataAll().length"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="pageSizeOptions"
+  >
+  </mat-paginator>
+</mat-toolbar>
 
 <table mat-table [dataSource]="dataPagedSortedFiltered()">
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef>#</th>
     <td mat-cell *matCellDef="let adoptionApplication">
-      <a [routerLink]="['/assignments', adoptionApplication.id]">
-        {{ adoptionApplication.id }}
-      </a>
+      <button
+        matIconButton
+        data-cy="btn-edit"
+        [routerLink]="[adoptionApplication.id]"
+        class="btn-spacing"
+      >
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button matIconButton data-cy="btn-delete">
+        <mat-icon>delete</mat-icon>
+      </button>
     </td>
   </ng-container>
   <ng-container matColumnDef="adopterId">
     <th mat-header-cell *matHeaderCellDef>Adopter Id</th>
     <td mat-cell *matCellDef="let adoptionApplication">
-      <a [routerLink]="['/adopters', adoptionApplication.adopterId]">
-        {{ adoptionApplication.adopterId }}
-      </a>
+      <button
+        matIconButton
+        data-cy="btn-adopterId"
+        [routerLink]="['/adopters', adoptionApplication.adopterId]"
+      >
+        <mat-icon>arrow_forward</mat-icon>
+      </button>
     </td>
   </ng-container>
   <ng-container matColumnDef="animalId">
     <th mat-header-cell *matHeaderCellDef>Animal Id</th>
     <td mat-cell *matCellDef="let adoptionApplication">
-      <a [routerLink]="['/animals', adoptionApplication.animalId]">
-        {{ adoptionApplication.animalId }}
-      </a>
+      <button
+        matIconButton
+        data-cy="btn-animalId"
+        [routerLink]="['/animals', adoptionApplication.animalId]"
+      >
+        <mat-icon>arrow_forward</mat-icon>
+      </button>
     </td>
   </ng-container>
   <ng-container matColumnDef="createdAt">

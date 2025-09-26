@@ -75,6 +75,10 @@ export class DataService {
     return this.shelters;
   }
 
+  findShelter(id: string): Shelter {
+    return this.shelters.find((shelter) => shelter.id === id)!;
+  }
+
   findAllAnimals(): Animal[] {
     return this.animals;
   }

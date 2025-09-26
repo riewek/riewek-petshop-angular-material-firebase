@@ -44,3 +44,21 @@ body {
   margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
+
+.spacer {
+  flex: 1 1 auto; /* füllt den Zwischenraum */
+}
+.btn-spacing {
+  margin-right: 5px;
+}
+.enclosure-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* Abstand zwischen Icon und Text */
+}
+
+.enclosure-name {
+  white-space: nowrap; /* verhindert Umbruch */
+  overflow: hidden; /* falls Text zu lang */
+  text-overflow: ellipsis;
+}

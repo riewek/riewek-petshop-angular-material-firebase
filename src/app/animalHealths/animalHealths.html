@@ -1,26 +1,41 @@
-<mat-paginator
-  class="mat-elevation-z8"
-  [length]="dataAll().length"
-  [pageSize]="pageSize"
-  [pageSizeOptions]="pageSizeOptions"
->
-</mat-paginator>
+<h2>Gesundheit</h2>
+
+<mat-toolbar>
+  <button matIconButton data-cy="btn-create" [routerLink]="['create']">
+    <mat-icon>add</mat-icon>
+  </button>
+  <span class="spacer"></span>
+  <mat-paginator
+    class="mat-elevation-z8"
+    [length]="dataAll().length"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="pageSizeOptions"
+  >
+  </mat-paginator>
+</mat-toolbar>
 
 <table mat-table [dataSource]="dataPagedSortedFiltered()">
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef>#</th>
     <td mat-cell *matCellDef="let healthRecord">
-      <a [routerLink]="['/health', healthRecord.id]">
-        {{ healthRecord.id }}
-      </a>
+      <button matIconButton data-cy="btn-edit" [routerLink]="[healthRecord.id]" class="btn-spacing">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button matIconButton data-cy="btn-delete">
+        <mat-icon>delete</mat-icon>
+      </button>
     </td>
   </ng-container>
   <ng-container matColumnDef="animalId">
     <th mat-header-cell *matHeaderCellDef>Animal Id</th>
     <td mat-cell *matCellDef="let healthRecord">
-      <a [routerLink]="['/animals', healthRecord.animalId]">
-        {{ healthRecord.animalId }}
-      </a>
+      <button
+        matIconButton
+        data-cy="btn-animalId"
+        [routerLink]="['/animals', healthRecord.animalId]"
+      >
+        <mat-icon>arrow_forward</mat-icon>
+      </button>
     </td>
   </ng-container>
   <ng-container matColumnDef="date">

@@ -29,7 +29,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 export class Animals extends TableComponent<Animal> implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private dataService: DataService) {
+  constructor(public dataService: DataService) {
     super(
       'id species breed birthDate age sex intakeDate healthStatus enclosureId photos adoptable',
       dataService.findAllAnimals()
