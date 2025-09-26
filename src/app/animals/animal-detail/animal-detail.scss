@@ -8,3 +8,21 @@
 .example-radio-button {
   margin: 5px;
 }
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* zwei gleich breite Spalten */
+  gap: 1.5rem; /* Abstand zwischen den Feldern */
+  align-items: start; /* verhindert Stretching bei Radiogroups */
+}
+
+.form-grid > * {
+  width: 100%; /* sorgt dafür, dass mat-form-fields die Spalte ausfüllen */
+}
+
+/* Responsiv: auf kleinen Screens nur eine Spalte */
+@media (max-width: 768px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}

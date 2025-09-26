@@ -1,10 +1,11 @@
 @if(mode() === "create") {
-<h1>create animal</h1>
+<h1>Neues Tier erstellen</h1>
 } @else {
-<h1>edit animal {{ id() }}</h1>
+<h1>Tier bearbeiten</h1>
 }
 
-<div [formGroup]="form">
+<div [formGroup]="form" class="form-grid">
+  <!-- Species -->
   <mat-form-field appearance="fill" floatLabel="always">
     <mat-label>Species</mat-label>
     <input matInput formControlName="species" #species />
@@ -13,8 +14,8 @@
     <mat-error> Species is required! </mat-error>
     }
   </mat-form-field>
-  <br />
 
+  <!-- Breed -->
   <mat-form-field appearance="fill" floatLabel="always">
     <mat-label>Breed</mat-label>
     <input matInput formControlName="breed" #breed />
@@ -23,8 +24,8 @@
     <mat-error> Breed is required! </mat-error>
     }
   </mat-form-field>
-  <br />
 
+  <!-- Birth Date -->
   <mat-form-field appearance="fill" floatLabel="always">
     <mat-label>Birth Date</mat-label>
     <input matInput [matDatepicker]="birthDatePicker" formControlName="birthDate" />
@@ -35,23 +36,19 @@
     <mat-error> Birth Date is required! </mat-error>
     }
   </mat-form-field>
-  <br />
 
+  <!-- Sex -->
   <div>
     <mat-label>Sex</mat-label>
-    <mat-radio-group
-      aria-label="Select an option"
-      aria-labelledby="example-radio-group-label"
-      class="example-radio-group"
-      formControlName="sex"
-    >
-      <mat-radio-button class="example-radio-button" value="male">Male</mat-radio-button>
-      <mat-radio-button class="example-radio-button" value="female">Female</mat-radio-button>
-      <mat-radio-button class="example-radio-button" value="unknown">Unknown</mat-radio-button>
+    <br />
+    <mat-radio-group formControlName="sex">
+      <mat-radio-button value="male">Male</mat-radio-button>
+      <mat-radio-button value="female">Female</mat-radio-button>
+      <mat-radio-button value="unknown">Unknown</mat-radio-button>
     </mat-radio-group>
   </div>
-  <br />
 
+  <!-- Intake Date -->
   <mat-form-field appearance="fill" floatLabel="always">
     <mat-label>Intake Date</mat-label>
     <input matInput [matDatepicker]="intakeDatePicker" formControlName="intakeDate" />
@@ -62,34 +59,36 @@
     <mat-error> Intake Date is required! </mat-error>
     }
   </mat-form-field>
-  <br />
 
+  <!-- Health Status -->
   <div>
     <mat-label>Health Status</mat-label>
-    <mat-radio-group
-      aria-label="Select an option"
-      aria-labelledby="example-radio-group-label"
-      class="example-radio-group"
-      formControlName="healthStatus"
-    >
-      <mat-radio-button class="example-radio-button" value="Healthy">Healthy</mat-radio-button>
-      <mat-radio-button class="example-radio-button" value="Warning">Warning</mat-radio-button>
-      <mat-radio-button class="example-radio-button" value="Critical">Critical</mat-radio-button>
-      <mat-radio-button class="example-radio-button" value="Unknown">Unknown</mat-radio-button>
+    <br />
+    <mat-radio-group formControlName="healthStatus">
+      <mat-radio-button value="Healthy">Healthy</mat-radio-button>
+      <mat-radio-button value="Warning">Warning</mat-radio-button>
+      <mat-radio-button value="Critical">Critical</mat-radio-button>
+      <mat-radio-button value="Unknown">Unknown</mat-radio-button>
     </mat-radio-group>
   </div>
-  <br />
 
+  <!-- EnclosureId -->
   <mat-form-field appearance="fill" floatLabel="always">
     <mat-label>EnclosureId</mat-label>
     <input matInput formControlName="enclosureId" #enclosureId />
-    <mat-hint align="end">{{ species.value.length }} / 60</mat-hint>
+    <mat-hint align="end">{{ enclosureId.value.length }} / 60</mat-hint>
     @if (form.get('enclosureId')?.hasError('required')) {
     <mat-error> EnclosureId is required! </mat-error>
     }
   </mat-form-field>
-  <br />
-  <h2 style="color: red">FIXME: Photos missing</h2>
 
-  <mat-checkbox formControlName="adoptable"> Adoptable </mat-checkbox>
+  <!-- Photos -->
+  <div>
+    <h2 style="color: red">FIXME: Photos missing</h2>
+  </div>
+
+  <!-- Adoptable -->
+  <div>
+    <mat-checkbox formControlName="adoptable"> Adoptable </mat-checkbox>
+  </div>
 </div>

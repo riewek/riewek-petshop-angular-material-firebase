@@ -19,6 +19,7 @@ export abstract class TableComponent<T extends FirebaseEntity> {
   }
 
   ngAfterViewInitHook(paginator: MatPaginator) {
+    //FIXME: Check for subscribe Destruction
     paginator.page.subscribe(this.updateDataPagedSortedFiltered.bind(this));
   }
 
