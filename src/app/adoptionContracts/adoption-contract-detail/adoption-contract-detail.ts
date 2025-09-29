@@ -1,11 +1,47 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { DataService } from '../../services/dataService';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatSelectModule } from '@angular/material/select';
+import { provideNativeDateAdapter } from '@angular/material/core';
+import { EditComponent } from '../../../shared/edit.component';
+import { AdoptionContract } from '../../../model/adoptionContract';
+import { AdoptionApplication } from '../../../model/adoptionApplication';
 
 @Component({
   selector: 'app-adoption-contract-detail',
-  imports: [],
+  providers: [provideNativeDateAdapter()],
+  imports: [
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatSelectModule,
+  ],
   templateUrl: './adoption-contract-detail.html',
-  styleUrl: './adoption-contract-detail.scss'
+  styleUrl: './adoption-contract-detail.scss',
 })
-export class AdoptionContractDetail {
+export class AdoptionContractDetail extends EditComponent<AdoptionContract> {
+  adoptionApplications = signal<AdoptionApplication[]>([]);
 
+  constructor(
+    private route: ActivatedRoute,
+    private formBuilder: FormBuilder,
+    private dataService: DataService
+  ) {
+    super(
+      formBuilder.group({
+        adoptionApplicationId: ['', [Validators.required]],
+        contractUrl: ['', []],
+        signedAt: ['', []],
+        fee: ['', [Validators.required, Validators.min(0)]],
+      }),
+      route,
+      (id) => dataService.findAdoptionContract(id)
+    );
+    this.adoptionApplications.set(dataService.findAllAdoptionApplications());
+  }
 }

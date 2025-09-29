@@ -1,20 +1,11 @@
-import { Component, signal, ViewChild } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Animal } from '../../../model/animal';
 import { DataService } from '../../services/dataService';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatRadioButton, MatRadioModule } from '@angular/material/radio';
-import { MatCheckbox } from '@angular/material/checkbox';
-import {
-  MatDatepicker,
-  MatDatepickerToggle,
-  MatDatepickerInput,
-  MatDatepickerModule,
-} from '@angular/material/datepicker';
-import { MatSelect, MatSelectModule } from '@angular/material/select';
-import { provideNativeDateAdapter } from '@angular/material/core';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
 import { EditComponent } from '../../../shared/edit.component';
 import { Shelter } from '../../../model/shelter';
 import { Enclosure } from '../../../model/enclosure';
@@ -25,13 +16,7 @@ import { Enclosure } from '../../../model/enclosure';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatRadioButton,
     MatRadioModule,
-    MatCheckbox,
-    MatDatepicker,
-    MatDatepickerToggle,
-    MatDatepickerInput,
-    MatDatepickerModule,
     MatSelectModule,
   ],
   templateUrl: './shelter-detail.html',

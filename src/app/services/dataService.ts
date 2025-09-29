@@ -100,6 +100,10 @@ export class DataService {
     return this.animalHealths;
   }
 
+  findAnimalHealth(id: string): AnimalHealth {
+    return this.animalHealths.find((animalHealth) => animalHealth.id === id)!;
+  }
+
   findAllAdopters(): Adopter[] {
     return this.adopters;
   }
@@ -115,7 +119,12 @@ export class DataService {
   findAdoptionApplication(id: string): AdoptionApplication {
     return this.adoptionApplications.find((adoptionApplication) => adoptionApplication.id === id)!;
   }
+
   findAllAdoptionContracts(): AdoptionContract[] {
     return this.adoptionContracts;
+  }
+
+  findAdoptionContract(id: string): AdoptionContract {
+    return this.adoptionContracts.find((adoptionContract) => adoptionContract.id === id)!;
   }
 }

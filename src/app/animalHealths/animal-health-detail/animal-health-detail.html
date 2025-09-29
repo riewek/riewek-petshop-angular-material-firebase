@@ -1,1 +1,79 @@
-<p>animal-health-detail works!</p>
+@if(mode() === "create") {
+<h1>Neues Tier Gesundheits Report erstellen</h1>
+} @else {
+<h1>Tier Gesundheits Report bearbeiten</h1>
+}
+
+<div [formGroup]="form" class="form-grid">
+  <!-- Animal Id -->
+  <mat-form-field appearance="fill" floatLabel="always">
+    <mat-label>Animal Id</mat-label>
+    <mat-select formControlName="animalId" #animalId>
+      <mat-option>--</mat-option>
+      @for (animal of animals(); track animal.id) {
+      <mat-option [value]="animal.id">{{ animal.breed }}</mat-option>
+      }
+    </mat-select>
+    @if (form.get('animalId')?.hasError('required')) {
+    <mat-error> Animal Id is required! </mat-error>
+    }
+  </mat-form-field>
+
+  <!-- Date -->
+  <mat-form-field appearance="fill" floatLabel="always">
+    <mat-label>Date</mat-label>
+    <input matInput [matDatepicker]="datePicker" formControlName="date" />
+    <mat-hint align="end">MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="datePicker"></mat-datepicker-toggle>
+    <mat-datepicker #datePicker></mat-datepicker>
+    @if (form.get('date')?.hasError('required')) {
+    <mat-error> Date is required! </mat-error>
+    }
+  </mat-form-field>
+
+  <!-- Type -->
+  <div>
+    <mat-label>Type</mat-label>
+    <br />
+    <mat-radio-group formControlName="type">
+      <mat-radio-button value="checkup">Checkup</mat-radio-button>
+      <mat-radio-button value="vaccination">Vaccination</mat-radio-button>
+      <mat-radio-button value="injury">Injury</mat-radio-button>
+    </mat-radio-group>
+  </div>
+
+  <!-- Notes -->
+  <mat-form-field appearance="fill" floatLabel="always">
+    <mat-label>Notes</mat-label>
+    <input matInput formControlName="notes" #notes />
+    <mat-hint align="end">{{ notes.value.length }} / 60</mat-hint>
+    @if (form.get('notes')?.hasError('required')) {
+    <mat-error> Notes is required! </mat-error>
+    }
+  </mat-form-field>
+
+  <!-- Vet -->
+  <mat-form-field appearance="fill" floatLabel="always">
+    <mat-label>Vet</mat-label>
+    <input matInput formControlName="vet" #vet />
+    <mat-hint align="end">{{ vet.value.length }} / 60</mat-hint>
+    @if (form.get('vet')?.hasError('required')) {
+    <mat-error> Vet is required! </mat-error>
+    }
+  </mat-form-field>
+
+  <!-- Meds -->
+  <div>
+    <h2 style="color: red">FIXME: Meds missing</h2>
+  </div>
+  <!--
+  <mat-form-field appearance="fill" floatLabel="always">
+    <mat-label>Meds</mat-label>
+    <input matInput formControlName="meds" #meds />
+    <mat-hint align="end">{{ meds.value.length }} / 60</mat-hint>
+    @if (form.get('meds')?.hasError('required')) {
+    <mat-error> Meds is required! </mat-error>
+    }
+  </mat-form-field>
+  -->
+</div>

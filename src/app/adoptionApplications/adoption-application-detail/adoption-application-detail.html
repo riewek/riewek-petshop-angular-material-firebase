@@ -7,52 +7,54 @@
 <div [formGroup]="form" class="form-grid">
   <!-- Adopter Id -->
   <mat-form-field appearance="fill" floatLabel="always">
-    <mat-label>EnclosureId</mat-label>
-    <mat-select formControlName="enclosureId" #enclosureId>
+    <mat-label>Adopter Id</mat-label>
+    <mat-select formControlName="adopterId" #adopterId>
       <mat-option>--</mat-option>
-      @for (enclosure of enclosures(); track enclosure.id) {
-      <mat-option [value]="enclosure.id">{{ enclosure.name }}</mat-option>
+      @for (adopter of adopters(); track adopter.id) {
+      <mat-option [value]="adopter.id">{{ adopter.name }}</mat-option>
       }
     </mat-select>
-    @if (form.get('enclosureId')?.hasError('required')) {
-    <mat-error> EnclosureId is required! </mat-error>
+    @if (form.get('adopterId')?.hasError('required')) {
+    <mat-error> Adopter Id is required! </mat-error>
     }
   </mat-form-field>
 
   <!-- Animal Id -->
   <mat-form-field appearance="fill" floatLabel="always">
-    <mat-label>EnclosureId</mat-label>
-    <mat-select formControlName="enclosureId" #enclosureId>
+    <mat-label>Animal Id</mat-label>
+    <mat-select formControlName="animalId" #animalId>
       <mat-option>--</mat-option>
-      @for (enclosure of enclosures(); track enclosure.id) {
-      <mat-option [value]="enclosure.id">{{ enclosure.name }}</mat-option>
+      @for (adopter of adopters(); track adopter.id) {
+      <mat-option [value]="adopter.id">{{ adopter.name }}</mat-option>
       }
     </mat-select>
-    @if (form.get('enclosureId')?.hasError('required')) {
-    <mat-error> EnclosureId is required! </mat-error>
+    @if (form.get('animalId')?.hasError('required')) {
+    <mat-error> Animal is required! </mat-error>
     }
   </mat-form-field>
 
-  <!-- Birth Date -->
+  <!-- Created At -->
   <mat-form-field appearance="fill" floatLabel="always">
-    <mat-label>Birth Date</mat-label>
-    <input matInput [matDatepicker]="birthDatePicker" formControlName="birthDate" />
+    <mat-label>Created Date</mat-label>
+    <input matInput [matDatepicker]="createdAtPicker" formControlName="createdAt" />
     <mat-hint align="end">MM/DD/YYYY</mat-hint>
-    <mat-datepicker-toggle matIconSuffix [for]="birthDatePicker"></mat-datepicker-toggle>
-    <mat-datepicker #birthDatePicker></mat-datepicker>
-    @if (form.get('birthDate')?.hasError('required')) {
-    <mat-error> Birth Date is required! </mat-error>
+    <mat-datepicker-toggle matIconSuffix [for]="createdAtPicker"></mat-datepicker-toggle>
+    <mat-datepicker #createdAtPicker></mat-datepicker>
+    @if (form.get('createdAt')?.hasError('required')) {
+    <mat-error> Created Date is required! </mat-error>
     }
   </mat-form-field>
 
-  <!-- Sex -->
+  <!-- Status -->
   <div>
-    <mat-label>Sex</mat-label>
+    <mat-label>Status</mat-label>
     <br />
-    <mat-radio-group formControlName="sex">
-      <mat-radio-button value="male">Male</mat-radio-button>
-      <mat-radio-button value="female">Female</mat-radio-button>
-      <mat-radio-button value="unknown">Unknown</mat-radio-button>
+    <mat-radio-group formControlName="status">
+      <mat-radio-button value="submitted">Submitted</mat-radio-button>
+      <mat-radio-button value="screening">Screening</mat-radio-button>
+      <mat-radio-button value="reserved">Reserved</mat-radio-button>
+      <mat-radio-button value="approved">Approved</mat-radio-button>
+      <mat-radio-button value="rejected">Rejected</mat-radio-button>
     </mat-radio-group>
   </div>
 </div>
