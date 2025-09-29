@@ -5,6 +5,7 @@ import {
 } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
+import { provideTranslateService } from '@ngx-translate/core';
 import { firebaseProviders } from '.././config/firebase/firebase.config';
 
 export const appConfig: ApplicationConfig = {
@@ -12,6 +13,10 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideZonelessChangeDetection(),
     provideRouter(routes),
+    provideTranslateService({
+      fallbackLang: 'en',
+      lang: 'en',
+    }),
     ...firebaseProviders,
   ],
 };

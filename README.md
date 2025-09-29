@@ -53,6 +53,11 @@ Cypress hinzufügen
 ## Setup Faker
 
 - npm install @faker-js/faker --save-dev --legacy-peer-deps
+- Faker wurde in ein anderes Projekt hinzugefügt
+
+## Setup ngx-translate
+
+- npm install @ngx-translate/core @ngx-translate/http-loader --legacy-peer-deps
 
 ## Ports
 
