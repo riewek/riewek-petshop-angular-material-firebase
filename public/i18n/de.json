@@ -1,5 +1,107 @@
 {
   "app": {
+    "dialog": {
+      "create": "{{value}} erstellen",
+      "edit": "{{value}} bearbeiten",
+      "required": "{{value}} ist erforderlich! ",
+      "min": "{{value}} muss größer als {{min}} sein! "
+    }
+  },
+  "model": {
+    "adopter": {
+      "single": "Interessent",
+      "many": "Interessenten",
+      "name": "Name",
+      "contact": "Kontakt",
+      "address": "Adresse",
+      "housing": "Wohnsituation",
+      "experience": "Erfahrung"
+    },
+    "adoptionApplication": {
+      "single": "Antrag",
+      "many": "Anträge",
+      "adopterId": "Interessent",
+      "animalId": "Tier",
+      "createdAt": "Erstellt am",
+      "status": {
+        "label": "Status",
+        "submitted": "eingereicht",
+        "screening": "Prüfung",
+        "reserved": "reserviert",
+        "approved": "genehmigt",
+        "rejected": "abgelehnt"
+      }
+    },
+    "adoptionContract": {
+      "single": "Vertrag",
+      "many": "Verträge",
+      "adoptionApplicationId": "Antrag",
+      "contractUrl": "Vertrags-URL",
+      "signedAt": "Unterzeichnet am",
+      "fee": "Gebühr"
+    },
+    "animal": {
+      "single": "Tier",
+      "many": "Tiere",
+      "species": "Tierart",
+      "breed": "Rasse",
+      "birthDate": "Geburtsdatum",
+      "age": "Alter",
+      "sex": {
+        "label": "Geschlecht",
+        "male": "Männlich",
+        "female": "Weiblich",
+        "unknown": "Unbekannt"
+      },
+      "intakeDate": "Aufnahmedatum",
+      "healthStatus": {
+        "label": "Gesundheitszustand",
+        "healthy": "Gesund",
+        "warning": "Warnung",
+        "critical": "Kritisch",
+        "unknown": "Unbekannt"
+      },
+      "enclosureId": "Gehege",
+      "photos": "Fotos",
+      "adoptable": "Vermittlungsfähig"
+    },
+    "animalHealth": {
+      "single": "Gesundheitsreport",
+      "many": "Gesundheitsreports",
+      "animalId": "Tier",
+      "date": "Datum",
+      "type": {
+        "label": "Typ",
+        "checkup": "Untersuchung",
+        "vaccination": "Impfung",
+        "injury": "Verletzung"
+      },
+      "notes": "Notizen",
+      "vet": "Tierarzt",
+      "meds": "Medikamente"
+    },
+    "enclosure": {
+      "single": "Gehege",
+      "many": "Gehege",
+      "name": "Name",
+      "type": {
+        "label": "Typ",
+        "indoor": "Innenbereich",
+        "outdoor": "Außenbereich"
+      },
+      "capacity": "Kapazität",
+      "occupied": "Belegt",
+      "notes": "Notizen"
+    },
+    "shelter": {
+      "single": "Tierheim",
+      "many": "Tierheime",
+      "name": "Name",
+      "location": "Ort",
+      "enclosureIds": "Gehege"
+    }
+  },
+  "demo": {
     "hello": "Hallo {{value}}",
     "title": "Übersetzungs Demo"
   }

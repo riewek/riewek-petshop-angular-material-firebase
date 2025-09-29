@@ -1,13 +1,19 @@
 @if(mode() === "create") {
-<h1>Neues Antrag erstellen</h1>
+<h1>
+  {{
+    'app.dialog.create' | translate : { value: ('model.adoptionApplication.single' | translate) }
+  }}
+</h1>
 } @else {
-<h1>Antrag bearbeiten</h1>
+<h1>
+  {{ 'app.dialog.edit' | translate : { value: ('model.adoptionApplication.single' | translate) } }}
+</h1>
 }
 
 <div [formGroup]="form" class="form-grid">
   <!-- Adopter Id -->
   <mat-form-field appearance="fill" floatLabel="always">
-    <mat-label>Adopter Id</mat-label>
+    <mat-label>{{ 'model.adoptionApplication.adopterId' | translate }}</mat-label>
     <mat-select formControlName="adopterId" #adopterId>
       <mat-option>--</mat-option>
       @for (adopter of adopters(); track adopter.id) {
@@ -15,46 +21,71 @@
       }
     </mat-select>
     @if (form.get('adopterId')?.hasError('required')) {
-    <mat-error> Adopter Id is required! </mat-error>
+    <mat-error>
+      {{
+        'app.dialog.required'
+          | translate : { value: ('model.adoptionApplication.adopterId' | translate) }
+      }}
+    </mat-error>
     }
   </mat-form-field>
 
   <!-- Animal Id -->
   <mat-form-field appearance="fill" floatLabel="always">
-    <mat-label>Animal Id</mat-label>
+    <mat-label>{{ 'model.adoptionApplication.animalId' | translate }}</mat-label>
     <mat-select formControlName="animalId" #animalId>
       <mat-option>--</mat-option>
-      @for (adopter of adopters(); track adopter.id) {
-      <mat-option [value]="adopter.id">{{ adopter.name }}</mat-option>
+      @for (animal of animals(); track animal.id) {
+      <mat-option [value]="animal.id">{{ animal.breed }}</mat-option>
       }
     </mat-select>
     @if (form.get('animalId')?.hasError('required')) {
-    <mat-error> Animal is required! </mat-error>
+    <mat-error>
+      {{
+        'app.dialog.required'
+          | translate : { value: ('model.adoptionApplication.animalId' | translate) }
+      }}
+    </mat-error>
     }
   </mat-form-field>
 
   <!-- Created At -->
   <mat-form-field appearance="fill" floatLabel="always">
-    <mat-label>Created Date</mat-label>
+    <mat-label>{{ 'model.adoptionApplication.createdAt' | translate }}</mat-label>
     <input matInput [matDatepicker]="createdAtPicker" formControlName="createdAt" />
     <mat-hint align="end">MM/DD/YYYY</mat-hint>
     <mat-datepicker-toggle matIconSuffix [for]="createdAtPicker"></mat-datepicker-toggle>
     <mat-datepicker #createdAtPicker></mat-datepicker>
     @if (form.get('createdAt')?.hasError('required')) {
-    <mat-error> Created Date is required! </mat-error>
+    <mat-error>
+      {{
+        'app.dialog.required'
+          | translate : { value: ('model.adoptionApplication.createdAt' | translate) }
+      }}
+    </mat-error>
     }
   </mat-form-field>
 
   <!-- Status -->
   <div>
-    <mat-label>Status</mat-label>
+    <mat-label>{{ 'model.adoptionApplication.status.label' | translate }}</mat-label>
     <br />
     <mat-radio-group formControlName="status">
-      <mat-radio-button value="submitted">Submitted</mat-radio-button>
-      <mat-radio-button value="screening">Screening</mat-radio-button>
-      <mat-radio-button value="reserved">Reserved</mat-radio-button>
-      <mat-radio-button value="approved">Approved</mat-radio-button>
-      <mat-radio-button value="rejected">Rejected</mat-radio-button>
+      <mat-radio-button value="submitted">{{
+        'model.adoptionApplication.status.submitted' | translate
+      }}</mat-radio-button>
+      <mat-radio-button value="screening">{{
+        'model.adoptionApplication.status.screening' | translate
+      }}</mat-radio-button>
+      <mat-radio-button value="reserved">{{
+        'model.adoptionApplication.status.reserved' | translate
+      }}</mat-radio-button>
+      <mat-radio-button value="approved">{{
+        'model.adoptionApplication.status.approved' | translate
+      }}</mat-radio-button>
+      <mat-radio-button value="rejected">{{
+        'model.adoptionApplication.status.rejected' | translate
+      }}</mat-radio-button>
     </mat-radio-group>
   </div>
 </div>

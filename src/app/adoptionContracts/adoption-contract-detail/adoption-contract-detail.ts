@@ -10,6 +10,7 @@ import { provideNativeDateAdapter } from '@angular/material/core';
 import { EditComponent } from '../../../shared/edit.component';
 import { AdoptionContract } from '../../../model/adoptionContract';
 import { AdoptionApplication } from '../../../model/adoptionApplication';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-adoption-contract-detail',
@@ -20,6 +21,7 @@ import { AdoptionApplication } from '../../../model/adoptionApplication';
     MatInputModule,
     MatDatepickerModule,
     MatSelectModule,
+    TranslatePipe,
   ],
   templateUrl: './adoption-contract-detail.html',
   styleUrl: './adoption-contract-detail.scss',

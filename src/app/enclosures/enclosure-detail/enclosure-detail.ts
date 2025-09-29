@@ -8,6 +8,7 @@ import { MatRadioButton, MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { EditComponent } from '../../../shared/edit.component';
 import { Enclosure } from '../../../model/enclosure';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-enclosure-detail',
@@ -18,6 +19,7 @@ import { Enclosure } from '../../../model/enclosure';
     MatRadioButton,
     MatRadioModule,
     MatSelectModule,
+    TranslatePipe,
   ],
   templateUrl: './enclosure-detail.html',
   styleUrl: './enclosure-detail.scss',

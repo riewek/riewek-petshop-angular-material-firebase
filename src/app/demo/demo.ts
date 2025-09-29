@@ -17,7 +17,7 @@ import translationsDE from '../../../public/i18n/de.json';
     MatSlideToggleModule,
     MatButtonModule,
     TranslatePipe,
-    TranslateDirective,
+    //TranslateDirective,
   ],
   templateUrl: './demo.html',
   styleUrl: './demo.scss',

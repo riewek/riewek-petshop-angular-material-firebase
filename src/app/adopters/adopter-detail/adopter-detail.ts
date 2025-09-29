@@ -6,10 +6,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { EditComponent } from '../../../shared/edit.component';
 import { Adopter } from '../../../model/adopter';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-adopter-detail',
-  imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule],
+  imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, TranslatePipe],
   templateUrl: './adopter-detail.html',
   styleUrl: './adopter-detail.scss',
 })

@@ -9,6 +9,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { EditComponent } from '../../../shared/edit.component';
 import { Shelter } from '../../../model/shelter';
 import { Enclosure } from '../../../model/enclosure';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-shelter-detail',
@@ -18,6 +19,7 @@ import { Enclosure } from '../../../model/enclosure';
     MatInputModule,
     MatRadioModule,
     MatSelectModule,
+    TranslatePipe,
   ],
   templateUrl: './shelter-detail.html',
   styleUrl: './shelter-detail.scss',

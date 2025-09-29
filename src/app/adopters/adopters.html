@@ -1,49 +1,48 @@
-<h2>Interessenten</h2>
+<h2>{{ 'model.adopter.many' | translate }}</h2>
 
-<mat-toolbar>
-  <button matIconButton data-cy="btn-create" [routerLink]="['create']">
-    <mat-icon>add</mat-icon>
-  </button>
-  <span class="spacer"></span>
-  <mat-paginator
-    class="mat-elevation-z8"
-    [length]="dataAll().length"
-    [pageSize]="pageSize"
-    [pageSizeOptions]="pageSizeOptions"
-  >
-  </mat-paginator>
-</mat-toolbar>
+<app-table-toolbar
+  [createLink]="['create']"
+  [length]="dataAll().length"
+  [pageSize]="pageSize"
+  [pageSizeOptions]="pageSizeOptions"
+  (pageChange)="onPageChange($event)"
+></app-table-toolbar>
 
 <table mat-table [dataSource]="dataPagedSortedFiltered()">
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef>#</th>
     <td mat-cell *matCellDef="let adopter">
-      <button matIconButton data-cy="btn-edit" [routerLink]="[adopter.id]" class="btn-spacing">
-        <mat-icon>edit</mat-icon>
-      </button>
-      <button matIconButton data-cy="btn-delete">
-        <mat-icon>delete</mat-icon>
-      </button>
+      <app-table-actions [row]="adopter"></app-table-actions>
     </td>
   </ng-container>
+
+  <!-- Name -->
   <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef>Name</th>
+    <th mat-header-cell *matHeaderCellDef>{{ 'model.adopter.name' | translate }}</th>
     <td mat-cell *matCellDef="let adopter">{{ adopter.name }}</td>
   </ng-container>
+
+  <!-- Contact -->
   <ng-container matColumnDef="contact">
-    <th mat-header-cell *matHeaderCellDef>Contact</th>
+    <th mat-header-cell *matHeaderCellDef>{{ 'model.adopter.contact' | translate }}</th>
     <td mat-cell *matCellDef="let adopter">{{ adopter.contact }}</td>
   </ng-container>
+
+  <!-- Address -->
   <ng-container matColumnDef="address">
-    <th mat-header-cell *matHeaderCellDef>Address</th>
+    <th mat-header-cell *matHeaderCellDef>{{ 'model.adopter.address' | translate }}</th>
     <td mat-cell *matCellDef="let adopter">{{ adopter.address }}</td>
   </ng-container>
+
+  <!-- Housing -->
   <ng-container matColumnDef="housing">
-    <th mat-header-cell *matHeaderCellDef>Housing</th>
+    <th mat-header-cell *matHeaderCellDef>{{ 'model.adopter.housing' | translate }}</th>
     <td mat-cell *matCellDef="let adopter">{{ adopter.housing }}</td>
   </ng-container>
+
+  <!-- Experience -->
   <ng-container matColumnDef="experience">
-    <th mat-header-cell *matHeaderCellDef>Experience</th>
+    <th mat-header-cell *matHeaderCellDef>{{ 'model.adopter.experience' | translate }}</th>
     <td mat-cell *matCellDef="let adopter">{{ adopter.experience }}</td>
   </ng-container>
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

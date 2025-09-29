@@ -11,6 +11,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { EditComponent } from '../../../shared/edit.component';
 import { AnimalHealth } from '../../../model/animalHealth';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-animal-health-detail',
@@ -22,6 +23,7 @@ import { AnimalHealth } from '../../../model/animalHealth';
     MatRadioModule,
     MatDatepickerModule,
     MatSelectModule,
+    TranslatePipe,
   ],
   templateUrl: './animal-health-detail.html',
   styleUrl: './animal-health-detail.scss',

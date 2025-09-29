@@ -1,5 +1,107 @@
 {
   "app": {
+    "dialog": {
+      "create": "create {{value}}",
+      "edit": "edit {{value}}",
+      "required": "{{value}} is required! ",
+      "min": "{{value}} must be greater than {{min}}! "
+    }
+  },
+  "model": {
+    "adopter": {
+      "single": "adopter",
+      "many": "adopters",
+      "name": "name",
+      "contact": "contact",
+      "address": "address",
+      "housing": "housing",
+      "experience": "experience"
+    },
+    "adoptionApplication": {
+      "single": "application",
+      "many": "applications",
+      "adopterId": "adopter",
+      "animalId": "animal",
+      "createdAt": "created at",
+      "status": {
+        "label": "status",
+        "submitted": "submitted",
+        "screening": "screening",
+        "reserved": "reserved",
+        "approved": "approved",
+        "rejected": "rejected"
+      }
+    },
+    "adoptionContract": {
+      "single": "contract",
+      "many": "contracts",
+      "adoptionApplicationId": "application",
+      "contractUrl": "contract url",
+      "signedAt": "signed at",
+      "fee": "fee"
+    },
+    "animal": {
+      "single": "animal",
+      "many": "animals",
+      "species": "species",
+      "breed": "breed",
+      "birthDate": "birth date",
+      "age": "age",
+      "sex": {
+        "label": "sex",
+        "male": "male",
+        "female": "female",
+        "unknown": "unknown"
+      },
+      "intakeDate": "intake date",
+      "healthStatus": {
+        "label": "health status",
+        "healthy": "healthy",
+        "warning": "warning",
+        "critical": "critical",
+        "unknown": "unknown"
+      },
+      "enclosureId": "enclosure",
+      "photos": "photos",
+      "adoptable": "adoptable"
+    },
+    "animalHealth": {
+      "single": "health report",
+      "many": "health reports",
+      "animalId": "animal",
+      "date": "date",
+      "type": {
+        "label": "type",
+        "checkup": "checkup",
+        "vaccination": "vaccination",
+        "injury": "injury"
+      },
+      "notes": "notes",
+      "vet": "vet",
+      "meds": "meds"
+    },
+    "enclosure": {
+      "single": "enclosure",
+      "many": "enclosures",
+      "name": "name",
+      "type": {
+        "label": "type",
+        "indoor": "indoor",
+        "outdoor": "outdoor"
+      },
+      "capacity": "capacity",
+      "occupied": "occupied",
+      "notes": "notes"
+    },
+    "shelter": {
+      "single": "shelter",
+      "many": "shelters",
+      "name": "name",
+      "location": "location",
+      "enclosureIds": "enclosures"
+    }
+  },
+  "demo": {
     "hello": "hello {{value}}",
     "title": "Translation Demo"
   }

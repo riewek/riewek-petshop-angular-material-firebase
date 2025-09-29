@@ -31,6 +31,14 @@
       <span>{{ menuItem.title }}</span>
     </a>
     } }
+    <a mat-button (click)="changeLanguage('de')">
+      <img src="flags/de.svg" alt="DE" width="20" height="14" style="margin-right: 8px" />
+      Deutsch
+    </a>
+    <a mat-button (click)="changeLanguage('en')">
+      <img src="flags/gb.svg" alt="EN" width="20" height="14" style="margin-right: 8px" />
+      Englisch
+    </a>
   </mat-toolbar>
   <div class="outlet-wrapper">
     <router-outlet />

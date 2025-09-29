@@ -12,6 +12,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { EditComponent } from '../../../shared/edit.component';
 import { Enclosure } from '../../../model/enclosure';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-animal-detail',
@@ -24,6 +25,7 @@ import { Enclosure } from '../../../model/enclosure';
     MatCheckbox,
     MatDatepickerModule,
     MatSelectModule,
+    TranslatePipe,
   ],
   templateUrl: './animal-detail.html',
   styleUrl: './animal-detail.scss',

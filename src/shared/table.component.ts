@@ -1,5 +1,5 @@
 import { signal } from '@angular/core';
-import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { PageEvent } from '@angular/material/paginator';
 import { FirebaseEntity } from './firebase.model';
 
 export abstract class TableComponent<T extends FirebaseEntity> {
@@ -18,12 +18,7 @@ export abstract class TableComponent<T extends FirebaseEntity> {
     this.dataPagedSortedFiltered.set(data.slice(0, this.pageSize));
   }
 
-  ngAfterViewInitHook(paginator: MatPaginator) {
-    //FIXME: Check for subscribe Destruction
-    paginator.page.subscribe(this.updateDataPagedSortedFiltered.bind(this));
-  }
-
-  private updateDataPagedSortedFiltered(page: PageEvent) {
+  onPageChange(page: PageEvent) {
     const start = page.pageIndex * page.pageSize;
     const end = start + page.pageSize;
     this.dataPagedSortedFiltered.set(this.dataAll().slice(start, end));

@@ -9,6 +9,7 @@ import { RouterLink } from '@angular/router';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { menuItems } from '../../config/menu/menu.items';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-navbar',
@@ -28,4 +29,14 @@ import { menuItems } from '../../config/menu/menu.items';
 })
 export class Navbar {
   public menuItems = menuItems;
+
+  constructor(private translate: TranslateService) {}
+
+  changeLanguage(language: string): void {
+    if (language === 'de') {
+      this.translate.use('de');
+    } else if (language === 'en') {
+      this.translate.use('en');
+    }
+  }
 }

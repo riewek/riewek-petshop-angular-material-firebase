@@ -12,6 +12,7 @@ import { provideNativeDateAdapter } from '@angular/material/core';
 import { EditComponent } from '../../../shared/edit.component';
 import { AdoptionApplication } from '../../../model/adoptionApplication';
 import { Adopter } from '../../../model/adopter';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-adoption-application-detail',
@@ -23,6 +24,7 @@ import { Adopter } from '../../../model/adopter';
     MatRadioModule,
     MatDatepickerModule,
     MatSelectModule,
+    TranslatePipe,
   ],
   templateUrl: './adoption-application-detail.html',
   styleUrl: './adoption-application-detail.scss',

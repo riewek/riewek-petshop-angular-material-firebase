@@ -1,37 +1,30 @@
-<h2>Gehege</h2>
+<h2>{{ 'model.enclosure.many' | translate }}</h2>
 
-<mat-toolbar>
-  <button matIconButton data-cy="btn-create" [routerLink]="['create']">
-    <mat-icon>add</mat-icon>
-  </button>
-  <span class="spacer"></span>
-  <mat-paginator
-    class="mat-elevation-z8"
-    [length]="dataAll().length"
-    [pageSize]="pageSize"
-    [pageSizeOptions]="pageSizeOptions"
-  >
-  </mat-paginator>
-</mat-toolbar>
+<app-table-toolbar
+  [createLink]="['create']"
+  [length]="dataAll().length"
+  [pageSize]="pageSize"
+  [pageSizeOptions]="pageSizeOptions"
+  (pageChange)="onPageChange($event)"
+></app-table-toolbar>
 
 <table mat-table [dataSource]="dataPagedSortedFiltered()">
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef>#</th>
     <td mat-cell *matCellDef="let enclosure">
-      <button matIconButton data-cy="btn-edit" [routerLink]="[enclosure.id]" class="btn-spacing">
-        <mat-icon>edit</mat-icon>
-      </button>
-      <button matIconButton data-cy="btn-delete">
-        <mat-icon>delete</mat-icon>
-      </button>
+      <app-table-actions [row]="enclosure"></app-table-actions>
     </td>
   </ng-container>
+
+  <!-- Name -->
   <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef>Name</th>
+    <th mat-header-cell *matHeaderCellDef>{{ 'model.enclosure.name' | translate }}</th>
     <td mat-cell *matCellDef="let enclosure">{{ enclosure.name }}</td>
   </ng-container>
+
+  <!-- Type -->
   <ng-container matColumnDef="type">
-    <th mat-header-cell *matHeaderCellDef>Type</th>
+    <th mat-header-cell *matHeaderCellDef>{{ 'model.enclosure.type.label' | translate }}</th>
     <td mat-cell *matCellDef="let enclosure">
       @switch (enclosure.type ) { @case ('indoor') {
       <mat-icon>meeting_room</mat-icon>
@@ -40,16 +33,22 @@
       } }
     </td>
   </ng-container>
+
+  <!-- Capacity -->
   <ng-container matColumnDef="capacity">
-    <th mat-header-cell *matHeaderCellDef>Capacity</th>
+    <th mat-header-cell *matHeaderCellDef>{{ 'model.enclosure.capacity' | translate }}</th>
     <td mat-cell *matCellDef="let enclosure">{{ enclosure.capacity }}</td>
   </ng-container>
+
+  <!-- Occupied -->
   <ng-container matColumnDef="occupied">
-    <th mat-header-cell *matHeaderCellDef>Occupied</th>
+    <th mat-header-cell *matHeaderCellDef>{{ 'model.enclosure.occupied' | translate }}</th>
     <td mat-cell *matCellDef="let enclosure">{{ enclosure.occupied }}</td>
   </ng-container>
+
+  <!-- Notes -->
   <ng-container matColumnDef="notes">
-    <th mat-header-cell *matHeaderCellDef>Notes</th>
+    <th mat-header-cell *matHeaderCellDef>{{ 'model.enclosure.notes' | translate }}</th>
     <td mat-cell *matCellDef="let enclosure">{{ enclosure.notes }}</td>
   </ng-container>
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

@@ -1,33 +1,24 @@
-<h2>Gesundheit</h2>
+<h2>{{ 'model.animalHealth.many' | translate }}</h2>
 
-<mat-toolbar>
-  <button matIconButton data-cy="btn-create" [routerLink]="['create']">
-    <mat-icon>add</mat-icon>
-  </button>
-  <span class="spacer"></span>
-  <mat-paginator
-    class="mat-elevation-z8"
-    [length]="dataAll().length"
-    [pageSize]="pageSize"
-    [pageSizeOptions]="pageSizeOptions"
-  >
-  </mat-paginator>
-</mat-toolbar>
+<app-table-toolbar
+  [createLink]="['create']"
+  [length]="dataAll().length"
+  [pageSize]="pageSize"
+  [pageSizeOptions]="pageSizeOptions"
+  (pageChange)="onPageChange($event)"
+></app-table-toolbar>
 
 <table mat-table [dataSource]="dataPagedSortedFiltered()">
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef>#</th>
     <td mat-cell *matCellDef="let healthRecord">
-      <button matIconButton data-cy="btn-edit" [routerLink]="[healthRecord.id]" class="btn-spacing">
-        <mat-icon>edit</mat-icon>
-      </button>
-      <button matIconButton data-cy="btn-delete">
-        <mat-icon>delete</mat-icon>
-      </button>
+      <app-table-actions [row]="healthRecord"></app-table-actions>
     </td>
   </ng-container>
+
+  <!-- Animal Id -->
   <ng-container matColumnDef="animalId">
-    <th mat-header-cell *matHeaderCellDef>Animal Id</th>
+    <th mat-header-cell *matHeaderCellDef>{{ 'model.animalHealth.animalId' | translate }}</th>
     <td mat-cell *matCellDef="let healthRecord">
       <button
         matIconButton
@@ -38,14 +29,18 @@
       </button>
     </td>
   </ng-container>
+
+  <!-- Date -->
   <ng-container matColumnDef="date">
-    <th mat-header-cell *matHeaderCellDef>Birth Date</th>
+    <th mat-header-cell *matHeaderCellDef>{{ 'model.animalHealth.date' | translate }}</th>
     <td mat-cell *matCellDef="let healthRecord">
       {{ healthRecord.date | date : dateFormat }}
     </td>
   </ng-container>
+
+  <!-- Type -->
   <ng-container matColumnDef="type">
-    <th mat-header-cell *matHeaderCellDef>Type</th>
+    <th mat-header-cell *matHeaderCellDef>{{ 'model.animalHealth.type.label' | translate }}</th>
     <td mat-cell *matCellDef="let healthRecord">
       @switch (healthRecord.type ) { @case ('checkup') {
       <mat-icon>monitor_heart</mat-icon>
@@ -58,16 +53,22 @@
       } }
     </td>
   </ng-container>
+
+  <!-- Notes -->
   <ng-container matColumnDef="notes">
-    <th mat-header-cell *matHeaderCellDef>Notes</th>
+    <th mat-header-cell *matHeaderCellDef>{{ 'model.animalHealth.notes' | translate }}</th>
     <td mat-cell *matCellDef="let healthRecord">{{ healthRecord.notes }}</td>
   </ng-container>
+
+  <!-- Vet -->
   <ng-container matColumnDef="vet">
-    <th mat-header-cell *matHeaderCellDef>Vet</th>
+    <th mat-header-cell *matHeaderCellDef>{{ 'model.animalHealth.vet' | translate }}</th>
     <td mat-cell *matCellDef="let healthRecord">{{ healthRecord.vet }}</td>
   </ng-container>
+
+  <!-- Meds -->
   <ng-container matColumnDef="meds">
-    <th mat-header-cell *matHeaderCellDef>Meds</th>
+    <th mat-header-cell *matHeaderCellDef>{{ 'model.animalHealth.meds' | translate }}</th>
     <td mat-cell *matCellDef="let healthRecord">
       @for (med of healthRecord.meds; track med) {
       {{ med }}, }
