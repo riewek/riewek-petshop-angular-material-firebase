@@ -26,10 +26,34 @@ export class Demo {
   public readonly title = signal('riewek-petshop-angular-material-firebase');
   items$: Observable<Item[]>;
   private language: 'en' | 'de' = 'en';
+  public readonly hasData = signal(true);
+  public readonly itemsSize = signal(0);
+  public readonly adoptersSize = signal(0);
+  public readonly adoptionApplicationsSize = signal(0);
+  public readonly adoptionContractsSize = signal(0);
+  public readonly animalHealthsSize = signal(0);
+  public readonly animalsSize = signal(0);
+  public readonly enclosureSize = signal(0);
+  public readonly shelterSize = signal(0);
 
   constructor(private firebaseService: FirebaseService, private translate: TranslateService) {
-    this.items$ = this.firebaseService.getItems();
+    this.items$ = this.firebaseService.itemDao.findAllAsObservable();
     this.switchLanguage(); //change from en to de
+    this.firebaseService.hasData().then((hasData) => {
+      this.hasData.set(hasData);
+    });
+    this.firebaseService.itemDao.size().then((size) => this.itemsSize.set(size));
+    this.firebaseService.adopterDao.size().then((size) => this.adoptersSize.set(size));
+    this.firebaseService.adoptionApplicationDao
+      .size()
+      .then((size) => this.adoptionApplicationsSize.set(size));
+    this.firebaseService.adoptionContractDao
+      .size()
+      .then((size) => this.adoptionContractsSize.set(size));
+    this.firebaseService.animalHealthDao.size().then((size) => this.animalHealthsSize.set(size));
+    this.firebaseService.animalDao.size().then((size) => this.animalsSize.set(size));
+    this.firebaseService.enclosureDao.size().then((size) => this.enclosureSize.set(size));
+    this.firebaseService.shelterDao.size().then((size) => this.shelterSize.set(size));
   }
 
   switchLanguage(): void {
@@ -42,5 +66,9 @@ export class Demo {
       this.translate.setTranslation('en', translationsEN);
       this.translate.use('en');
     }
+  }
+
+  loadData(): void {
+    this.firebaseService.loadData();
   }
 }

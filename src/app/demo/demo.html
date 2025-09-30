@@ -1,10 +1,25 @@
 <h1>Hello, {{ title() }}</h1>
 <h2>Firebase Demo</h2>
+<h3>Items</h3>
 <ul>
   @for (item of items$ | async; track item) {
   <li>{{ item.value }}</li>
   }
 </ul>
+<p>itemsSize: {{ adoptersSize() }}</p>
+
+@if(!hasData()) {
+<p>Daten nicht vorhanden</p>
+<button mat-flat-button data-cy="btn-data" (click)="loadData()">Daten hochladen</button>
+}
+<p>adoptersSize: {{ adoptersSize() }}</p>
+<p>adoptionApplicationsSize: {{ adoptionApplicationsSize() }}</p>
+<p>adoptionContractsSize: {{ adoptionContractsSize() }}</p>
+<p>animalHealthsSize: {{ animalHealthsSize() }}</p>
+<p>animalsSize: {{ animalsSize() }}</p>
+<p>enclosureSize: {{ enclosureSize() }}</p>
+<p>shelterSize: {{ shelterSize() }}</p>
+
 <h2>Material3 Demo</h2>
 <mat-toolbar color="primary" data-cy="main-toolbar"> Material Demo </mat-toolbar>
 
