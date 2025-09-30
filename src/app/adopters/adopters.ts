@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 import { Adopter } from '../../model/adopter';
 import { MatTableModule } from '@angular/material/table';
-import { RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
-import { MatIcon } from '@angular/material/icon';
 import { TableComponent } from '../../shared/table.component';
 import { DataService } from '../services/dataService';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -15,8 +13,6 @@ import { TableActionsComponent } from '../../shared/table-actions.component';
   imports: [
     MatTableModule,
     MatButtonModule,
-    MatIcon,
-    RouterLink,
     TranslatePipe,
     TableToolbarComponent,
     TableActionsComponent,

@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Enclosure } from '../../model/enclosure';
 import { MatTableModule } from '@angular/material/table';
-import { RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { TableComponent } from '../../shared/table.component';
@@ -16,7 +15,6 @@ import { TableActionsComponent } from '../../shared/table-actions.component';
     MatTableModule,
     MatButtonModule,
     MatIcon,
-    RouterLink,
     TranslatePipe,
     TableToolbarComponent,
     TableActionsComponent,
