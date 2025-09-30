@@ -4,7 +4,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { TableComponent } from '../../shared/table.component';
-import { DataService } from '../services/dataService';
+import { FakeDataService } from '../services/fake.data.service';
 import { TranslatePipe } from '@ngx-translate/core';
 import { TableToolbarComponent } from '../../shared/table-toolbar.component';
 import { TableActionsComponent } from '../../shared/table-actions.component';
@@ -23,7 +23,7 @@ import { TableActionsComponent } from '../../shared/table-actions.component';
   styleUrl: './enclosures.scss',
 })
 export class Enclosures extends TableComponent<Enclosure> {
-  constructor(dataService: DataService) {
+  constructor(dataService: FakeDataService) {
     super('id name type capacity occupied notes', dataService.findAllEnclosures());
   }
 }

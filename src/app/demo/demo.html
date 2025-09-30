@@ -7,6 +7,11 @@
   }
 </ul>
 <p>itemsSize: {{ adoptersSize() }}</p>
+<ul>
+  @for (animal of animals(); track animal.id) {
+  <li>{{ animal.breed }}</li>
+  }
+</ul>
 
 @if(!hasData()) {
 <p>Daten nicht vorhanden</p>

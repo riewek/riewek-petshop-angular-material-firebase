@@ -8,6 +8,8 @@ import { FirebaseService, Item } from '../services/firebase.service';
 import { TranslateService, TranslatePipe, TranslateDirective } from '@ngx-translate/core';
 import translationsEN from '../../../public/i18n/en.json';
 import translationsDE from '../../../public/i18n/de.json';
+import { Animal } from '../../model/animal';
+import { FakeDataService } from '../services/fake.data.service';
 
 @Component({
   selector: 'app-demo',
@@ -35,8 +37,13 @@ export class Demo {
   public readonly animalsSize = signal(0);
   public readonly enclosureSize = signal(0);
   public readonly shelterSize = signal(0);
+  public readonly animals = signal<Animal[]>([]);
 
-  constructor(private firebaseService: FirebaseService, private translate: TranslateService) {
+  constructor(
+    private firebaseService: FirebaseService,
+    private translate: TranslateService,
+    private fakeDataService: FakeDataService
+  ) {
     this.items$ = this.firebaseService.itemDao.findAllAsObservable();
     this.switchLanguage(); //change from en to de
     this.firebaseService.hasData().then((hasData) => {
@@ -69,6 +76,23 @@ export class Demo {
   }
 
   loadData(): void {
-    this.firebaseService.loadData();
+    //this.animals.set(this.fakeDataService.findAllAnimals());
+    console.log('Start');
+    for (const adopter of this.fakeDataService.findAllAdopters())
+      this.firebaseService.adopterDao.save(adopter);
+    for (const adoptionApplication of this.fakeDataService.findAllAdoptionApplications())
+      this.firebaseService.adoptionApplicationDao.save(adoptionApplication);
+    for (const adoptionContract of this.fakeDataService.findAllAdoptionContracts())
+      this.firebaseService.adoptionContractDao.save(adoptionContract);
+    for (const animalHealth of this.fakeDataService.findAllAnimalHealths())
+      this.firebaseService.animalHealthDao.save(animalHealth);
+    for (const animal of this.fakeDataService.findAllAnimals())
+      this.firebaseService.animalDao.save(animal);
+    for (const enclosure of this.fakeDataService.findAllEnclosures())
+      this.firebaseService.enclosureDao.save(enclosure);
+    for (const shelter of this.fakeDataService.findAllShelters())
+      this.firebaseService.shelterDao.save(shelter);
+    console.log('End');
+    //this.firebaseService.loadData();
   }
 }

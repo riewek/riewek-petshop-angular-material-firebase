@@ -6,7 +6,7 @@ import { RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { TableComponent } from '../../shared/table.component';
-import { DataService } from '../services/dataService';
+import { FakeDataService } from '../services/fake.data.service';
 import { TranslatePipe } from '@ngx-translate/core';
 import { TableToolbarComponent } from '../../shared/table-toolbar.component';
 import { TableActionsComponent } from '../../shared/table-actions.component';
@@ -27,7 +27,7 @@ import { TableActionsComponent } from '../../shared/table-actions.component';
   styleUrl: './adoptionContracts.scss',
 })
 export class AdoptionContracts extends TableComponent<AdoptionContract> {
-  constructor(dataService: DataService) {
+  constructor(dataService: FakeDataService) {
     super(
       'id adoptionApplicationId contractUrl signedAt fee',
       dataService.findAllAdoptionContracts()

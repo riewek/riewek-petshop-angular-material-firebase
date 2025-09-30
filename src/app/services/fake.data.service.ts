@@ -11,7 +11,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root',
 })
-export class DataService {
+export class FakeDataService {
   private enclosures: Enclosure[];
   private shelters: Shelter[];
   private animals: Animal[];
