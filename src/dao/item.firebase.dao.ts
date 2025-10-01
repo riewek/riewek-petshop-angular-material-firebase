@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FirebaseDao } from '../shared/firebase.dao';
+import { createFirestoreConverter, FirebaseDao } from '../shared/firebase.dao';
 import { Firestore } from '@angular/fire/firestore';
 import { Item } from '../app/services/firebase.service';
 
@@ -8,6 +8,6 @@ import { Item } from '../app/services/firebase.service';
 })
 export class ItemFirebaseDao extends FirebaseDao<Item> {
   constructor(firestore: Firestore) {
-    super(firestore, 'items');
+    super(firestore, 'items', createFirestoreConverter());
   }
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FirebaseDao } from '../shared/firebase.dao';
+import { createFirestoreConverter, FirebaseDao } from '../shared/firebase.dao';
 import { Firestore } from '@angular/fire/firestore';
 import { Shelter } from '../model/shelter';
 
@@ -8,6 +8,6 @@ import { Shelter } from '../model/shelter';
 })
 export class ShelterFirebaseDao extends FirebaseDao<Shelter> {
   constructor(firestore: Firestore) {
-    super(firestore, 'shelters');
+    super(firestore, 'shelters', createFirestoreConverter());
   }
 }

@@ -1,6 +1,7 @@
 import { FirebaseEntity } from './firebase.model';
 import {
   Firestore,
+  FirestoreDataConverter,
   collection,
   collectionData,
   doc,
@@ -11,14 +12,92 @@ import {
   deleteDoc,
   getDoc,
   getCountFromServer,
+  Timestamp,
+  QueryDocumentSnapshot,
+  SnapshotOptions,
+  serverTimestamp,
 } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
+import { Dao } from './dao';
 
-export class FirebaseDao<T extends FirebaseEntity> {
-  constructor(public firestore: Firestore, public collectionName: string) {}
+function isDate(value: any): value is Date {
+  return value instanceof Date;
+}
+
+/**
+ * automatische Konvertierung nach Date
+ *
+ * @returns
+ */
+export function createFirestoreConverterDate<
+  T extends FirebaseEntity
+>(): FirestoreDataConverter<T> {
+  return {
+    toFirestore(entity: T): any {
+      const { id, ...rest } = entity;
+
+      const converted: any = {};
+      for (const [key, value] of Object.entries(rest)) {
+        if (isDate(value)) {
+          converted[key] = Timestamp.fromDate(value);
+        } else {
+          converted[key] = value;
+        }
+      }
+
+      // Optional: Fallback für createdAt / updatedAt
+      if ('createdAt' in rest && !rest['createdAt']) {
+        converted['createdAt'] = serverTimestamp();
+      }
+
+      return converted;
+    },
+
+    fromFirestore(snapshot: QueryDocumentSnapshot<T>, options: SnapshotOptions): T {
+      const data = snapshot.data(options)!;
+      const converted: any = {};
+
+      for (const [key, value] of Object.entries(data)) {
+        if (value instanceof Timestamp) {
+          converted[key] = value.toDate();
+        } else {
+          converted[key] = value;
+        }
+      }
+
+      return {
+        id: snapshot.id,
+        ...converted,
+      } as T;
+    },
+  };
+}
+
+export function createFirestoreConverter<T extends FirebaseEntity>(): FirestoreDataConverter<T> {
+  return {
+    toFirestore(entity: T) {
+      const { id, ...rest } = entity; // id nicht in Firestore speichern
+      return rest as any;
+    },
+    fromFirestore(snapshot: QueryDocumentSnapshot<T>, options: SnapshotOptions) {
+      const data = snapshot.data(options)!;
+      return {
+        id: snapshot.id,
+        ...data,
+      } as T;
+    },
+  };
+}
+
+export abstract class FirebaseDao<T extends FirebaseEntity> implements Dao<T> {
+  constructor(
+    public firestore: Firestore,
+    public collectionName: string,
+    public converter: FirestoreDataConverter<T>
+  ) {}
 
   private getColRef() {
-    return collection(this.firestore, this.collectionName);
+    return collection(this.firestore, this.collectionName).withConverter(this.converter);
   }
 
   async empty(): Promise<boolean> {
