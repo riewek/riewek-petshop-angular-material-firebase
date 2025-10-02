@@ -1,6 +1,9 @@
 /// <reference types="cypress" />
 
-import { url, viewportWidth, viewportHeight } from './enironments';
+import { url, viewportWidth, viewportHeight, fakeDataService } from './enironments';
+import { Adopter } from '../../../src/model/adopter';
+
+const adopter: Adopter = fakeDataService.adopters[0];
 const testName = 'adopter-detail';
 
 describe('Adopter Detail Component Module', () => {
@@ -12,56 +15,46 @@ describe('Adopter Detail Component Module', () => {
     beforeEach(() => {
       cy.visit(url + 'adopters/create');
     });
+
     it('makes a screenshot', () => {
       cy.screenshot(testName + '/create', { overwrite: true });
     });
+
     it('regresses to snapshot', () => {
-      cy.get('h1')
-        .should('exist')
-        .invoke('text')
-        .then((text) => {
-          expect(text.trim()).to.equal('Interessent erstellen');
-        });
-      cy.get('input[formControlName="name"]').should('have.value', '');
-      cy.get('input[formControlName="contact"]').should('have.value', '');
-      cy.get('input[formControlName="address"]').should('have.value', '');
-      cy.get('input[formControlName="housing"]').should('have.value', '');
-      cy.get('input[formControlName="experience"]').should('have.value', '');
-      cy.get('mat-hint').each(($hint) => {
-        cy.wrap($hint).contains('0 / 60');
-      });
+      cy.h1('Interessent erstellen');
+      cy.formControlEmpty('name');
+      cy.formControlEmpty('contact');
+      cy.formControlEmpty('address');
+      cy.formControlEmpty('housing');
+      cy.formControlEmpty('experience');
+      cy.hintsEmpty('0 / 60');
       cy.compareSnapshot(testName + '-create-snapshot', { overwrite: true });
     });
   });
 
   describe('edit', () => {
     beforeEach(() => {
-      cy.visit(url + 'adopters/0ZxrwCKjmzNCJDgKQsnt');
+      cy.visit(url + 'adopters/' + adopter.id);
     });
+
     it('makes a screenshot', () => {
       cy.screenshot(testName + '/edit', { overwrite: true });
     });
+
     it('regresses to snapshot', () => {
-      cy.get('h1')
-        .should('exist')
-        .invoke('text')
-        .then((text) => {
-          expect(text.trim()).to.equal('Interessent bearbeiten');
-        });
-      cy.get('input[formControlName="name"]').should('have.value', 'Marion Langworth');
-      cy.get('input[formControlName="contact"]').should('have.value', 'Cedrick23@gmail.com');
-      cy.get('input[formControlName="address"]').should(
-        'have.value',
-        '5933 Morar Pine, East Julianne, Wyoming, 91562'
-      );
-      cy.get('input[formControlName="housing"]').should('have.value', 'E');
-      cy.get('input[formControlName="experience"]').should('have.value', 'F');
-      let results = ['16 / 60', '19 / 60', '46 / 60', '1 / 60', '1 / 60'];
-      let i = 0;
-      cy.get('mat-hint').each(($hint) => {
-        cy.wrap($hint).contains(results[i]);
-        i++;
-      });
+      cy.h1('Interessent bearbeiten');
+      cy.formControl('name', adopter.name);
+      cy.formControl('contact', adopter.contact);
+      cy.formControl('address', adopter.address);
+      cy.formControl('housing', adopter.housing);
+      cy.formControl('experience', adopter.experience);
+      cy.hints([
+        adopter.name.length + ' / 60',
+        adopter.contact.length + ' / 60',
+        adopter.address.length + ' / 60',
+        adopter.housing.length + ' / 60',
+        adopter.experience.length + ' / 60',
+      ]);
       cy.compareSnapshot(testName + '-edit-snapshot', { overwrite: true });
     });
   });
