@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Adopter } from '../model/adopter';
-import { FakeDataDao } from '../shared/fake-data-dao';
-import { FakeDataService } from '../app/services/fake.data.service';
+import { Adopter } from '../../model/adopter';
+import { FakeDataDao } from '../../shared/fake-data-dao';
+import { FakeDataService } from './fake.data.service';
 
 @Injectable({
   providedIn: 'root',

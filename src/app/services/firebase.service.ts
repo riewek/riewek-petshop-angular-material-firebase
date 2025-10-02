@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
-import fakeData from './riewek-petshop-fake-data.json';
-import { AnimalFirebaseDao } from '../../dao/animal.firebase.dao';
-import { AnimalHealthFirebaseDao } from '../../dao/animalHealth.firebase.dao';
-import { AdopterFirebaseDao } from '../../dao/adopter.firebase.dao';
-import { AdoptionApplicationFirebaseDao } from '../../dao/adoptionApplication.firebase.dao';
-import { AdoptionContractFirebaseDao } from '../../dao/adoptionContract.firebase.dao';
-import { EnclosureFirebaseDao } from '../../dao/enclosure.firebase.dao';
-import { ShelterFirebaseDao } from '../../dao/shelter.firebase.dao';
-import { ItemFirebaseDao } from '../../dao/item.firebase.dao';
+import { AnimalFirebaseDao } from '../../dao/firebase/animal.firebase.dao';
+import { AnimalHealthFirebaseDao } from '../../dao/firebase/animalHealth.firebase.dao';
+import { AdopterFirebaseDao } from '../../dao/firebase/adopter.firebase.dao';
+import { AdoptionApplicationFirebaseDao } from '../../dao/firebase/adoptionApplication.firebase.dao';
+import { AdoptionContractFirebaseDao } from '../../dao/firebase/adoptionContract.firebase.dao';
+import { EnclosureFirebaseDao } from '../../dao/firebase/enclosure.firebase.dao';
+import { ShelterFirebaseDao } from '../../dao/firebase/shelter.firebase.dao';
+import { ItemFirebaseDao } from '../../dao/firebase/item.firebase.dao';
 
 export interface Item {
   id?: string;

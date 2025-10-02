@@ -31,14 +31,14 @@ describe('FirebaseService', () => {
   });
 
   it('should return items', (done) => {
-    service.getItems().subscribe((items) => {
+    service.itemDao.findAllAsObservable().subscribe((items) => {
       expect(items).toEqual([{ id: '1', value: 'Mock Item' }]);
       done();
     });
   });
 
   it('should call AngularFirestore.collection with "items"', () => {
-    service.getItems().subscribe();
+    service.itemDao.findAllAsObservable().subscribe();
     expect(collectionMock).toHaveBeenCalledWith('items');
     expect(valueChangesMock).toHaveBeenCalledWith({ idField: 'id' });
   });

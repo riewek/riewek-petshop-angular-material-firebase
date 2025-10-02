@@ -7,7 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { AgePipe } from '../../shared/age.pipe';
 import { TableComponent } from '../../shared/table.component';
-import { FakeDataService } from '../services/fake.data.service';
+import { FakeDataService } from '../../dao/fake/fake.data.service';
 import { TranslatePipe } from '@ngx-translate/core';
 import { TableToolbarComponent } from '../../shared/table-toolbar.component';
 import { TableActionsComponent } from '../../shared/table-actions.component';

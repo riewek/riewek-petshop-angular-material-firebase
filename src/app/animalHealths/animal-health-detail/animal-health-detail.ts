@@ -1,7 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Animal } from '../../../model/animal';
-import { FakeDataService } from '../../services/fake.data.service';
+import { FakeDataService } from '../../../dao/fake/fake.data.service';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';

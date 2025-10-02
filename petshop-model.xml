@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<entities>
+<model name="PetShop" projectName="pet-shop">
     
     <entity name="Animal" nameShortForm="an" namePlural="Animals" cluster="Tierverwaltung">
         <attr name="Species" type="Text" required="true"/>
@@ -32,14 +32,14 @@
         <attr name="AdoptionApplicationId" type="Entity" required="true" entityRef="AdoptionApplication" cardinality="OneToOne"/>
         <attr name="ContractUrl" type="File" required="false"/>
         <attr name="SignedAt" type="Date" required="false"/>
-        <attr name="Fee" type="Number" required="true"/>
+        <attr name="Fee" type="Int" required="true"/>
     </entity>
 
     <entity name="Enclosure" nameShortForm="en" namePlural="Enclosures" cluster="Infrastruktur">
         <attr name="Name" type="Text" required="true"/>
         <attr name="Type" type="Enum" required="true" values="indoor,outdoor"/>
-        <attr name="Capacity" type="Number" required="true"/>
-        <attr name="Occupied" type="Number" required="true"/>
+        <attr name="Capacity" type="Int" required="true"/>
+        <attr name="Occupied" type="Int" required="true"/>
         <attr name="Notes" type="Text" required="false"/>
     </entity>
 
@@ -55,7 +55,7 @@
     <entity name="Shelter" nameShortForm="sh" namePlural="Shelters" cluster="Infrastruktur">
         <attr name="Name" type="Text" required="true"/>
         <attr name="Location" type="Text" required="true"/>
-        <attr name="EnclosureIds" type="Entity" required="true" entityRef="Enclosure" cardinality="OneToMany"/>
+        <attr name="EnclosureIds" type="Entity" required="false" entityRef="Enclosure" cardinality="OneToMany"/>
     </entity>
 
-</entities>
+</model>

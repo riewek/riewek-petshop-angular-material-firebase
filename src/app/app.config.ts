@@ -7,7 +7,7 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { provideTranslateService } from '@ngx-translate/core';
 import { firebaseProviders } from '.././config/firebase/firebase.config';
-import { firebaseDaoProviders } from '../config/firebase/firebase.dao.providers';
+import { firebaseDaoProviders } from '../dao/firebase/firebase.dao.providers';
 
 export const appConfig: ApplicationConfig = {
   providers: [

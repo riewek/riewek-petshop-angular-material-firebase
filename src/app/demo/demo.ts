@@ -9,7 +9,7 @@ import { TranslateService, TranslatePipe, TranslateDirective } from '@ngx-transl
 import translationsEN from '../../../public/i18n/en.json';
 import translationsDE from '../../../public/i18n/de.json';
 import { Animal } from '../../model/animal';
-import { FakeDataService } from '../services/fake.data.service';
+import { FakeDataService } from '../../dao/fake/fake.data.service';
 
 @Component({
   selector: 'app-demo',

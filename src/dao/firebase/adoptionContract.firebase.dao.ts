@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { FirebaseDao } from '../shared/firebase.dao';
+import { FirebaseDao } from '../../shared/firebase.dao';
 import {
   Firestore,
   FirestoreDataConverter,
   serverTimestamp,
   Timestamp,
 } from '@angular/fire/firestore';
-import { AdoptionContract } from '../model/adoptionContract';
+import { AdoptionContract } from '../../model/adoptionContract';
 
 export const adoptionContractConverter: FirestoreDataConverter<AdoptionContract> = {
   toFirestore(entity: AdoptionContract) {
