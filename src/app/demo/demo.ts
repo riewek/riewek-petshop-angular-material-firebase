@@ -40,8 +40,8 @@ export class Demo {
   constructor(public petShop: PetShopDao, private translate: TranslateService) {
     this.items$ = this.petShop.itemDao.findAllAsObservable();
     this.switchLanguage(); //change from en to de
-    this.petShop.hasAnyData().then((hasData) => {
-      this.hasData.set(hasData);
+    this.petShop.someEmpty().then((someEmpty) => {
+      this.hasData.set(!someEmpty);
     });
     this.petShop.itemDao.size().then((size) => this.itemsSize.set(size));
     this.petShop.adopterDao.size().then((size) => this.adoptersSize.set(size));

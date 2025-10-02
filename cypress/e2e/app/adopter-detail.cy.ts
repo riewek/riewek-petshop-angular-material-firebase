@@ -1,5 +1,4 @@
 /// <reference types="cypress" />
-
 import { url, viewportWidth, viewportHeight, fakeDataService } from './enironments';
 import { Adopter } from '../../../src/model/adopter';
 

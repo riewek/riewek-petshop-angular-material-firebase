@@ -116,7 +116,7 @@ export abstract class FirebaseDao<T extends FirebaseEntity> implements Dao<T> {
   }
 
   async find(id: string): Promise<T | null> {
-    const itemDoc = doc(this.firestore, this.collectionName, id);
+    const itemDoc = doc(this.firestore, this.collectionName, id).withConverter(this.converter);
     const snapshot = await getDoc(itemDoc);
     if (snapshot.exists()) return { id: snapshot.id, ...snapshot.data() } as T;
     return null;

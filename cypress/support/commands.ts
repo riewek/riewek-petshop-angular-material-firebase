@@ -43,8 +43,10 @@ declare global {
       h1(text: string): void;
       formControlEmpty(formControl: string): void;
       formControl(formControl: string, value: string): void;
+      formControlDate(formControl: string, value: Date): void;
       rowExists(): void;
       row(formControl: string, value: string): void;
+      rowDate(formControl: string, value: Date): void;
       hints(hints: string[]): void;
       hintsEmpty(emptyHint: string): void;
     }
@@ -71,10 +73,27 @@ Cypress.Commands.add('formControlEmpty', (formControl: string) => {
 Cypress.Commands.add('formControl', (formControl: string, value: string) => {
   cy.get('input[formControlName="' + formControl + '"]').should('have.value', value);
 });
+Cypress.Commands.add('formControlDate', (formControl: string, date: Date) => {
+  const day = String(date.getDate()).padStart(2, '0'); // Tag mit führender Null
+  const month = String(date.getMonth() + 1).padStart(2, '0'); // Monat mit führender Null
+  const year = date.getFullYear();
+  const value = `${day}.${month}.${year}`;
+  cy.get('input[formControlName="' + formControl + '"]').should('have.value', value);
+});
 Cypress.Commands.add('rowExists', () => {
   cy.get('tr[mat-row]').should('have.length.greaterThan', 0);
 });
 Cypress.Commands.add('row', (formControl: string, value: string) => {
+  cy.get('tr[mat-row]')
+    .first()
+    .find('td.mat-column-' + formControl)
+    .should('have.text', value);
+});
+Cypress.Commands.add('rowDate', (formControl: string, date: Date) => {
+  const day = String(date.getDate()).padStart(2, '0'); // Tag mit führender Null
+  const month = String(date.getMonth() + 1).padStart(2, '0'); // Monat mit führender Null
+  const year = date.getFullYear();
+  const value = `&nbsp;${day}.${month}.${year}&nbsp;`;
   cy.get('tr[mat-row]')
     .first()
     .find('td.mat-column-' + formControl)

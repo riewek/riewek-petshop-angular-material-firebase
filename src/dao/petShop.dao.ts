@@ -25,7 +25,7 @@ export class PetShopDao {
     public fakeDataService: FakeDataService
   ) {}
 
-  async hasAnyData(): Promise<boolean> {
+  async someEmpty(): Promise<boolean> {
     const snapshots = [
       await this.animalDao.empty(),
       await this.adopterDao.empty(),
@@ -35,7 +35,7 @@ export class PetShopDao {
       await this.animalHealthDao.empty(),
       await this.shelterDao.empty(),
     ];
-    return snapshots.some((s) => !!s);
+    return snapshots.some((s) => s);
   }
 
   loadData(): void {
