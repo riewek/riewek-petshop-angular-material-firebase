@@ -12,13 +12,13 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class FakeDataService {
-  private enclosures: Enclosure[];
-  private shelters: Shelter[];
-  private animals: Animal[];
-  private animalHealths: AnimalHealth[];
-  private adopters: Adopter[];
-  private adoptionApplications: AdoptionApplication[];
-  private adoptionContracts: AdoptionContract[];
+  readonly enclosures: Enclosure[];
+  readonly shelters: Shelter[];
+  readonly animals: Animal[];
+  readonly animalHealths: AnimalHealth[];
+  readonly adopters: Adopter[];
+  readonly adoptionApplications: AdoptionApplication[];
+  readonly adoptionContracts: AdoptionContract[];
   constructor() {
     this.enclosures = fakeData.enclosures.map((enclosure) => {
       return {
@@ -65,66 +65,5 @@ export class FakeDataService {
         signedAt: new Date(adoptionContract.signedAt),
       };
     });
-  }
-
-  findAllEnclosures(): Enclosure[] {
-    return this.enclosures;
-  }
-
-  findEnclosure(id: string): Enclosure {
-    return this.enclosures.find((enclosure) => enclosure.id === id)!;
-  }
-
-  findAllShelters(): Shelter[] {
-    return this.shelters;
-  }
-
-  findShelter(id: string): Shelter {
-    return this.shelters.find((shelter) => shelter.id === id)!;
-  }
-
-  findAllAnimals(): Animal[] {
-    return this.animals;
-  }
-
-  findAnimal(id: string): Animal {
-    return this.animals.find((animal) => animal.id === id)!;
-  }
-
-  deleteAnimal(id: string): void {
-    this.animals = this.animals.filter((animal) => animal.id !== id);
-    //FIXME updateSignal
-  }
-
-  findAllAnimalHealths(): AnimalHealth[] {
-    return this.animalHealths;
-  }
-
-  findAnimalHealth(id: string): AnimalHealth {
-    return this.animalHealths.find((animalHealth) => animalHealth.id === id)!;
-  }
-
-  findAllAdopters(): Adopter[] {
-    return this.adopters;
-  }
-
-  findAdopter(id: string): Adopter {
-    return this.adopters.find((adopter) => adopter.id === id)!;
-  }
-
-  findAllAdoptionApplications(): AdoptionApplication[] {
-    return this.adoptionApplications;
-  }
-
-  findAdoptionApplication(id: string): AdoptionApplication {
-    return this.adoptionApplications.find((adoptionApplication) => adoptionApplication.id === id)!;
-  }
-
-  findAllAdoptionContracts(): AdoptionContract[] {
-    return this.adoptionContracts;
-  }
-
-  findAdoptionContract(id: string): AdoptionContract {
-    return this.adoptionContracts.find((adoptionContract) => adoptionContract.id === id)!;
   }
 }

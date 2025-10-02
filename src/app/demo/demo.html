@@ -7,15 +7,10 @@
   }
 </ul>
 <p>itemsSize: {{ adoptersSize() }}</p>
-<ul>
-  @for (animal of animals(); track animal.id) {
-  <li>{{ animal.breed }}</li>
-  }
-</ul>
 
 @if(!hasData()) {
 <p>Daten nicht vorhanden</p>
-<button mat-flat-button data-cy="btn-data" (click)="loadData()">Daten hochladen</button>
+<button mat-flat-button data-cy="btn-data" (click)="this.petShop.loadData()">Daten hochladen</button>
 }
 <p>adoptersSize: {{ adoptersSize() }}</p>
 <p>adoptionApplicationsSize: {{ adoptionApplicationsSize() }}</p>

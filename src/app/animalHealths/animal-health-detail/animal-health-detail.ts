@@ -1,7 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Animal } from '../../../model/animal';
-import { FakeDataService } from '../../../dao/fake/fake.data.service';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -12,6 +11,7 @@ import { provideNativeDateAdapter } from '@angular/material/core';
 import { EditComponent } from '../../../shared/edit.component';
 import { AnimalHealth } from '../../../model/animalHealth';
 import { TranslatePipe } from '@ngx-translate/core';
+import { PetShopDao } from '../../../dao/petShop.dao';
 
 @Component({
   selector: 'app-animal-health-detail',
@@ -34,7 +34,7 @@ export class AnimalHealthDetail extends EditComponent<AnimalHealth> {
   constructor(
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
-    private dataService: FakeDataService
+    private petShopDao: PetShopDao
   ) {
     super(
       formBuilder.group({
@@ -46,8 +46,8 @@ export class AnimalHealthDetail extends EditComponent<AnimalHealth> {
         //meds: ['', []],
       }),
       route,
-      (id) => dataService.findAnimalHealth(id)
+      (id) => petShopDao.animalHealthDao.find(id)
     );
-    this.animals.set(dataService.findAllAnimals());
+    petShopDao.animalDao.findAllAsObservable().subscribe((data) => this.animals.set(data));
   }
 }

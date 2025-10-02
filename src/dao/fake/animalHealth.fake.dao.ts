@@ -8,6 +8,6 @@ import { FakeDataService } from './fake.data.service';
 })
 export class AnimalHealthFakeDataDao extends FakeDataDao<AnimalHealth> {
   constructor(private fakeDataService: FakeDataService) {
-    super(fakeDataService.findAllAnimalHealths());
+    super(fakeDataService.animalHealths);
   }
 }

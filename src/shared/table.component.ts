@@ -1,6 +1,7 @@
 import { signal } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { FirebaseEntity } from './firebase.model';
+import { Observable } from 'rxjs';
 
 export abstract class TableComponent<T extends FirebaseEntity> {
   readonly pageSize: number;
@@ -10,12 +11,14 @@ export abstract class TableComponent<T extends FirebaseEntity> {
   readonly dataPagedSortedFiltered = signal<T[]>([]);
   readonly dateFormat = 'dd.MM.yyyy';
 
-  constructor(displayedColumns: string, data: T[]) {
+  constructor(displayedColumns: string, data$: Observable<T[]>) {
     this.pageSize = 10;
     this.pageSizeOptions = [5, 10, 15];
     this.displayedColumns = displayedColumns.split(' ');
-    this.dataAll.set(data);
-    this.dataPagedSortedFiltered.set(data.slice(0, this.pageSize));
+    data$.subscribe((data) => {
+      this.dataAll.set(data);
+      this.dataPagedSortedFiltered.set(data.slice(0, this.pageSize));
+    });
   }
 
   onPageChange(page: PageEvent) {

@@ -6,10 +6,10 @@ import { RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { TableComponent } from '../../shared/table.component';
-import { FakeDataService } from '../../dao/fake/fake.data.service';
 import { TranslatePipe } from '@ngx-translate/core';
 import { TableToolbarComponent } from '../../shared/table-toolbar.component';
 import { TableActionsComponent } from '../../shared/table-actions.component';
+import { PetShopDao } from '../../dao/petShop.dao';
 
 @Component({
   selector: 'app-animalHealths',
@@ -27,7 +27,7 @@ import { TableActionsComponent } from '../../shared/table-actions.component';
   styleUrl: './animalHealths.scss',
 })
 export class AnimalHealths extends TableComponent<AnimalHealth> {
-  constructor(dataService: FakeDataService) {
-    super('id animalId type notes vet meds', dataService.findAllAnimalHealths());
+  constructor(private petShopDao: PetShopDao) {
+    super('id animalId type notes vet meds', petShopDao.animalHealthDao.findAllAsObservable());
   }
 }

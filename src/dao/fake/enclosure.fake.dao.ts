@@ -8,6 +8,6 @@ import { FakeDataService } from './fake.data.service';
 })
 export class EnclosureFakeDataDao extends FakeDataDao<Enclosure> {
   constructor(private fakeDataService: FakeDataService) {
-    super(fakeDataService.findAllEnclosures());
+    super(fakeDataService.enclosures);
   }
 }

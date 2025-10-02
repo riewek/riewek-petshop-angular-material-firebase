@@ -10,7 +10,7 @@ export abstract class EditComponent<T extends FirebaseEntity> {
   readonly form: FormGroup;
   readonly appearanceValue = 'fill';
 
-  constructor(form: FormGroup, route: ActivatedRoute, data: (value: string) => T) {
+  constructor(form: FormGroup, route: ActivatedRoute, data: (id: string) => Promise<T | null>) {
     this.form = form;
     //FIXME: Check for subscribe Destruction
     route.paramMap.subscribe((params) => {
@@ -22,9 +22,9 @@ export abstract class EditComponent<T extends FirebaseEntity> {
       } else {
         this.mode.set('edit');
         this.id.set(idParam);
-        const foundAnimal = data(idParam);
-        //  this.animal.set(foundAnimal);
-        this.form.patchValue(foundAnimal);
+        data(idParam).then((found) => {
+          if (found) this.form.patchValue(found);
+        });
       }
     });
   }

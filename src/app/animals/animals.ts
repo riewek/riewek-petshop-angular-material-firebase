@@ -7,10 +7,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { AgePipe } from '../../shared/age.pipe';
 import { TableComponent } from '../../shared/table.component';
-import { FakeDataService } from '../../dao/fake/fake.data.service';
 import { TranslatePipe } from '@ngx-translate/core';
 import { TableToolbarComponent } from '../../shared/table-toolbar.component';
 import { TableActionsComponent } from '../../shared/table-actions.component';
+import { PetShopDao } from '../../dao/petShop.dao';
 
 @Component({
   selector: 'app-animals',
@@ -29,10 +29,10 @@ import { TableActionsComponent } from '../../shared/table-actions.component';
   styleUrl: './animals.scss',
 })
 export class Animals extends TableComponent<Animal> {
-  constructor(public dataService: FakeDataService) {
+  constructor(private petShopDao: PetShopDao) {
     super(
       'id species breed birthDate age sex intakeDate healthStatus enclosureId photos adoptable',
-      dataService.findAllAnimals()
+      petShopDao.animalDao.findAllAsObservable()
     );
   }
 }

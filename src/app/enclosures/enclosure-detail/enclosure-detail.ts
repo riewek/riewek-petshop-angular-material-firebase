@@ -1,6 +1,5 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FakeDataService } from '../../../dao/fake/fake.data.service';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -9,6 +8,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { EditComponent } from '../../../shared/edit.component';
 import { Enclosure } from '../../../model/enclosure';
 import { TranslatePipe } from '@ngx-translate/core';
+import { PetShopDao } from '../../../dao/petShop.dao';
 
 @Component({
   selector: 'app-enclosure-detail',
@@ -28,7 +28,7 @@ export class EnclosureDetail extends EditComponent<Enclosure> {
   constructor(
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
-    private dataService: FakeDataService
+    private petShopDao: PetShopDao
   ) {
     super(
       formBuilder.group({
@@ -39,7 +39,7 @@ export class EnclosureDetail extends EditComponent<Enclosure> {
         notes: ['', []],
       }),
       route,
-      (id) => dataService.findEnclosure(id)
+      (id) => petShopDao.enclosureDao.find(id)
     );
   }
 }

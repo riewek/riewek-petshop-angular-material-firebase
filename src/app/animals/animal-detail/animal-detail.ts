@@ -1,7 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Animal } from '../../../model/animal';
-import { FakeDataService } from '../../../dao/fake/fake.data.service';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -13,6 +12,7 @@ import { provideNativeDateAdapter } from '@angular/material/core';
 import { EditComponent } from '../../../shared/edit.component';
 import { Enclosure } from '../../../model/enclosure';
 import { TranslatePipe } from '@ngx-translate/core';
+import { PetShopDao } from '../../../dao/petShop.dao';
 
 @Component({
   selector: 'app-animal-detail',
@@ -36,7 +36,7 @@ export class AnimalDetail extends EditComponent<Animal> {
   constructor(
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
-    private dataService: FakeDataService
+    private petShopDao: PetShopDao
   ) {
     super(
       formBuilder.group({
@@ -51,8 +51,8 @@ export class AnimalDetail extends EditComponent<Animal> {
         adoptable: [true, [Validators.required]],
       }),
       route,
-      (id) => dataService.findAnimal(id)
+      (id) => petShopDao.animalDao.find(id)
     );
-    this.enclosures.set(dataService.findAllEnclosures());
+    petShopDao.enclosureDao.findAllAsObservable().subscribe((data) => this.enclosures.set(data));
   }
 }

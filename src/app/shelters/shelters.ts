@@ -5,10 +5,10 @@ import { RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { TableComponent } from '../../shared/table.component';
-import { FakeDataService } from '../../dao/fake/fake.data.service';
 import { TranslatePipe } from '@ngx-translate/core';
 import { TableToolbarComponent } from '../../shared/table-toolbar.component';
 import { TableActionsComponent } from '../../shared/table-actions.component';
+import { PetShopDao } from '../../dao/petShop.dao';
 
 @Component({
   selector: 'app-shelters',
@@ -25,7 +25,7 @@ import { TableActionsComponent } from '../../shared/table-actions.component';
   styleUrl: './shelters.scss',
 })
 export class Shelters extends TableComponent<Shelter> {
-  constructor(dataService: FakeDataService) {
-    super('id name location enclosureIds', dataService.findAllShelters());
+  constructor(private petShopDao: PetShopDao) {
+    super('id name location enclosureIds', petShopDao.shelterDao.findAllAsObservable());
   }
 }

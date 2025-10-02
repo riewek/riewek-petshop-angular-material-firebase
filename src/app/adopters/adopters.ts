@@ -3,10 +3,10 @@ import { Adopter } from '../../model/adopter';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { TableComponent } from '../../shared/table.component';
-import { FakeDataService } from '../../dao/fake/fake.data.service';
 import { TranslatePipe } from '@ngx-translate/core';
 import { TableToolbarComponent } from '../../shared/table-toolbar.component';
 import { TableActionsComponent } from '../../shared/table-actions.component';
+import { PetShopDao } from '../../dao/petShop.dao';
 
 @Component({
   selector: 'app-adopters',
@@ -21,7 +21,10 @@ import { TableActionsComponent } from '../../shared/table-actions.component';
   styleUrl: './adopters.scss',
 })
 export class Adopters extends TableComponent<Adopter> {
-  constructor(dataService: FakeDataService) {
-    super('id name contact address housing experience', dataService.findAllAdopters());
+  constructor(private petShopDao: PetShopDao) {
+    super(
+      'id name contact address housing experience',
+      petShopDao.adopterDao.findAllAsObservable()
+    );
   }
 }

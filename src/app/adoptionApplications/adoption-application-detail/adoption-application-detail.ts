@@ -1,7 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Animal } from '../../../model/animal';
-import { FakeDataService } from '../../../dao/fake/fake.data.service';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -13,6 +12,7 @@ import { EditComponent } from '../../../shared/edit.component';
 import { AdoptionApplication } from '../../../model/adoptionApplication';
 import { Adopter } from '../../../model/adopter';
 import { TranslatePipe } from '@ngx-translate/core';
+import { PetShopDao } from '../../../dao/petShop.dao';
 
 @Component({
   selector: 'app-adoption-application-detail',
@@ -36,7 +36,7 @@ export class AdoptionApplicationDetail extends EditComponent<AdoptionApplication
   constructor(
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
-    private dataService: FakeDataService
+    private petShopDao: PetShopDao
   ) {
     super(
       formBuilder.group({
@@ -46,9 +46,9 @@ export class AdoptionApplicationDetail extends EditComponent<AdoptionApplication
         status: ['submitted', [Validators.required]],
       }),
       route,
-      (id) => dataService.findAdoptionApplication(id)
+      (id) => petShopDao.adoptionApplicationDao.find(id)
     );
-    this.adopters.set(dataService.findAllAdopters());
-    this.animals.set(dataService.findAllAnimals());
+    petShopDao.adopterDao.findAllAsObservable().subscribe((data) => this.adopters.set(data));
+    petShopDao.animalDao.findAllAsObservable().subscribe((data) => this.animals.set(data));
   }
 }

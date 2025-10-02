@@ -6,10 +6,10 @@ import { RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { TableComponent } from '../../shared/table.component';
-import { FakeDataService } from '../../dao/fake/fake.data.service';
 import { TranslatePipe } from '@ngx-translate/core';
 import { TableToolbarComponent } from '../../shared/table-toolbar.component';
 import { TableActionsComponent } from '../../shared/table-actions.component';
+import { PetShopDao } from '../../dao/petShop.dao';
 
 @Component({
   selector: 'app-adoptionContracts',
@@ -27,10 +27,10 @@ import { TableActionsComponent } from '../../shared/table-actions.component';
   styleUrl: './adoptionContracts.scss',
 })
 export class AdoptionContracts extends TableComponent<AdoptionContract> {
-  constructor(dataService: FakeDataService) {
+  constructor(private petShopDao: PetShopDao) {
     super(
       'id adoptionApplicationId contractUrl signedAt fee',
-      dataService.findAllAdoptionContracts()
+      petShopDao.adoptionContractDao.findAllAsObservable()
     );
   }
 }

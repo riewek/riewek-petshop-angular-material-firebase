@@ -1,6 +1,5 @@
 import { Component, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FakeDataService } from '../../../dao/fake/fake.data.service';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -11,6 +10,7 @@ import { EditComponent } from '../../../shared/edit.component';
 import { AdoptionContract } from '../../../model/adoptionContract';
 import { AdoptionApplication } from '../../../model/adoptionApplication';
 import { TranslatePipe } from '@ngx-translate/core';
+import { PetShopDao } from '../../../dao/petShop.dao';
 
 @Component({
   selector: 'app-adoption-contract-detail',
@@ -32,7 +32,7 @@ export class AdoptionContractDetail extends EditComponent<AdoptionContract> {
   constructor(
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
-    private dataService: FakeDataService
+    private petShopDao: PetShopDao
   ) {
     super(
       formBuilder.group({
@@ -42,8 +42,10 @@ export class AdoptionContractDetail extends EditComponent<AdoptionContract> {
         fee: ['', [Validators.required, Validators.min(0)]],
       }),
       route,
-      (id) => dataService.findAdoptionContract(id)
+      (id) => petShopDao.adoptionContractDao.find(id)
     );
-    this.adoptionApplications.set(dataService.findAllAdoptionApplications());
+    petShopDao.adoptionApplicationDao
+      .findAllAsObservable()
+      .subscribe((data) => this.adoptionApplications.set(data));
   }
 }

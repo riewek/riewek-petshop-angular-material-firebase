@@ -1,6 +1,5 @@
 import { Component, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FakeDataService } from '../../../dao/fake/fake.data.service';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -10,6 +9,7 @@ import { EditComponent } from '../../../shared/edit.component';
 import { Shelter } from '../../../model/shelter';
 import { Enclosure } from '../../../model/enclosure';
 import { TranslatePipe } from '@ngx-translate/core';
+import { PetShopDao } from '../../../dao/petShop.dao';
 
 @Component({
   selector: 'app-shelter-detail',
@@ -30,7 +30,7 @@ export class ShelterDetail extends EditComponent<Shelter> {
   constructor(
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
-    private dataService: FakeDataService
+    private petShopDao: PetShopDao
   ) {
     super(
       formBuilder.group({
@@ -39,8 +39,8 @@ export class ShelterDetail extends EditComponent<Shelter> {
         //enclosureIds: [[], [Validators.required]],
       }),
       route,
-      (id) => dataService.findShelter(id)
+      (id) => petShopDao.shelterDao.find(id)
     );
-    this.enclosures.set(dataService.findAllEnclosures());
+    petShopDao.enclosureDao.findAllAsObservable().subscribe((data) => this.enclosures.set(data));
   }
 }
