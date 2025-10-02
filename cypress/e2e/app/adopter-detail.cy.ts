@@ -35,6 +35,7 @@ describe('Adopter Detail Component Module', () => {
   describe('edit', () => {
     beforeEach(() => {
       cy.visit(url + 'adopters/' + adopter.id);
+      cy.formControl('name', adopter.name);
     });
 
     it('makes a screenshot', () => {

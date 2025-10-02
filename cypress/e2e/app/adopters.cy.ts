@@ -8,6 +8,7 @@ describe('Adopters Component', () => {
   beforeEach(() => {
     cy.viewport(viewportWidth, viewportHeight);
     cy.visit(url + 'adopters');
+    cy.rowExists();
   });
 
   it('makes a screenshot', () => {
@@ -15,7 +16,6 @@ describe('Adopters Component', () => {
   });
 
   it('regresses to snapshot', () => {
-    cy.rowExists();
     cy.row('name', adopter.name);
     cy.row('contact', adopter.contact);
     cy.row('address', adopter.address);
