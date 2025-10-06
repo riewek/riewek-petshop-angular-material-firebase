@@ -10,6 +10,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { TableToolbarComponent } from '../../shared/table-toolbar.component';
 import { TableActionsComponent } from '../../shared/table-actions.component';
 import { PetShopDao } from '../../dao/petShop.dao';
+import { AdoptionContractDao } from '../../dao/adoptionContract.dao';
 
 @Component({
   selector: 'app-adoptionContracts',
@@ -26,11 +27,8 @@ import { PetShopDao } from '../../dao/petShop.dao';
   templateUrl: './adoptionContracts.html',
   styleUrl: './adoptionContracts.scss',
 })
-export class AdoptionContracts extends TableComponent<AdoptionContract> {
+export class AdoptionContracts extends TableComponent<AdoptionContract, AdoptionContractDao> {
   constructor(private petShopDao: PetShopDao) {
-    super(
-      'id adoptionApplicationId contractUrl signedAt fee',
-      petShopDao.adoptionContractDao.findAllAsObservable()
-    );
+    super(petShopDao.adoptionContractDao, 'id adoptionApplicationId contractUrl signedAt fee');
   }
 }

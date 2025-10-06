@@ -6,7 +6,9 @@
       "create": "{{value}} erstellen",
       "edit": "{{value}} bearbeiten",
       "required": "{{value}} ist erforderlich! ",
-      "min": "{{value}} muss größer als {{min}} sein! "
+      "min": "{{value}} muss größer als {{min}} sein! ",
+      "confirmDeleteTitle": "Löschen bestätigen",
+      "confirmDeleteMessage": "Möchten sie das wirklich löschen?"
     }
   },
   "model": {

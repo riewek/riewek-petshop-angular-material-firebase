@@ -9,6 +9,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { TableToolbarComponent } from '../../shared/table-toolbar.component';
 import { TableActionsComponent } from '../../shared/table-actions.component';
 import { PetShopDao } from '../../dao/petShop.dao';
+import { ShelterDao } from '../../dao/shelter.dao';
 
 @Component({
   selector: 'app-shelters',
@@ -24,8 +25,8 @@ import { PetShopDao } from '../../dao/petShop.dao';
   templateUrl: './shelters.html',
   styleUrl: './shelters.scss',
 })
-export class Shelters extends TableComponent<Shelter> {
+export class Shelters extends TableComponent<Shelter, ShelterDao> {
   constructor(private petShopDao: PetShopDao) {
-    super('id name location enclosureIds', petShopDao.shelterDao.findAllAsObservable());
+    super(petShopDao.shelterDao, 'id name location enclosureIds');
   }
 }

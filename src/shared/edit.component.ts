@@ -42,7 +42,10 @@ export abstract class EditComponent<T extends FirebaseEntity, D extends Dao<T>> 
       this.form.markAllAsTouched();
       return;
     }
-    if (this.form.valid) this.dao.save(this.form.value);
+    if (this.form.valid) {
+      this.dao.save(this.form.value);
+      this.router.navigate([this.tableUrl]);
+    }
   }
 
   cancel(): void {

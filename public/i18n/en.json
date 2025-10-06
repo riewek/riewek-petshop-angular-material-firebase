@@ -7,7 +7,9 @@
       "create": "create {{value}}",
       "edit": "edit {{value}}",
       "required": "{{value}} is required! ",
-      "min": "{{value}} must be greater than {{min}}! "
+      "min": "{{value}} must be greater than {{min}}! ",
+      "confirmDeleteTitle": "Confirm delete",
+      "confirmDeleteMessage": "Are you sure you want to delete this?"
     }
   },
   "model": {

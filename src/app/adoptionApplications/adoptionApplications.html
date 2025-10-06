@@ -12,7 +12,10 @@
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef>#</th>
     <td mat-cell *matCellDef="let adoptionApplication">
-      <app-table-actions [row]="adoptionApplication"></app-table-actions>
+      <app-table-actions
+        [row]="adoptionApplication"
+        (delete)="onDelete(adoptionApplication)"
+      ></app-table-actions>
     </td>
   </ng-container>
 

@@ -8,6 +8,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { TableToolbarComponent } from '../../shared/table-toolbar.component';
 import { TableActionsComponent } from '../../shared/table-actions.component';
 import { PetShopDao } from '../../dao/petShop.dao';
+import { EnclosureDao } from '../../dao/enclosure.dao';
 
 @Component({
   selector: 'app-enclosures',
@@ -22,8 +23,8 @@ import { PetShopDao } from '../../dao/petShop.dao';
   templateUrl: './enclosures.html',
   styleUrl: './enclosures.scss',
 })
-export class Enclosures extends TableComponent<Enclosure> {
+export class Enclosures extends TableComponent<Enclosure, EnclosureDao> {
   constructor(private petShopDao: PetShopDao) {
-    super('id name type capacity occupied notes', petShopDao.enclosureDao.findAllAsObservable());
+    super(petShopDao.enclosureDao, 'id name type capacity occupied notes');
   }
 }

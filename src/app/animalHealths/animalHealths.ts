@@ -10,6 +10,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { TableToolbarComponent } from '../../shared/table-toolbar.component';
 import { TableActionsComponent } from '../../shared/table-actions.component';
 import { PetShopDao } from '../../dao/petShop.dao';
+import { AnimalHealthDao } from '../../dao/animalHealth.dao';
 
 @Component({
   selector: 'app-animalHealths',
@@ -26,8 +27,8 @@ import { PetShopDao } from '../../dao/petShop.dao';
   templateUrl: './animalHealths.html',
   styleUrl: './animalHealths.scss',
 })
-export class AnimalHealths extends TableComponent<AnimalHealth> {
+export class AnimalHealths extends TableComponent<AnimalHealth, AnimalHealthDao> {
   constructor(private petShopDao: PetShopDao) {
-    super('id animalId type notes vet meds', petShopDao.animalHealthDao.findAllAsObservable());
+    super(petShopDao.animalHealthDao, 'id animalId type notes vet meds');
   }
 }

@@ -11,6 +11,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { TableToolbarComponent } from '../../shared/table-toolbar.component';
 import { TableActionsComponent } from '../../shared/table-actions.component';
 import { PetShopDao } from '../../dao/petShop.dao';
+import { AnimalDao } from '../../dao/animal.dao';
 
 @Component({
   selector: 'app-animals',
@@ -28,11 +29,11 @@ import { PetShopDao } from '../../dao/petShop.dao';
   templateUrl: './animals.html',
   styleUrl: './animals.scss',
 })
-export class Animals extends TableComponent<Animal> {
+export class Animals extends TableComponent<Animal, AnimalDao> {
   constructor(private petShopDao: PetShopDao) {
     super(
-      'id species breed birthDate age sex intakeDate healthStatus enclosureId photos adoptable',
-      petShopDao.animalDao.findAllAsObservable()
+      petShopDao.animalDao,
+      'id species breed birthDate age sex intakeDate healthStatus enclosureId photos adoptable'
     );
   }
 }
