@@ -65,17 +65,17 @@
     </th>
     <td mat-cell *matCellDef="let adoptionApplication">
       @switch (adoptionApplication.status ) { @case ('submitted') {
-      <mat-icon>send</mat-icon>
+      <mat-icon>{{ 'model.adoptionApplication.status.submitted_icon' | translate }}</mat-icon>
       } @case ('screening') {
-      <mat-icon>search</mat-icon>
+      <mat-icon>{{ 'model.adoptionApplication.status.screening_icon' | translate }}</mat-icon>
       } @case ('reserved') {
-      <mat-icon>hourglass_empty</mat-icon>
+      <mat-icon>{{ 'model.adoptionApplication.status.reserved_icon' | translate }}</mat-icon>
       } @case ('approved') {
-      <mat-icon>check_circle</mat-icon>
+      <mat-icon>{{ 'model.adoptionApplication.status.approved_icon' | translate }}</mat-icon>
       } @case ('rejected') {
-      <mat-icon>cancel</mat-icon>
+      <mat-icon>{{ 'model.adoptionApplication.status.rejected_icon' | translate }}</mat-icon>
       } @default{
-      <mat-icon>help</mat-icon>
+      <mat-icon>{{ 'app.default_icon' | translate }}</mat-icon>
       } }
     </td>
   </ng-container>

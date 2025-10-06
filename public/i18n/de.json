@@ -1,6 +1,8 @@
 {
   "app": {
     "dialog": {
+      "ok": "Ok",
+      "cancel": "Abbrechen",
       "create": "{{value}} erstellen",
       "edit": "{{value}} bearbeiten",
       "required": "{{value}} ist erforderlich! ",

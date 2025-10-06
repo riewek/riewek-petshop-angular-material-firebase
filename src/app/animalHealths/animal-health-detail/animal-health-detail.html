@@ -1,12 +1,10 @@
-@if(mode() === "create") {
-<h1>
-  {{ 'app.dialog.create' | translate : { value: ('model.animalHealth.single' | translate) } }}
-</h1>
-} @else {
-<h1>{{ 'app.dialog.edit' | translate : { value: ('model.animalHealth.single' | translate) } }}</h1>
-}
+<app-dialog-title
+  [form]="form"
+  [mode]="mode()"
+  [modelKey]="'model.animalHealth.single'"
+></app-dialog-title>
 
-<div [formGroup]="form" class="form-grid">
+<form [formGroup]="form" (ngSubmit)="save()" class="form-grid">
   <!-- Animal Id -->
   <mat-form-field appearance="fill" floatLabel="always">
     <mat-label>{{ 'model.animalHealth.animalId' | translate }}</mat-label>
@@ -44,15 +42,18 @@
     <mat-label>{{ 'model.animalHealth.type.label' | translate }}</mat-label>
     <br />
     <mat-radio-group formControlName="type">
-      <mat-radio-button value="checkup">{{
-        'model.animalHealth.type.checkup' | translate
-      }}</mat-radio-button>
-      <mat-radio-button value="vaccination">{{
-        'model.animalHealth.type.vaccination' | translate
-      }}</mat-radio-button>
-      <mat-radio-button value="injury">{{
-        'model.animalHealth.type.injury' | translate
-      }}</mat-radio-button>
+      <mat-radio-button value="checkup">
+        <mat-icon>{{ 'model.animalHealth.type.checkup_icon' | translate }}</mat-icon
+        >{{ 'model.animalHealth.type.checkup' | translate }}</mat-radio-button
+      >
+      <mat-radio-button value="vaccination">
+        <mat-icon>{{ 'model.animalHealth.type.vaccination_icon' | translate }}</mat-icon
+        >{{ 'model.animalHealth.type.vaccination' | translate }}</mat-radio-button
+      >
+      <mat-radio-button value="injury">
+        <mat-icon>{{ 'model.animalHealth.type.injury_icon' | translate }}</mat-icon
+        >{{ 'model.animalHealth.type.injury' | translate }}</mat-radio-button
+      >
     </mat-radio-group>
   </div>
 
@@ -94,4 +95,12 @@
     }
   </mat-form-field>
   -->
-</div>
+</form>
+
+<app-form-actions
+  [form]="form"
+  [okLabel]="'app.dialog.ok' | translate"
+  [cancelLabel]="'app.dialog.cancel' | translate"
+  (ok)="save()"
+  (cancel)="cancel()"
+></app-form-actions>

@@ -1,10 +1,10 @@
-@if(mode() === "create") {
-<h1>{{ 'app.dialog.create' | translate : { value: ('model.adopter.single' | translate) } }}</h1>
-} @else {
-<h1>{{ 'app.dialog.edit' | translate : { value: ('model.adopter.single' | translate) } }}</h1>
-}
+<app-dialog-title
+  [form]="form"
+  [mode]="mode()"
+  [modelKey]="'model.adopter.single'"
+></app-dialog-title>
 
-<div [formGroup]="form" class="form-grid">
+<form [formGroup]="form" (ngSubmit)="save()" class="form-grid">
   <!-- Name -->
   <mat-form-field appearance="fill" floatLabel="always">
     <mat-label>{{ 'model.adopter.name' | translate }}</mat-label>
@@ -72,4 +72,12 @@
     >
     }
   </mat-form-field>
-</div>
+</form>
+
+<app-form-actions
+  [form]="form"
+  [okLabel]="'app.dialog.ok' | translate"
+  [cancelLabel]="'app.dialog.cancel' | translate"
+  (ok)="save()"
+  (cancel)="cancel()"
+></app-form-actions>

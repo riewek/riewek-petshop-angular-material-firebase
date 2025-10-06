@@ -11,11 +11,15 @@ export const adoptionApplicationsMenuItem = createMenuItem(
   '/adoptionApplications'
 );
 export const adoptionContractsMenuItem = createMenuItem(
-  'Adoptionen',
+  'Verträge',
   'favorite',
   '/adoptionContracts'
 );
-export const healthMenuItem = createMenuItem('Gesundheit', 'local_hospital', '/animalHealths');
+export const healthMenuItem = createMenuItem(
+  'Gesundheitsreports',
+  'local_hospital',
+  '/animalHealths'
+);
 export const reportsMenuItem = createMenuItem('Reporting', 'bar_chart', '/reports');
 export const settingsMenuItem = createMenuItem('Einstellungen', 'settings', '/settings');
 export const registerMenuItem = createMenuItem('Register', 'person_add', '/register', false);

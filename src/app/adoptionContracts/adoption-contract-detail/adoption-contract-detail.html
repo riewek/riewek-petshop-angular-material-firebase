@@ -1,14 +1,10 @@
-@if(mode() === "create") {
-<h1>
-  {{ 'app.dialog.create' | translate : { value: ('model.adoptionContract.single' | translate) } }}
-</h1>
-} @else {
-<h1>
-  {{ 'app.dialog.edit' | translate : { value: ('model.adoptionContract.single' | translate) } }}
-</h1>
-}
+<app-dialog-title
+  [form]="form"
+  [mode]="mode()"
+  [modelKey]="'model.adoptionContract.single'"
+></app-dialog-title>
 
-<div [formGroup]="form" class="form-grid">
+<form [formGroup]="form" (ngSubmit)="save()" class="form-grid">
   <!-- Adoption Application Id -->
   <mat-form-field appearance="fill" floatLabel="always">
     <mat-label>{{ 'model.adoptionContract.adoptionApplicationId' | translate }}</mat-label>
@@ -63,4 +59,12 @@
     </mat-error>
     }
   </mat-form-field>
-</div>
+</form>
+
+<app-form-actions
+  [form]="form"
+  [okLabel]="'app.dialog.ok' | translate"
+  [cancelLabel]="'app.dialog.cancel' | translate"
+  (ok)="save()"
+  (cancel)="cancel()"
+></app-form-actions>

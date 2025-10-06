@@ -1,10 +1,10 @@
-@if(mode() === "create") {
-<h1>{{ 'app.dialog.create' | translate : { value: ('model.enclosure.single' | translate) } }}</h1>
-} @else {
-<h1>{{ 'app.dialog.edit' | translate : { value: ('model.enclosure.single' | translate) } }}</h1>
-}
+<app-dialog-title
+  [form]="form"
+  [mode]="mode()"
+  [modelKey]="'model.enclosure.single'"
+></app-dialog-title>
 
-<div [formGroup]="form" class="form-grid">
+<form [formGroup]="form" (ngSubmit)="save()" class="form-grid">
   <!-- Name -->
   <mat-form-field appearance="fill" floatLabel="always">
     <mat-label>{{ 'model.enclosure.name' | translate }}</mat-label>
@@ -22,12 +22,14 @@
     <mat-label>{{ 'model.enclosure.type.label' | translate }}</mat-label>
     <br />
     <mat-radio-group formControlName="type">
-      <mat-radio-button value="indoor">{{
-        'model.enclosure.type.indoor' | translate
-      }}</mat-radio-button>
-      <mat-radio-button value="outdoor">{{
-        'model.enclosure.type.outdoor' | translate
-      }}</mat-radio-button>
+      <mat-radio-button value="indoor">
+        <mat-icon>{{ 'model.enclosure.type.indoor_icon' | translate }}</mat-icon
+        >{{ 'model.enclosure.type.indoor' | translate }}</mat-radio-button
+      >
+      <mat-radio-button value="outdoor">
+        <mat-icon>{{ 'model.enclosure.type.outdoor_icon' | translate }}</mat-icon>
+        {{ 'model.enclosure.type.outdoor' | translate }}</mat-radio-button
+      >
     </mat-radio-group>
   </div>
 
@@ -75,4 +77,12 @@
     <input matInput formControlName="notes" #notes />
     <mat-hint align="end">{{ notes.value.length }} / 60</mat-hint>
   </mat-form-field>
-</div>
+</form>
+
+<app-form-actions
+  [form]="form"
+  [okLabel]="'app.dialog.ok' | translate"
+  [cancelLabel]="'app.dialog.cancel' | translate"
+  (ok)="save()"
+  (cancel)="cancel()"
+></app-form-actions>

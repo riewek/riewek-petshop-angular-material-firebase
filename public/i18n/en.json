@@ -1,6 +1,9 @@
 {
   "app": {
+    "default_icon": "help_outline",
     "dialog": {
+      "ok": "Ok",
+      "cancel": "Cancel",
       "create": "create {{value}}",
       "edit": "edit {{value}}",
       "required": "{{value}} is required! ",
@@ -29,7 +32,12 @@
         "screening": "screening",
         "reserved": "reserved",
         "approved": "approved",
-        "rejected": "rejected"
+        "rejected": "rejected",
+        "submitted_icon": "send",
+        "screening_icon": "search",
+        "reserved_icon": "hourglass_empty",
+        "approved_icon": "check_circle",
+        "rejected_icon": "cancel"
       }
     },
     "adoptionContract": {
@@ -51,7 +59,10 @@
         "label": "sex",
         "male": "male",
         "female": "female",
-        "unknown": "unknown"
+        "unknown": "unknown",
+        "male_icon": "male",
+        "female_icon": "female",
+        "unknown_icon": "help_outline"
       },
       "intakeDate": "intake date",
       "healthStatus": {
@@ -59,11 +70,17 @@
         "healthy": "healthy",
         "warning": "warning",
         "critical": "critical",
-        "unknown": "unknown"
+        "unknown": "unknown",
+        "healthy_icon": "check_circle",
+        "warning_icon": "warning",
+        "critical_icon": "error",
+        "unknown_icon": "help_outline"
       },
       "enclosureId": "enclosure",
       "photos": "photos",
-      "adoptable": "adoptable"
+      "adoptable": "adoptable",
+      "adoptable_true_icon": "favorite",
+      "adoptable_false_icon": "block"
     },
     "animalHealth": {
       "single": "health report",
@@ -74,7 +91,10 @@
         "label": "type",
         "checkup": "checkup",
         "vaccination": "vaccination",
-        "injury": "injury"
+        "injury": "injury",
+        "checkup_icon": "monitor_heart",
+        "vaccination_icon": "vaccines",
+        "injury_icon": "healing"
       },
       "notes": "notes",
       "vet": "vet",
@@ -87,7 +107,9 @@
       "type": {
         "label": "type",
         "indoor": "indoor",
-        "outdoor": "outdoor"
+        "outdoor": "outdoor",
+        "indoor_icon": "meeting_room",
+        "outdoor_icon": "landscape"
       },
       "capacity": "capacity",
       "occupied": "occupied",

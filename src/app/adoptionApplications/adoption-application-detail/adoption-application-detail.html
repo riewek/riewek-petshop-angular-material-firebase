@@ -1,23 +1,17 @@
-@if(mode() === "create") {
-<h1>
-  {{
-    'app.dialog.create' | translate : { value: ('model.adoptionApplication.single' | translate) }
-  }}
-</h1>
-} @else {
-<h1>
-  {{ 'app.dialog.edit' | translate : { value: ('model.adoptionApplication.single' | translate) } }}
-</h1>
-}
+<app-dialog-title
+  [form]="form"
+  [mode]="mode()"
+  [modelKey]="'model.adoptionApplication.single'"
+></app-dialog-title>
 
-<div [formGroup]="form" class="form-grid">
+<form [formGroup]="form" (ngSubmit)="save()" class="form-grid">
   <!-- Adopter Id -->
   <mat-form-field appearance="fill" floatLabel="always">
     <mat-label>{{ 'model.adoptionApplication.adopterId' | translate }}</mat-label>
     <mat-select formControlName="adopterId" #adopterId>
       <mat-option>--</mat-option>
       @for (adopter of adopters(); track adopter.id) {
-      <mat-option [value]="adopter.id">{{ adopter.name }}</mat-option>
+      <mat-option [value]="adopter.id">{{ adopter.id }}</mat-option>
       }
     </mat-select>
     @if (form.get('adopterId')?.hasError('required')) {
@@ -36,7 +30,7 @@
     <mat-select formControlName="animalId" #animalId>
       <mat-option>--</mat-option>
       @for (animal of animals(); track animal.id) {
-      <mat-option [value]="animal.id">{{ animal.breed }}</mat-option>
+      <mat-option [value]="animal.id">{{ animal.id }}</mat-option>
       }
     </mat-select>
     @if (form.get('animalId')?.hasError('required')) {
@@ -71,21 +65,34 @@
     <mat-label>{{ 'model.adoptionApplication.status.label' | translate }}</mat-label>
     <br />
     <mat-radio-group formControlName="status">
-      <mat-radio-button value="submitted">{{
-        'model.adoptionApplication.status.submitted' | translate
-      }}</mat-radio-button>
-      <mat-radio-button value="screening">{{
-        'model.adoptionApplication.status.screening' | translate
-      }}</mat-radio-button>
-      <mat-radio-button value="reserved">{{
-        'model.adoptionApplication.status.reserved' | translate
-      }}</mat-radio-button>
-      <mat-radio-button value="approved">{{
-        'model.adoptionApplication.status.approved' | translate
-      }}</mat-radio-button>
-      <mat-radio-button value="rejected">{{
-        'model.adoptionApplication.status.rejected' | translate
-      }}</mat-radio-button>
+      <mat-radio-button value="submitted">
+        <mat-icon>{{ 'model.adoptionApplication.status.submitted_icon' | translate }}</mat-icon
+        >{{ 'model.adoptionApplication.status.submitted' | translate }}</mat-radio-button
+      >
+      <mat-radio-button value="screening">
+        <mat-icon>{{ 'model.adoptionApplication.status.screening_icon' | translate }}</mat-icon
+        >{{ 'model.adoptionApplication.status.screening' | translate }}</mat-radio-button
+      >
+      <mat-radio-button value="reserved">
+        <mat-icon>{{ 'model.adoptionApplication.status.reserved_icon' | translate }}</mat-icon
+        >{{ 'model.adoptionApplication.status.reserved' | translate }}</mat-radio-button
+      >
+      <mat-radio-button value="approved">
+        <mat-icon>{{ 'model.adoptionApplication.status.approved_icon' | translate }}</mat-icon
+        >{{ 'model.adoptionApplication.status.approved' | translate }}</mat-radio-button
+      >
+      <mat-radio-button value="rejected">
+        <mat-icon>{{ 'model.adoptionApplication.status.rejected_icon' | translate }}</mat-icon
+        >{{ 'model.adoptionApplication.status.rejected' | translate }}</mat-radio-button
+      >
     </mat-radio-group>
   </div>
-</div>
+</form>
+
+<app-form-actions
+  [form]="form"
+  [okLabel]="'app.dialog.ok' | translate"
+  [cancelLabel]="'app.dialog.cancel' | translate"
+  (ok)="save()"
+  (cancel)="cancel()"
+></app-form-actions>

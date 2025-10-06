@@ -1,0 +1,11 @@
+<div class="form-actions">
+  <button mat-flat-button color="primary" type="submit" [disabled]="form.invalid" (click)="onOk()">
+    <mat-icon>check</mat-icon>
+    {{ okLabel }}
+  </button>
+
+  <button mat-flat-button color="warn" type="button" (click)="onCancel()">
+    <mat-icon>close</mat-icon>
+    {{ cancelLabel }}
+  </button>
+</div>

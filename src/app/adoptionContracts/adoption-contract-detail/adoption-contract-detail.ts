@@ -11,6 +11,10 @@ import { AdoptionContract } from '../../../model/adoptionContract';
 import { AdoptionApplication } from '../../../model/adoptionApplication';
 import { TranslatePipe } from '@ngx-translate/core';
 import { PetShopDao } from '../../../dao/petShop.dao';
+import { Router } from '@angular/router';
+import { FormActionsComponent } from '../../../shared/form-actions/form-actions.component';
+import { DialogTitleComponent } from '../../../shared/dialog-title/dialog-title.component';
+import { AdoptionContractDao } from '../../../dao/adoptionContract.dao';
 
 @Component({
   selector: 'app-adoption-contract-detail',
@@ -22,19 +26,24 @@ import { PetShopDao } from '../../../dao/petShop.dao';
     MatDatepickerModule,
     MatSelectModule,
     TranslatePipe,
+    FormActionsComponent,
+    DialogTitleComponent,
   ],
   templateUrl: './adoption-contract-detail.html',
   styleUrl: './adoption-contract-detail.scss',
 })
-export class AdoptionContractDetail extends EditComponent<AdoptionContract> {
+export class AdoptionContractDetail extends EditComponent<AdoptionContract, AdoptionContractDao> {
   adoptionApplications = signal<AdoptionApplication[]>([]);
 
   constructor(
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
-    private petShopDao: PetShopDao
+    private petShopDao: PetShopDao,
+    private routerIn: Router
   ) {
     super(
+      routerIn,
+      '/adoptionContracts',
       formBuilder.group({
         adoptionApplicationId: ['', [Validators.required]],
         contractUrl: ['', []],
@@ -42,7 +51,7 @@ export class AdoptionContractDetail extends EditComponent<AdoptionContract> {
         fee: ['', [Validators.required, Validators.min(0)]],
       }),
       route,
-      (id) => petShopDao.adoptionContractDao.find(id)
+      petShopDao.adoptionContractDao
     );
     petShopDao.adoptionApplicationDao
       .findAllAsObservable()

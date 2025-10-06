@@ -1,0 +1,35 @@
+<mat-form-field appearance="fill" floatLabel="always">
+  <mat-label>{{ labelKey | translate }}</mat-label>
+
+  <input
+    matInput
+    [formControlName]="controlName"
+    [disabled]="disabled"
+    [attr.maxLength]="maxLength"
+    #input
+  />
+
+  <mat-hint align="end"> {{ input.value.length || 0 }} / {{ maxLength }} </mat-hint>
+
+  @if (control.hasError('required')) {
+  <mat-error>
+    {{ 'app.dialog.required' | translate : { value: (labelKey | translate) } }}
+  </mat-error>
+  } @if (control.hasError('minlength')) {
+  <mat-error>
+    {{
+      'app.dialog.minLength'
+        | translate
+          : { value: (labelKey | translate), min: control.getError('minlength').requiredLength }
+    }}
+  </mat-error>
+  } @if (control.hasError('maxlength')) {
+  <mat-error>
+    {{
+      'app.dialog.maxLength'
+        | translate
+          : { value: (labelKey | translate), max: control.getError('maxlength').requiredLength }
+    }}
+  </mat-error>
+  }
+</mat-form-field>

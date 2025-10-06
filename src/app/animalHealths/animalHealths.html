@@ -43,13 +43,13 @@
     <th mat-header-cell *matHeaderCellDef>{{ 'model.animalHealth.type.label' | translate }}</th>
     <td mat-cell *matCellDef="let healthRecord">
       @switch (healthRecord.type ) { @case ('checkup') {
-      <mat-icon>monitor_heart</mat-icon>
+      <mat-icon>{{ 'model.animalHealth.type.checkup_icon' | translate }}</mat-icon>
       } @case ('vaccination') {
-      <mat-icon>vaccines</mat-icon>
+      <mat-icon>{{ 'model.animalHealth.type.vaccination_icon' | translate }}</mat-icon>
       } @case ('injury') {
-      <mat-icon>healing</mat-icon>
+      <mat-icon>{{ 'model.animalHealth.type.injury_icon' | translate }}</mat-icon>
       } @default{
-      <mat-icon>help</mat-icon>
+      <mat-icon>{{ 'app.default_icon' | translate }}</mat-icon>
       } }
     </td>
   </ng-container>

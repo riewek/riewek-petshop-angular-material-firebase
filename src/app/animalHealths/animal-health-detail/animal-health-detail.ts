@@ -12,6 +12,11 @@ import { EditComponent } from '../../../shared/edit.component';
 import { AnimalHealth } from '../../../model/animalHealth';
 import { TranslatePipe } from '@ngx-translate/core';
 import { PetShopDao } from '../../../dao/petShop.dao';
+import { Router } from '@angular/router';
+import { FormActionsComponent } from '../../../shared/form-actions/form-actions.component';
+import { DialogTitleComponent } from '../../../shared/dialog-title/dialog-title.component';
+import { AnimalHealthDao } from '../../../dao/animalHealth.dao';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-animal-health-detail',
@@ -21,22 +26,28 @@ import { PetShopDao } from '../../../dao/petShop.dao';
     MatFormFieldModule,
     MatInputModule,
     MatRadioModule,
+    MatIcon,
     MatDatepickerModule,
     MatSelectModule,
     TranslatePipe,
+    FormActionsComponent,
+    DialogTitleComponent,
   ],
   templateUrl: './animal-health-detail.html',
   styleUrl: './animal-health-detail.scss',
 })
-export class AnimalHealthDetail extends EditComponent<AnimalHealth> {
+export class AnimalHealthDetail extends EditComponent<AnimalHealth, AnimalHealthDao> {
   animals = signal<Animal[]>([]);
 
   constructor(
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
-    private petShopDao: PetShopDao
+    private petShopDao: PetShopDao,
+    private routerIn: Router
   ) {
     super(
+      routerIn,
+      '/animalHealths',
       formBuilder.group({
         animalId: ['', [Validators.required]],
         date: ['', [Validators.required]],
@@ -46,7 +57,7 @@ export class AnimalHealthDetail extends EditComponent<AnimalHealth> {
         //meds: ['', []],
       }),
       route,
-      (id) => petShopDao.animalHealthDao.find(id)
+      petShopDao.animalHealthDao
     );
     petShopDao.animalDao.findAllAsObservable().subscribe((data) => this.animals.set(data));
   }

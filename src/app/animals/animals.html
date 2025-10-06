@@ -49,11 +49,11 @@
     <th mat-header-cell *matHeaderCellDef>{{ 'model.animal.sex.label' | translate }}</th>
     <td mat-cell *matCellDef="let animal">
       @switch (animal.sex ) { @case ('male') {
-      <mat-icon>male</mat-icon>
+      <mat-icon>{{ 'model.animal.sex.male_icon' | translate }}</mat-icon>
       } @case ('female') {
-      <mat-icon>female</mat-icon>
+      <mat-icon>{{ 'model.animal.sex.female_icon' | translate }}</mat-icon>
       } @default{
-      <mat-icon>help_outline</mat-icon>
+      <mat-icon>{{ 'model.animal.sex.unknown_icon' | translate }}</mat-icon>
       } }
     </td>
   </ng-container>
@@ -69,13 +69,13 @@
     <th mat-header-cell *matHeaderCellDef>{{ 'model.animal.healthStatus.label' | translate }}</th>
     <td mat-cell *matCellDef="let animal">
       @switch (animal.healthStatus ) { @case ('Healthy') {
-      <mat-icon>check_circle</mat-icon>
+      <mat-icon>{{ 'model.animal.healthStatus.healthy_icon' | translate }}</mat-icon>
       } @case ('Warning') {
-      <mat-icon>warning</mat-icon>
+      <mat-icon>{{ 'model.animal.healthStatus.warning_icon' | translate }}</mat-icon>
       } @case ('Critical') {
-      <mat-icon>error</mat-icon>
+      <mat-icon>{{ 'model.animal.healthStatus.critical_icon' | translate }}</mat-icon>
       } @default{
-      <mat-icon>help_outline</mat-icon>
+      <mat-icon>{{ 'model.animal.healthStatus.healthy_icon' | translate }}</mat-icon>
       } }
     </td>
   </ng-container>
@@ -108,9 +108,9 @@
     <th mat-header-cell *matHeaderCellDef>{{ 'model.animal.adoptable' | translate }}</th>
     <td mat-cell *matCellDef="let animal">
       @if(animal.adoptable) {
-      <mat-icon>favorite</mat-icon>
+      <mat-icon>{{ 'model.animal.adoptable_true_icon' | translate }}</mat-icon>
       } @else {
-      <mat-icon>block</mat-icon>
+      <mat-icon>{{ 'model.animal.adoptable_false_icon' | translate }}</mat-icon>
       }
     </td>
   </ng-container>

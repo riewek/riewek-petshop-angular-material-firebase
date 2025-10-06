@@ -9,6 +9,11 @@ import { EditComponent } from '../../../shared/edit.component';
 import { Enclosure } from '../../../model/enclosure';
 import { TranslatePipe } from '@ngx-translate/core';
 import { PetShopDao } from '../../../dao/petShop.dao';
+import { Router } from '@angular/router';
+import { FormActionsComponent } from '../../../shared/form-actions/form-actions.component';
+import { DialogTitleComponent } from '../../../shared/dialog-title/dialog-title.component';
+import { EnclosureDao } from '../../../dao/enclosure.dao';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-enclosure-detail',
@@ -17,20 +22,26 @@ import { PetShopDao } from '../../../dao/petShop.dao';
     MatFormFieldModule,
     MatInputModule,
     MatRadioButton,
+    MatIcon,
     MatRadioModule,
     MatSelectModule,
     TranslatePipe,
+    FormActionsComponent,
+    DialogTitleComponent,
   ],
   templateUrl: './enclosure-detail.html',
   styleUrl: './enclosure-detail.scss',
 })
-export class EnclosureDetail extends EditComponent<Enclosure> {
+export class EnclosureDetail extends EditComponent<Enclosure, EnclosureDao> {
   constructor(
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
-    private petShopDao: PetShopDao
+    private petShopDao: PetShopDao,
+    private routerIn: Router
   ) {
     super(
+      routerIn,
+      '/enclosures',
       formBuilder.group({
         name: ['', [Validators.required]],
         type: ['indoor', [Validators.required]],
@@ -39,7 +50,7 @@ export class EnclosureDetail extends EditComponent<Enclosure> {
         notes: ['', []],
       }),
       route,
-      (id) => petShopDao.enclosureDao.find(id)
+      petShopDao.enclosureDao
     );
   }
 }

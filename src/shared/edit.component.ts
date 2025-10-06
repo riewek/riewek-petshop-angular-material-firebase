@@ -2,15 +2,22 @@ import { signal } from '@angular/core';
 import { FirebaseEntity } from './firebase.model';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
+import { Dao } from './dao';
 
-export abstract class EditComponent<T extends FirebaseEntity> {
+export abstract class EditComponent<T extends FirebaseEntity, D extends Dao<T>> {
   readonly id = signal<string>('');
   readonly mode = signal<'edit' | 'create'>('edit');
-  //readonly animal = signal<Partial<T>>({}); //FIXME: needed?
   readonly form: FormGroup;
   readonly appearanceValue = 'fill';
 
-  constructor(form: FormGroup, route: ActivatedRoute, data: (id: string) => Promise<T | null>) {
+  constructor(
+    private router: Router,
+    private tableUrl: string,
+    form: FormGroup,
+    route: ActivatedRoute,
+    private dao: D
+  ) {
     this.form = form;
     //FIXME: Check for subscribe Destruction
     route.paramMap.subscribe((params) => {
@@ -18,11 +25,10 @@ export abstract class EditComponent<T extends FirebaseEntity> {
       if (idParam === 'create') {
         this.mode.set('create');
         this.id.set('');
-        //    this.animal.set({});
       } else {
         this.mode.set('edit');
         this.id.set(idParam);
-        data(idParam).then((found) => {
+        dao.find(idParam).then((found) => {
           if (found) this.form.patchValue(found);
         });
       }
@@ -31,12 +37,15 @@ export abstract class EditComponent<T extends FirebaseEntity> {
 
   save(): void {
     console.log('save');
-    const formValues: T = this.form.value;
-    console.log(formValues);
+    if (this.form.invalid) {
+      // 👇 markiere alle Felder als "touched", damit Fehler angezeigt werden
+      this.form.markAllAsTouched();
+      return;
+    }
+    if (this.form.valid) this.dao.save(this.form.value);
   }
 
   cancel(): void {
-    //FIXME: back to animals table
-    console.log('cancel');
+    this.router.navigate([this.tableUrl]);
   }
 }

@@ -1,10 +1,10 @@
-@if(mode() === "create") {
-<h1>{{ 'app.dialog.create' | translate : { value: ('model.animal.single' | translate) } }}</h1>
-} @else {
-<h1>{{ 'app.dialog.edit' | translate : { value: ('model.animal.single' | translate) } }}</h1>
-}
+<app-dialog-title
+  [form]="form"
+  [mode]="mode()"
+  [modelKey]="'model.animal.single'"
+></app-dialog-title>
 
-<div [formGroup]="form" class="form-grid">
+<form [formGroup]="form" (ngSubmit)="save()" class="form-grid">
   <!-- Species -->
   <mat-form-field appearance="fill" floatLabel="always">
     <mat-label>{{ 'model.animal.species' | translate }}</mat-label>
@@ -48,13 +48,18 @@
     <mat-label>{{ 'model.animal.sex.label' | translate }}</mat-label>
     <br />
     <mat-radio-group formControlName="sex">
-      <mat-radio-button value="male">{{ 'model.animal.sex.male' | translate }}</mat-radio-button>
-      <mat-radio-button value="female">{{
-        'model.animal.sex.female' | translate
-      }}</mat-radio-button>
-      <mat-radio-button value="unknown">{{
-        'model.animal.sex.unknown' | translate
-      }}</mat-radio-button>
+      <mat-radio-button value="male">
+        <mat-icon>{{ 'model.animal.sex.male_icon' | translate }}</mat-icon>
+        {{ 'model.animal.sex.male' | translate }}</mat-radio-button
+      >
+      <mat-radio-button value="female">
+        <mat-icon>{{ 'model.animal.sex.female_icon' | translate }}</mat-icon>
+        {{ 'model.animal.sex.female' | translate }}</mat-radio-button
+      >
+      <mat-radio-button value="unknown">
+        <mat-icon>{{ 'model.animal.sex.unknown_icon' | translate }}</mat-icon>
+        {{ 'model.animal.sex.unknown' | translate }}</mat-radio-button
+      >
     </mat-radio-group>
   </div>
 
@@ -77,18 +82,22 @@
     <mat-label>{{ 'model.animal.healthStatus.label' | translate }}</mat-label>
     <br />
     <mat-radio-group formControlName="healthStatus">
-      <mat-radio-button value="Healthy">{{
-        'model.animal.healthStatus.healthy' | translate
-      }}</mat-radio-button>
-      <mat-radio-button value="Warning">{{
-        'model.animal.healthStatus.warning' | translate
-      }}</mat-radio-button>
-      <mat-radio-button value="Critical">{{
-        'model.animal.healthStatus.critical' | translate
-      }}</mat-radio-button>
-      <mat-radio-button value="Unknown">{{
-        'model.animal.healthStatus.unknown' | translate
-      }}</mat-radio-button>
+      <mat-radio-button value="Healthy">
+        <mat-icon>{{ 'model.animal.healthStatus.healthy_icon' | translate }}</mat-icon>
+        {{ 'model.animal.healthStatus.healthy' | translate }}</mat-radio-button
+      >
+      <mat-radio-button value="Warning">
+        <mat-icon>{{ 'model.animal.healthStatus.warning_icon' | translate }}</mat-icon
+        >{{ 'model.animal.healthStatus.warning' | translate }}</mat-radio-button
+      >
+      <mat-radio-button value="Critical">
+        <mat-icon>{{ 'model.animal.healthStatus.critical_icon' | translate }}</mat-icon
+        >{{ 'model.animal.healthStatus.critical' | translate }}</mat-radio-button
+      >
+      <mat-radio-button value="Unknown">
+        <mat-icon>{{ 'model.animal.healthStatus.unknown_icon' | translate }}</mat-icon
+        >{{ 'model.animal.healthStatus.unknown' | translate }}</mat-radio-button
+      >
     </mat-radio-group>
   </div>
 
@@ -116,7 +125,18 @@
   <!-- Adoptable -->
   <div>
     <mat-checkbox formControlName="adoptable">
+      @if (form.get('adoptable')?.value) {
+      <mat-icon>{{ 'model.animal.adoptable_true_icon' | translate }}</mat-icon> } @else {
+      <mat-icon>{{ 'model.animal.adoptable_false_icon' | translate }}</mat-icon> }
       {{ 'model.animal.adoptable' | translate }}
     </mat-checkbox>
   </div>
-</div>
+</form>
+
+<app-form-actions
+  [form]="form"
+  [okLabel]="'app.dialog.ok' | translate"
+  [cancelLabel]="'app.dialog.cancel' | translate"
+  (ok)="save()"
+  (cancel)="cancel()"
+></app-form-actions>

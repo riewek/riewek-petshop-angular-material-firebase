@@ -13,6 +13,11 @@ import { AdoptionApplication } from '../../../model/adoptionApplication';
 import { Adopter } from '../../../model/adopter';
 import { TranslatePipe } from '@ngx-translate/core';
 import { PetShopDao } from '../../../dao/petShop.dao';
+import { Router } from '@angular/router';
+import { FormActionsComponent } from '../../../shared/form-actions/form-actions.component';
+import { DialogTitleComponent } from '../../../shared/dialog-title/dialog-title.component';
+import { AdoptionApplicationDao } from '../../../dao/adoptionApplication.dao';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-adoption-application-detail',
@@ -22,23 +27,32 @@ import { PetShopDao } from '../../../dao/petShop.dao';
     MatFormFieldModule,
     MatInputModule,
     MatRadioModule,
+    MatIcon,
     MatDatepickerModule,
     MatSelectModule,
     TranslatePipe,
+    FormActionsComponent,
+    DialogTitleComponent,
   ],
   templateUrl: './adoption-application-detail.html',
   styleUrl: './adoption-application-detail.scss',
 })
-export class AdoptionApplicationDetail extends EditComponent<AdoptionApplication> {
+export class AdoptionApplicationDetail extends EditComponent<
+  AdoptionApplication,
+  AdoptionApplicationDao
+> {
   adopters = signal<Adopter[]>([]);
   animals = signal<Animal[]>([]);
 
   constructor(
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
-    private petShopDao: PetShopDao
+    private petShopDao: PetShopDao,
+    private routerIn: Router
   ) {
     super(
+      routerIn,
+      '/adoptionApplications',
       formBuilder.group({
         adopterId: ['', [Validators.required]],
         animalId: ['', [Validators.required]],
@@ -46,7 +60,7 @@ export class AdoptionApplicationDetail extends EditComponent<AdoptionApplication
         status: ['submitted', [Validators.required]],
       }),
       route,
-      (id) => petShopDao.adoptionApplicationDao.find(id)
+      petShopDao.adoptionApplicationDao
     );
     petShopDao.adopterDao.findAllAsObservable().subscribe((data) => this.adopters.set(data));
     petShopDao.animalDao.findAllAsObservable().subscribe((data) => this.animals.set(data));
