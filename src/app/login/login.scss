@@ -1,0 +1,48 @@
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch; // sorgt dafür, dass mat-form-fields gleich breit sind
+  max-width: 400px;
+  margin: 3rem auto;
+  padding: 2rem;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  gap: 1rem;
+
+  h2 {
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+
+  mat-form-field {
+    width: 100%;
+  }
+
+  button {
+    width: 100%;
+    font-size: 1rem;
+    padding: 0.75rem;
+  }
+
+  .error,
+  .success {
+    text-align: center;
+    font-weight: 500;
+    margin-top: 0.5rem;
+  }
+
+  .error {
+    color: #d32f2f;
+  }
+
+  .success {
+    color: #388e3c;
+  }
+}
+
+// Optional: dunkler Hintergrund
+body {
+  background: #f7f8fa;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}

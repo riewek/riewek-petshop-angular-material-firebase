@@ -24,6 +24,10 @@ import { AnimalHealthDetail } from './animalHealths/animal-health-detail/animal-
 
 export const routes: Routes = [
   {
+    path: '',
+    component: Dashboard,
+  },
+  {
     path: 'demo',
     component: Demo,
   },
@@ -38,10 +42,6 @@ export const routes: Routes = [
   {
     path: 'logout',
     component: Logout,
-  },
-  {
-    path: 'dashboard',
-    component: Dashboard,
   },
   {
     path: 'animals',
@@ -110,5 +110,9 @@ export const routes: Routes = [
   {
     path: 'about',
     component: About,
+  },
+  {
+    path: '**',
+    redirectTo: '/',
   },
 ];

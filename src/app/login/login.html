@@ -1,1 +1,33 @@
-<p>login works!</p>
+<form class="login-container" [formGroup]="form">
+  <h2>Login</h2>
+
+  <mat-form-field appearance="fill">
+    <mat-label>E-Mail</mat-label>
+    <input matInput formControlName="email" type="email" placeholder="you@example.com" />
+    @if (form.get('email')?.hasError('required')) {
+    <mat-error> Bitte eine E-Mail-Adresse eingeben </mat-error>
+    } @if (form.get('email')?.hasError('email')) {
+    <mat-error> Bitte eine gültige E-Mail-Adresse eingeben </mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Passwort</mat-label>
+    <input matInput formControlName="password" type="password" />
+    @if (form.get('password')?.hasError('required')) {
+    <mat-error> Bitte ein Passwort eingeben </mat-error>
+    } @if (form.get('password')?.hasError('min')) {
+    <mat-error> Passwort muss mindestens 6 Zeichen lang sein </mat-error>
+    }
+  </mat-form-field>
+
+  <button mat-flat-button color="primary" (click)="login()" [disabled]="loading()">
+    {{ loading() ? 'Bitte warten...' : 'Anmelden' }}
+  </button>
+
+  @if(errorMessage()) {
+  <p class="error">{{ errorMessage() }}</p>
+  } @if(successMessage()) {
+  <p class="success">{{ successMessage() }}</p>
+  }
+</form>
