@@ -5,6 +5,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -24,7 +25,7 @@ export class Login {
   errorMessage = signal('');
   successMessage = signal('');
 
-  constructor(private fb: FormBuilder, private auth: Auth) {
+  constructor(private fb: FormBuilder, private auth: Auth, private router: Router) {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
@@ -40,7 +41,8 @@ export class Login {
     try {
       const userCredential = await signInWithEmailAndPassword(this.auth, email, password);
       const user = userCredential.user;
-      this.successMessage.set(`Login erfolgreich! Willkommen, ${user.email}`);
+      this.router.navigate(['/dashboard']);
+      //this.successMessage.set(`Login erfolgreich! Willkommen, ${user.email}`);
     } catch (error: any) {
       this.errorMessage.set(this.mapFirebaseError(error.code));
     } finally {

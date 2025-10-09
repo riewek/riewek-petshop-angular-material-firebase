@@ -1,36 +1,39 @@
 <mat-sidenav-container fullscreen class="mat-app-background">
   <mat-sidenav #sidenav>
     <mat-nav-list (click)="sidenav.close()">
-      @for (menuItem of menuItems; track $index) {
+      @for (menuItem of menuItems; track $index) { @if (user.canSee(menuItem.needsLogin)) {
       <a mat-list-item [routerLink]="menuItem.route">
         <mat-icon>{{ menuItem.icon }}</mat-icon>
         <span>{{ menuItem.title }}</span>
       </a>
-      }
+      } }
     </mat-nav-list>
   </mat-sidenav>
   <mat-toolbar color="primary">
     <button mat-icon-button (click)="sidenav.open()">
       <mat-icon>menu</mat-icon>
     </button>
+    @if (user.isLoggedIn()) {
     <a mat-button [matMenuTriggerFor]="dropdown">
       <mat-icon>view_module</mat-icon>
       <span>Screens</span>
     </a>
     <mat-menu #dropdown>
-      @for (menuItem of menuItems; track $index) { @if(menuItem.screens) {
+      @for (menuItem of menuItems; track $index) { @if(menuItem.screens &&
+      user.canSee(menuItem.needsLogin)) {
       <button mat-menu-item [routerLink]="menuItem.route">
         <mat-icon>{{ menuItem.icon }}</mat-icon
         >{{ menuItem.title }}
       </button>
       } }
     </mat-menu>
-    @for (menuItem of menuItems; track $index) { @if(!menuItem.screens) {
+    } @for (menuItem of menuItems; track $index) { @if(!menuItem.screens &&
+    user.canSee(menuItem.needsLogin)) {
     <a mat-button [routerLink]="menuItem.route">
       <mat-icon>{{ menuItem.icon }}</mat-icon>
       <span>{{ menuItem.title }}</span>
     </a>
-    } }
+    } } @if(user.isLoggedIn()) {
     <a mat-button (click)="changeLanguage('de')">
       <img src="flags/de.svg" alt="DE" width="20" height="14" style="margin-right: 8px" />
       Deutsch
@@ -39,8 +42,12 @@
       <img src="flags/gb.svg" alt="EN" width="20" height="14" style="margin-right: 8px" />
       Englisch
     </a>
+    }
   </mat-toolbar>
   <div class="outlet-wrapper">
+    user.isLoggedIn: {{ user.isLoggedIn() }} <br />
+    user.isLoggedOut: {{ user.isLoggedOut() }}<br />
+    user.roles.admin: {{ user.roles().admin }}<br />
     <router-outlet />
   </div>
 </mat-sidenav-container>
