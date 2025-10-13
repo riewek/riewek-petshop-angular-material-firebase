@@ -25,6 +25,24 @@
     {{ loading() ? 'Bitte warten...' : 'Anmelden' }}
   </button>
 
+  <button
+    mat-stroked-button
+    color="accent"
+    (click)="loginAsTestUser('admin@pet.de', '123456')"
+    type="button"
+  >
+    Test-Login: Admin
+  </button>
+
+  <button
+    mat-stroked-button
+    color="accent"
+    (click)="loginAsTestUser('user@pet.de', '123456')"
+    type="button"
+  >
+    Test-Login: User
+  </button>
+
   @if(errorMessage()) {
   <p class="error">{{ errorMessage() }}</p>
   } @if(successMessage()) {

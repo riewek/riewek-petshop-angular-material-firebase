@@ -1,9 +1,11 @@
 import { Injectable, signal } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
+import { MenuItem } from '../../shared/menu';
 
 export interface UserRoles {
   admin?: boolean;
+  adopter?: string;
 }
 
 //FIXME: https://angular-university.io/lesson/angularfire-user-service-authentication-adapting-the-ui
@@ -36,8 +38,17 @@ export class UserService {
     });
   }
 
-  canSee(needsLogin: boolean): boolean {
-    return needsLogin === this.isLoggedIn();
+  canSee(menuItem: MenuItem): boolean {
+    const loggedIn = this.isLoggedIn();
+    const isAdmin = this.roles().admin;
+    // Wenn Item Login verlangt, muss der User eingeloggt sein
+    if (menuItem.needsLogin && !loggedIn) return false;
+    // Wenn Item Admin verlangt, muss der User Admin sein
+    if (menuItem.needsAdmin && !isAdmin) return false;
+    // Wenn kein Einloggen benötigt wird und der User eingelogged ist
+    if (!menuItem.needsLogin && loggedIn) return false;
+    // Sonst darf er es sehen
+    return true;
   }
 
   logout() {

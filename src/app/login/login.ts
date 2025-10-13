@@ -32,6 +32,15 @@ export class Login {
     });
   }
 
+  //FIXME: remove code from production
+  loginAsTestUser(email: string, password: string) {
+    this.form.patchValue({
+      email: email,
+      password: password,
+    });
+    this.login();
+  }
+
   async login() {
     if (this.form.invalid) return;
     this.loading.set(true);

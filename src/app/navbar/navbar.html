@@ -1,7 +1,7 @@
 <mat-sidenav-container fullscreen class="mat-app-background">
   <mat-sidenav #sidenav>
     <mat-nav-list (click)="sidenav.close()">
-      @for (menuItem of menuItems; track $index) { @if (user.canSee(menuItem.needsLogin)) {
+      @for (menuItem of menuItems; track $index) { @if (user.canSee(menuItem)) {
       <a mat-list-item [routerLink]="menuItem.route">
         <mat-icon>{{ menuItem.icon }}</mat-icon>
         <span>{{ menuItem.title }}</span>
@@ -19,16 +19,14 @@
       <span>Screens</span>
     </a>
     <mat-menu #dropdown>
-      @for (menuItem of menuItems; track $index) { @if(menuItem.screens &&
-      user.canSee(menuItem.needsLogin)) {
+      @for (menuItem of menuItems; track $index) { @if(menuItem.screens && user.canSee(menuItem)) {
       <button mat-menu-item [routerLink]="menuItem.route">
         <mat-icon>{{ menuItem.icon }}</mat-icon
         >{{ menuItem.title }}
       </button>
       } }
     </mat-menu>
-    } @for (menuItem of menuItems; track $index) { @if(!menuItem.screens &&
-    user.canSee(menuItem.needsLogin)) {
+    } @for (menuItem of menuItems; track $index) { @if(!menuItem.screens && user.canSee(menuItem)) {
     <a mat-button [routerLink]="menuItem.route">
       <mat-icon>{{ menuItem.icon }}</mat-icon>
       <span>{{ menuItem.title }}</span>
@@ -48,6 +46,7 @@
     user.isLoggedIn: {{ user.isLoggedIn() }} <br />
     user.isLoggedOut: {{ user.isLoggedOut() }}<br />
     user.roles.admin: {{ user.roles().admin }}<br />
+    user.roles.adopter: {{ user.roles().adopter }}<br />
     <router-outlet />
   </div>
 </mat-sidenav-container>
