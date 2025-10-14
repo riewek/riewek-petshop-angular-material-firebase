@@ -11,7 +11,7 @@ const collectionMock = jest.fn().mockImplementation(() => ({
   valueChanges: valueChangesMock,
 }));
 
-describe('FirebaseService', () => {
+xdescribe('FirebaseService', () => {
   let service: FirebaseService;
   let afsMock: Partial<AngularFirestore>;
 

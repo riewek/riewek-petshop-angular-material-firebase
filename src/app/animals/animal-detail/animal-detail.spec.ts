@@ -2,6 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AnimalDetail } from './animal-detail';
 import { ActivatedRoute, convertToParamMap, ParamMap } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
+import { PetShopDao } from '../../../dao/petShop.dao';
+import { daoMock, translatePipeMock } from '../../../shared/test.util';
 
 describe('AnimalDetail', () => {
   let component: AnimalDetail;
@@ -11,12 +13,19 @@ describe('AnimalDetail', () => {
   beforeEach(async () => {
     paramMap$ = new BehaviorSubject(convertToParamMap({ id: '123' }));
     await TestBed.configureTestingModule({
-      imports: [AnimalDetail],
+      imports: [AnimalDetail, translatePipeMock()],
       providers: [
         {
           provide: ActivatedRoute,
           useValue: {
             paramMap: paramMap$.asObservable(),
+          },
+        },
+        {
+          provide: PetShopDao,
+          useValue: {
+            animalDao: daoMock(),
+            enclosureDao: daoMock(),
           },
         },
       ],

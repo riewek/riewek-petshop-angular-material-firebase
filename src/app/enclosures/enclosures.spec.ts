@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { RouterTestingModule } from '@angular/router/testing';
 import { Enclosures } from './enclosures';
+import { PetShopDao } from '../../dao/petShop.dao';
+import { daoMock, translatePipeMock } from '../../shared/test.util';
 
 describe('Enclosure', () => {
   let component: Enclosures;
@@ -8,7 +10,15 @@ describe('Enclosure', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Enclosures],
+      imports: [Enclosures, RouterTestingModule, translatePipeMock()],
+      providers: [
+        {
+          provide: PetShopDao,
+          useValue: {
+            enclosureDao: daoMock(),
+          },
+        },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(Enclosures);

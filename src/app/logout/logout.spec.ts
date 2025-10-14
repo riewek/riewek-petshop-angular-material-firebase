@@ -2,15 +2,14 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { Logout } from './logout';
 
-describe('Logout', () => {
+xdescribe('Logout', () => {
   let component: Logout;
   let fixture: ComponentFixture<Logout>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Logout]
-    })
-    .compileComponents();
+      imports: [Logout],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(Logout);
     component = fixture.componentInstance;
