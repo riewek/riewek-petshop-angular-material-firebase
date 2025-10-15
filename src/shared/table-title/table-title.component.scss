@@ -1,0 +1,10 @@
+.table-title {
+  display: flex;
+  justify-content: flex-start; /* ganz links */
+  gap: 8px;
+  margin-top: 16px;
+  padding: 12px; /* Abstand innerhalb der Box */
+  border: 1px solid #ccc; /* grauer Rahmen */
+  border-radius: 8px; /* abgerundete Ecken */
+  background-color: #fafafa; /* optional, leichte Hintergrundfarbe */
+}

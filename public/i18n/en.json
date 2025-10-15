@@ -25,6 +25,7 @@
     "adoptionApplication": {
       "single": "application",
       "many": "applications",
+      "icon": "assignment",
       "adopterId": "adopter",
       "animalId": "animal",
       "createdAt": "created at",

@@ -12,6 +12,7 @@ import { TableActionsComponent } from '../../shared/table-actions.component';
 import { PetShopDao } from '../../dao/petShop.dao';
 import { AdoptionApplicationDao } from '../../dao/adoptionApplication.dao';
 import { LoadingComponent } from '../../shared/loading.component';
+import { TableTitleComponent } from "../../shared/table-title/table-title.component";
 
 @Component({
   selector: 'app-adoptionApplications',
@@ -25,7 +26,8 @@ import { LoadingComponent } from '../../shared/loading.component';
     TableToolbarComponent,
     TableActionsComponent,
     LoadingComponent,
-  ],
+    TableTitleComponent
+],
   templateUrl: './adoptionApplications.html',
   styleUrl: './adoptionApplications.scss',
 })

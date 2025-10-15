@@ -1,3 +1,17 @@
+# 2Do
+
+- E2E Tests mit Signals (wie geht das)
+- Jest Tests für Komponenten und Typescript Code
+- Ladebalken für alle Seiten
+- Icons für alle Seiten
+  - Icons zentral in en.json halten, hieraus extrahieren über getIcon
+- Metamodelle für Firebase Regeln
+  - User kann Tiere sehen aber nicht bearbeiten
+- UI Overhaul für offentliche Suche
+- Benutzer kann eigene adopters/ page sehen und bearbeiten
+- Registrierung für Benutzer
+- Admins werden in Firebase selbst angelegt
+
 # Setup
 
 ## Setup Angular

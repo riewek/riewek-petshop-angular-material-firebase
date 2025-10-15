@@ -26,7 +26,7 @@ describe('AdoptionApplications Component', () => {
     //cy.row('animalId', adoptionApplication.animalId);
     cy.row('adopterId', 'arrow_forward');
     cy.row('animalId', 'arrow_forward');
-    cy.rowDate('createdAt', adoptionApplication.createdAt); // firestoredate und json date sind unterschiedlich
+    cy.rowDate('createdAt', adoptionApplication.createdAt);
     cy.row('status', getIcon('model.adoptionApplication.status', adoptionApplication.status));
     cy.compareSnapshot('adoptionApplications-snapshot', { overwrite: true });
   });
