@@ -11,6 +11,7 @@ import { TableToolbarComponent } from '../../shared/table-toolbar.component';
 import { TableActionsComponent } from '../../shared/table-actions.component';
 import { PetShopDao } from '../../dao/petShop.dao';
 import { AdoptionApplicationDao } from '../../dao/adoptionApplication.dao';
+import { LoadingComponent } from '../../shared/loading.component';
 
 @Component({
   selector: 'app-adoptionApplications',
@@ -23,6 +24,7 @@ import { AdoptionApplicationDao } from '../../dao/adoptionApplication.dao';
     TranslatePipe,
     TableToolbarComponent,
     TableActionsComponent,
+    LoadingComponent,
   ],
   templateUrl: './adoptionApplications.html',
   styleUrl: './adoptionApplications.scss',

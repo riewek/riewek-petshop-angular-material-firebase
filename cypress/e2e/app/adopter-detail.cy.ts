@@ -1,18 +1,23 @@
 /// <reference types="cypress" />
 import { url, viewportWidth, viewportHeight, fakeDataService } from './enironments';
-import { Adopter } from '../../../src/model/adopter';
 
-const adopter: Adopter = fakeDataService.adopters[0];
+const adopter = fakeDataService.adopterId('0ZxrwCKjmzNCJDgKQsnt');
 const testName = 'adopter-detail';
 
 describe('Adopter Detail Component Module', () => {
   beforeEach(() => {
     cy.viewport(viewportWidth, viewportHeight);
+    cy.loginAsAdmin(url);
+  });
+
+  afterEach(() => {
+    cy.logout(url);
   });
 
   describe('create', () => {
     beforeEach(() => {
-      cy.visit(url + 'adopters/create');
+      cy.visitSafe(url, 'adopters/create');
+      cy.formControlEmpty('name');
     });
 
     it('makes a screenshot', () => {
@@ -33,7 +38,7 @@ describe('Adopter Detail Component Module', () => {
 
   describe('edit', () => {
     beforeEach(() => {
-      cy.visit(url + 'adopters/' + adopter.id);
+      cy.visitSafe(url, 'adopters/' + adopter.id);
       cy.formControl('name', adopter.name);
     });
 

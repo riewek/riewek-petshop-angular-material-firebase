@@ -4,7 +4,8 @@ import { configureVisualRegression } from 'cypress-visual-regression';
 export default defineConfig({
   e2e: {
     env: {
-      visualRegressionType: 'base',
+      visualRegressionType: 'base', //erstellt snapshots neu
+      //visualRegressionType: 'regression', //testet gegen die aktuellen snapshots
     },
     screenshotsFolder: './cypress/snapshots/actual',
     setupNodeEvents(on, config) {

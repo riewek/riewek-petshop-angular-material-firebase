@@ -1,4 +1,7 @@
 /// <reference types="cypress" />
+
+import { dateDe, dateEn } from '../../src/shared/utils';
+
 // ***********************************************
 // This example commands.ts shows you how to
 // create various custom commands and overwrite
@@ -38,12 +41,20 @@
 declare global {
   namespace Cypress {
     interface Chainable {
+      loginAsAdmin(url: string): void;
+      loginAsUser(url: string): void;
+      logout(url: string): void;
+      visitSafe(url: string, page: string): void;
       dataCy(value: string): Chainable<JQuery<HTMLElement>>;
       dataCy2(value: string, value2: string): Chainable<JQuery<HTMLElement>>;
       h1(text: string): void;
       formControlEmpty(formControl: string): void;
       formControl(formControl: string, value: string): void;
       formControlDate(formControl: string, value: Date): void;
+      formControlDateToday(formControl: string): void;
+      formControlSelect(formControl: string, value: string): void;
+      formControlSelectEmpty(formControl: string): void;
+      formControlRadio(formControl: string, value: string): void;
       rowExists(): void;
       row(formControl: string, value: string): void;
       rowDate(formControl: string, value: Date): void;
@@ -52,7 +63,25 @@ declare global {
     }
   }
 }
-
+Cypress.Commands.add('loginAsAdmin', (url: string) => {
+  cy.visit(url + 'login');
+  cy.dataCy('btn-login-test-admin').click();
+  cy.url({ timeout: 10000 }).should('not.include', '/login');
+  cy.get('app-dashboard', { timeout: 10000 }).should('exist');
+  //cy.window().its('firebase.auth().currentUser', { timeout: 10000 }).should('exist');
+});
+Cypress.Commands.add('loginAsUser', (url: string) => {
+  cy.visit(url + 'login');
+  cy.dataCy('btn-login-test-user').click();
+});
+Cypress.Commands.add('logout', (url: string) => {
+  cy.visit(url + 'logout');
+  cy.dataCy('btn-logout').click();
+});
+Cypress.Commands.add('visitSafe', (url: string, page: string) => {
+  cy.visit(url + page);
+  cy.url().should('include', '/' + page);
+});
 Cypress.Commands.add('dataCy', (value: string) => {
   return cy.get(`[data-cy=${value}]`);
 });
@@ -74,14 +103,64 @@ Cypress.Commands.add('formControl', (formControl: string, value: string) => {
   cy.get('input[formControlName="' + formControl + '"]').should('have.value', value);
 });
 Cypress.Commands.add('formControlDate', (formControl: string, date: Date) => {
-  const day = String(date.getDate()).padStart(2, '0'); // Tag mit führender Null
-  const month = String(date.getMonth() + 1).padStart(2, '0'); // Monat mit führender Null
-  const year = date.getFullYear();
-  const value = `${day}.${month}.${year}`;
-  cy.get('input[formControlName="' + formControl + '"]').should('have.value', value);
+  cy.get('input[formControlName="' + formControl + '"]').should('have.value', dateDe(date));
+});
+Cypress.Commands.add('formControlDateToday', (formControl: string) => {
+  cy.get('input[formControlName="' + formControl + '"]').should('have.value', dateEn(new Date()));
+});
+Cypress.Commands.add('formControlSelect', (formControl: string, expectedValue: string) => {
+  cy.get(`mat-select[formControlName="${formControl}"] .mat-mdc-select-value-text`).should(
+    'contain.text',
+    expectedValue
+  );
+});
+Cypress.Commands.add('formControlSelectEmpty', (formControl: string) => {
+  cy.get(`mat-select[formControlName="${formControl}"] .mat-mdc-select-value-text`, {
+    timeout: 10000,
+  })
+    .should('not.be.empty')
+    .invoke('text')
+    .then((text) => {
+      expect(text.trim()).to.equal('');
+    });
+});
+Cypress.Commands.add('formControlRadio', (formControl: string, value: string) => {
+  cy.get('mat-radio-group[formcontrolname="status"]').then(($group) => {
+    cy.wrap($group).should(() => {
+      const checkedValue = $group.find('input[type="radio"]:checked').val();
+      expect(checkedValue).to.eq('rejected');
+    });
+  });
+  //cy.get(`mat-radio-group[formControlName="${formControl}"] input[type="radio"]`, {
+  //    timeout: 10000,
+  //}).should(($inputs) => {
+  //    const checked = $inputs.filter(':checked').val();
+  //  console.log('checked', checked);
+  //    console.log('value', value);
+  //  expect(checked).to.equal(value);
+  //});
+  //cy.wait(1000);
+  //cy.get(
+  //    `mat-radio-group[formControlName="${formControl}"] mat-radio-button.mat-mdc-radio-checked`,
+  //{
+  //    timeout: 10000;
+  //}
+  //).should('have.attr', 'value', value);
+  //cy.get(`mat-radio-group[formControlName="${formControl}"]`, { timeout: 10000 }).should(
+  //($group) => {
+  //const checked = $group.find('input[type="radio"]:checked').val();
+  //expect(checked).to.equal(value);
+  //}
+  //);
+  //cy.get(`mat-radio-group[formControlName="${formControl}"] input[type="radio"]:checked`)
+  //    .invoke('val')
+  //  .then((text) => {
+  //  expect(text).to.equal(value);
+  //});
 });
 Cypress.Commands.add('rowExists', () => {
-  cy.get('tr[mat-row]').should('have.length.greaterThan', 0);
+  cy.get('table[mat-table]', { timeout: 10000 }).should('exist');
+  cy.get('tr[mat-row]', { timeout: 10000 }).should('have.length.greaterThan', 0);
 });
 Cypress.Commands.add('row', (formControl: string, value: string) => {
   cy.get('tr[mat-row]')
@@ -90,14 +169,10 @@ Cypress.Commands.add('row', (formControl: string, value: string) => {
     .should('have.text', value);
 });
 Cypress.Commands.add('rowDate', (formControl: string, date: Date) => {
-  const day = String(date.getDate()).padStart(2, '0'); // Tag mit führender Null
-  const month = String(date.getMonth() + 1).padStart(2, '0'); // Monat mit führender Null
-  const year = date.getFullYear();
-  const value = `&nbsp;${day}.${month}.${year}&nbsp;`;
   cy.get('tr[mat-row]')
     .first()
     .find('td.mat-column-' + formControl)
-    .should('have.text', value);
+    .should('contain.text', dateDe(date));
 });
 Cypress.Commands.add('hints', (hints: string[]) => {
   let i = 0;

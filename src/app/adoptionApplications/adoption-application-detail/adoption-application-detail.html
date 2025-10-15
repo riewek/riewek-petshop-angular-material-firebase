@@ -4,90 +4,93 @@
   [modelKey]="'model.adoptionApplication.single'"
 ></app-dialog-title>
 
-<form [formGroup]="form" (ngSubmit)="save()" class="form-grid">
-  <!-- Adopter Id -->
-  <mat-form-field appearance="fill" floatLabel="always">
-    <mat-label>{{ 'model.adoptionApplication.adopterId' | translate }}</mat-label>
-    <mat-select formControlName="adopterId" #adopterId>
-      <mat-option>--</mat-option>
-      @for (adopter of adopters(); track adopter.id) {
-      <mat-option [value]="adopter.id">{{ adopter.id }}</mat-option>
+<app-loading [loading]="loading()">
+
+  <form [formGroup]="form" (ngSubmit)="save()" class="form-grid">
+    <!-- Adopter Id -->
+    <mat-form-field appearance="fill" floatLabel="always">
+      <mat-label>{{ 'model.adoptionApplication.adopterId' | translate }}</mat-label>
+      <mat-select formControlName="adopterId" #adopterId>
+        <mat-option>--</mat-option>
+        @for (adopter of adopters(); track adopter.id) {
+        <mat-option [value]="adopter.id">{{ adopter.id }}</mat-option>
+        }
+      </mat-select>
+      @if (form.get('adopterId')?.hasError('required')) {
+      <mat-error>
+        {{
+          'app.dialog.required'
+            | translate : { value: ('model.adoptionApplication.adopterId' | translate) }
+        }}
+      </mat-error>
       }
-    </mat-select>
-    @if (form.get('adopterId')?.hasError('required')) {
-    <mat-error>
-      {{
-        'app.dialog.required'
-          | translate : { value: ('model.adoptionApplication.adopterId' | translate) }
-      }}
-    </mat-error>
-    }
-  </mat-form-field>
+    </mat-form-field>
 
-  <!-- Animal Id -->
-  <mat-form-field appearance="fill" floatLabel="always">
-    <mat-label>{{ 'model.adoptionApplication.animalId' | translate }}</mat-label>
-    <mat-select formControlName="animalId" #animalId>
-      <mat-option>--</mat-option>
-      @for (animal of animals(); track animal.id) {
-      <mat-option [value]="animal.id">{{ animal.id }}</mat-option>
+    <!-- Animal Id -->
+    <mat-form-field appearance="fill" floatLabel="always">
+      <mat-label>{{ 'model.adoptionApplication.animalId' | translate }}</mat-label>
+      <mat-select formControlName="animalId" #animalId>
+        <mat-option>--</mat-option>
+        @for (animal of animals(); track animal.id) {
+        <mat-option [value]="animal.id">{{ animal.id }}</mat-option>
+        }
+      </mat-select>
+      @if (form.get('animalId')?.hasError('required')) {
+      <mat-error>
+        {{
+          'app.dialog.required'
+            | translate : { value: ('model.adoptionApplication.animalId' | translate) }
+        }}
+      </mat-error>
       }
-    </mat-select>
-    @if (form.get('animalId')?.hasError('required')) {
-    <mat-error>
-      {{
-        'app.dialog.required'
-          | translate : { value: ('model.adoptionApplication.animalId' | translate) }
-      }}
-    </mat-error>
-    }
-  </mat-form-field>
+    </mat-form-field>
 
-  <!-- Created At -->
-  <mat-form-field appearance="fill" floatLabel="always">
-    <mat-label>{{ 'model.adoptionApplication.createdAt' | translate }}</mat-label>
-    <input matInput [matDatepicker]="createdAtPicker" formControlName="createdAt" />
-    <mat-hint align="end">MM/DD/YYYY</mat-hint>
-    <mat-datepicker-toggle matIconSuffix [for]="createdAtPicker"></mat-datepicker-toggle>
-    <mat-datepicker #createdAtPicker></mat-datepicker>
-    @if (form.get('createdAt')?.hasError('required')) {
-    <mat-error>
-      {{
-        'app.dialog.required'
-          | translate : { value: ('model.adoptionApplication.createdAt' | translate) }
-      }}
-    </mat-error>
-    }
-  </mat-form-field>
+    <!-- Created At -->
+    <mat-form-field appearance="fill" floatLabel="always">
+      <mat-label>{{ 'model.adoptionApplication.createdAt' | translate }}</mat-label>
+      <input matInput [matDatepicker]="createdAtPicker" formControlName="createdAt" />
+      <mat-hint align="end">MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="createdAtPicker"></mat-datepicker-toggle>
+      <mat-datepicker #createdAtPicker></mat-datepicker>
+      @if (form.get('createdAt')?.hasError('required')) {
+      <mat-error>
+        {{
+          'app.dialog.required'
+            | translate : { value: ('model.adoptionApplication.createdAt' | translate) }
+        }}
+      </mat-error>
+      }
+    </mat-form-field>
 
-  <!-- Status -->
-  <div>
-    <mat-label>{{ 'model.adoptionApplication.status.label' | translate }}</mat-label>
-    <br />
-    <mat-radio-group formControlName="status">
-      <mat-radio-button value="submitted">
-        <mat-icon>{{ 'model.adoptionApplication.status.submitted_icon' | translate }}</mat-icon
-        >{{ 'model.adoptionApplication.status.submitted' | translate }}</mat-radio-button
-      >
-      <mat-radio-button value="screening">
-        <mat-icon>{{ 'model.adoptionApplication.status.screening_icon' | translate }}</mat-icon
-        >{{ 'model.adoptionApplication.status.screening' | translate }}</mat-radio-button
-      >
-      <mat-radio-button value="reserved">
-        <mat-icon>{{ 'model.adoptionApplication.status.reserved_icon' | translate }}</mat-icon
-        >{{ 'model.adoptionApplication.status.reserved' | translate }}</mat-radio-button
-      >
-      <mat-radio-button value="approved">
-        <mat-icon>{{ 'model.adoptionApplication.status.approved_icon' | translate }}</mat-icon
-        >{{ 'model.adoptionApplication.status.approved' | translate }}</mat-radio-button
-      >
-      <mat-radio-button value="rejected">
-        <mat-icon>{{ 'model.adoptionApplication.status.rejected_icon' | translate }}</mat-icon
-        >{{ 'model.adoptionApplication.status.rejected' | translate }}</mat-radio-button
-      >
-    </mat-radio-group>
-  </div>
-</form>
+    <!-- Status -->
+    <div>
+      <mat-label>{{ 'model.adoptionApplication.status.label' | translate }}</mat-label>
+      <br />
+      <mat-radio-group formControlName="status">
+        <mat-radio-button value="submitted">
+          <mat-icon>{{ 'model.adoptionApplication.status.submitted_icon' | translate }}</mat-icon
+          >{{ 'model.adoptionApplication.status.submitted' | translate }}</mat-radio-button
+        >
+        <mat-radio-button value="screening">
+          <mat-icon>{{ 'model.adoptionApplication.status.screening_icon' | translate }}</mat-icon
+          >{{ 'model.adoptionApplication.status.screening' | translate }}</mat-radio-button
+        >
+        <mat-radio-button value="reserved">
+          <mat-icon>{{ 'model.adoptionApplication.status.reserved_icon' | translate }}</mat-icon
+          >{{ 'model.adoptionApplication.status.reserved' | translate }}</mat-radio-button
+        >
+        <mat-radio-button value="approved">
+          <mat-icon>{{ 'model.adoptionApplication.status.approved_icon' | translate }}</mat-icon
+          >{{ 'model.adoptionApplication.status.approved' | translate }}</mat-radio-button
+        >
+        <mat-radio-button value="rejected">
+          <mat-icon>{{ 'model.adoptionApplication.status.rejected_icon' | translate }}</mat-icon
+          >{{ 'model.adoptionApplication.status.rejected' | translate }}</mat-radio-button
+        >
+      </mat-radio-group>
+    </div>
+  </form>
+</app-loading>
 
 <app-form-actions
   [form]="form"

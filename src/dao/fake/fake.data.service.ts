@@ -7,6 +7,7 @@ import { Enclosure, EnclosureType } from '../../model/enclosure';
 import { AnimalHealth, AnimalHealthType } from '../../model/animalHealth';
 import { Shelter } from '../../model/shelter';
 import { Injectable } from '@angular/core';
+import { find } from '../../shared/firebase.model';
 
 @Injectable({
   providedIn: 'root',
@@ -65,5 +66,33 @@ export class FakeDataService {
         signedAt: new Date(adoptionContract.signedAt),
       };
     });
+  }
+
+  adopterId(id: string): Adopter | undefined {
+    return find(this.adopters, id);
+  }
+
+  adoptionApplicationId(id: string): AdoptionApplication | undefined {
+    return find(this.adoptionApplications, id);
+  }
+
+  adoptionContractId(id: string): AdoptionContract | undefined {
+    return find(this.adoptionContracts, id);
+  }
+
+  animalHealthId(id: string): AnimalHealth | undefined {
+    return find(this.animalHealths, id);
+  }
+
+  animalId(id: string): Animal | undefined {
+    return find(this.animals, id);
+  }
+
+  enclosureId(id: string): Enclosure | undefined {
+    return find(this.enclosures, id);
+  }
+
+  shelterId(id: string): Shelter | undefined {
+    return find(this.shelters, id);
   }
 }

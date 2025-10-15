@@ -18,6 +18,8 @@ import { FormActionsComponent } from '../../../shared/form-actions/form-actions.
 import { DialogTitleComponent } from '../../../shared/dialog-title/dialog-title.component';
 import { AdoptionApplicationDao } from '../../../dao/adoptionApplication.dao';
 import { MatIcon } from '@angular/material/icon';
+import { FirebaseEntity } from '../../../shared/firebase.model';
+import { LoadingComponent } from '../../../shared/loading.component';
 
 @Component({
   selector: 'app-adoption-application-detail',
@@ -33,6 +35,7 @@ import { MatIcon } from '@angular/material/icon';
     TranslatePipe,
     FormActionsComponent,
     DialogTitleComponent,
+    LoadingComponent,
   ],
   templateUrl: './adoption-application-detail.html',
   styleUrl: './adoption-application-detail.scss',
@@ -60,9 +63,13 @@ export class AdoptionApplicationDetail extends EditComponent<
         status: ['submitted', [Validators.required]],
       }),
       route,
-      petShopDao.adoptionApplicationDao
+      petShopDao.adoptionApplicationDao,
+      [petShopDao.adopterDao, petShopDao.animalDao]
     );
-    petShopDao.adopterDao.findAllAsObservable().subscribe((data) => this.adopters.set(data));
-    petShopDao.animalDao.findAllAsObservable().subscribe((data) => this.animals.set(data));
+  }
+
+  protected override onDataLoaded(results: FirebaseEntity[]): void {
+    this.adopters.set(results[0] as Adopter[]);
+    this.animals.set(results[1] as Animal[]);
   }
 }

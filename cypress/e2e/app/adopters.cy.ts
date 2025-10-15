@@ -7,8 +7,13 @@ const adopter: Adopter = fakeDataService.adopters[0];
 describe('Adopters Component', () => {
   beforeEach(() => {
     cy.viewport(viewportWidth, viewportHeight);
-    cy.visit(url + 'adopters');
+    cy.loginAsAdmin(url);
+    cy.visitSafe(url, 'adopters');
     cy.rowExists();
+  });
+
+  afterEach(() => {
+    cy.logout(url);
   });
 
   it('makes a screenshot', () => {
