@@ -1,44 +1,46 @@
-<h2>{{ 'model.shelter.many' | translate }}</h2>
+<app-table-title [modelKey]="'model.shelter'"></app-table-title>
 
-<app-table-toolbar
-  [createLink]="['create']"
-  [length]="dataAll().length"
-  [pageSize]="pageSize"
-  [pageSizeOptions]="pageSizeOptions"
-  (pageChange)="onPageChange($event)"
-></app-table-toolbar>
+<app-loading [loading]="loading()">
+  <app-table-toolbar
+    [createLink]="['create']"
+    [length]="dataAll().length"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="pageSizeOptions"
+    (pageChange)="onPageChange($event)"
+  ></app-table-toolbar>
 
-<table mat-table [dataSource]="dataPagedSortedFiltered()">
-  <ng-container matColumnDef="id">
-    <th mat-header-cell *matHeaderCellDef>#</th>
-    <td mat-cell *matCellDef="let shelter">
-      <app-table-actions [row]="shelter" (delete)="onDelete(shelter)"></app-table-actions>
-    </td>
-  </ng-container>
+  <table mat-table [dataSource]="dataPagedSortedFiltered()">
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>#</th>
+      <td mat-cell *matCellDef="let shelter">
+        <app-table-actions [row]="shelter" (delete)="onDelete(shelter)"></app-table-actions>
+      </td>
+    </ng-container>
 
-  <!-- Name -->
-  <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef>{{ 'model.shelter.name' | translate }}</th>
-    <td mat-cell *matCellDef="let shelter">{{ shelter.name }}</td>
-  </ng-container>
+    <!-- Name -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>{{ 'model.shelter.name' | translate }}</th>
+      <td mat-cell *matCellDef="let shelter">{{ shelter.name }}</td>
+    </ng-container>
 
-  <!-- Location -->
-  <ng-container matColumnDef="location">
-    <th mat-header-cell *matHeaderCellDef>{{ 'model.shelter.location' | translate }}</th>
-    <td mat-cell *matCellDef="let shelter">{{ shelter.location }}</td>
-  </ng-container>
+    <!-- Location -->
+    <ng-container matColumnDef="location">
+      <th mat-header-cell *matHeaderCellDef>{{ 'model.shelter.location' | translate }}</th>
+      <td mat-cell *matCellDef="let shelter">{{ shelter.location }}</td>
+    </ng-container>
 
-  <!-- Enclosure Ids -->
-  <ng-container matColumnDef="enclosureIds">
-    <th mat-header-cell *matHeaderCellDef>{{ 'model.shelter.enclosureIds' | translate }}</th>
-    <td mat-cell *matCellDef="let shelter">
-      @for (enclosureId of shelter.enclosureIds; track enclosureId) {
-      <button matIconButton data-cy="btn-enclosureId" [routerLink]="['/enclosures', enclosureId]">
-        <mat-icon>arrow_forward</mat-icon>
-      </button>
-      }
-    </td>
-  </ng-container>
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let shelter; columns: displayedColumns"></tr>
-</table>
+    <!-- Enclosure Ids -->
+    <ng-container matColumnDef="enclosureIds">
+      <th mat-header-cell *matHeaderCellDef>{{ 'model.shelter.enclosureIds' | translate }}</th>
+      <td mat-cell *matCellDef="let shelter">
+        @for (enclosureId of shelter.enclosureIds; track enclosureId) {
+        <button matIconButton data-cy="btn-enclosureId" [routerLink]="['/enclosures', enclosureId]">
+          <mat-icon>arrow_forward</mat-icon>
+        </button>
+        }
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let shelter; columns: displayedColumns"></tr>
+  </table>
+</app-loading>

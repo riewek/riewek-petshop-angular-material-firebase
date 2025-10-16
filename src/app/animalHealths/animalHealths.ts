@@ -11,6 +11,8 @@ import { TableToolbarComponent } from '../../shared/table-toolbar.component';
 import { TableActionsComponent } from '../../shared/table-actions.component';
 import { PetShopDao } from '../../dao/petShop.dao';
 import { AnimalHealthDao } from '../../dao/animalHealth.dao';
+import { TableTitleComponent } from "../../shared/table-title/table-title.component";
+import { LoadingComponent } from "../../shared/loading.component";
 
 @Component({
   selector: 'app-animalHealths',
@@ -23,7 +25,9 @@ import { AnimalHealthDao } from '../../dao/animalHealth.dao';
     TranslatePipe,
     TableToolbarComponent,
     TableActionsComponent,
-  ],
+    TableTitleComponent,
+    LoadingComponent
+],
   templateUrl: './animalHealths.html',
   styleUrl: './animalHealths.scss',
 })

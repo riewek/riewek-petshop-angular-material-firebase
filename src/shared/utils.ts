@@ -1,5 +1,16 @@
 import en from '../../public/i18n/en.json';
 
+export function getValue(path: string): any {
+  // Beispiel: path = 'model.adoptionApplication.status'
+  const keys = path.split('.');
+  let current: any = en;
+  for (const key of keys) {
+    current = current?.[key];
+    if (current === undefined) return undefined;
+  }
+  return current;
+}
+
 export function getIcon(path: string, value: string): string {
   // Path kann z. B. 'model.adoptionApplication.status' sein
   const keys = path.split('.');

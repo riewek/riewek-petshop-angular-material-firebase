@@ -1,78 +1,76 @@
-<app-dialog-title
-  [form]="form"
-  [mode]="mode()"
-  [modelKey]="'model.adopter.single'"
-></app-dialog-title>
+<app-dialog-title [form]="form" [mode]="mode()" [modelKey]="'model.adopter'"></app-dialog-title>
 
-<form [formGroup]="form" (ngSubmit)="save()" class="form-grid">
-  <!-- Name -->
-  <mat-form-field appearance="fill" floatLabel="always">
-    <mat-label>{{ 'model.adopter.name' | translate }}</mat-label>
-    <input matInput formControlName="name" #name />
-    <mat-hint align="end">{{ name.value.length }} / 60</mat-hint>
-    @if (form.get('name')?.hasError('required')) {
-    <mat-error>
-      {{ 'app.dialog.required' | translate : { value: ('model.adopter.name' | translate) } }}
-    </mat-error>
-    }
-  </mat-form-field>
+<app-loading [loading]="loading()">
+  <form [formGroup]="form" (ngSubmit)="save()" class="form-grid">
+    <!-- Name -->
+    <mat-form-field appearance="fill" floatLabel="always">
+      <mat-label>{{ 'model.adopter.name' | translate }}</mat-label>
+      <input matInput formControlName="name" #name />
+      <mat-hint align="end">{{ name.value.length }} / 60</mat-hint>
+      @if (form.get('name')?.hasError('required')) {
+      <mat-error>
+        {{ 'app.dialog.required' | translate : { value: ('model.adopter.name' | translate) } }}
+      </mat-error>
+      }
+    </mat-form-field>
 
-  <!-- Contact -->
-  <mat-form-field appearance="fill" floatLabel="always">
-    <mat-label>{{ 'model.adopter.contact' | translate }}</mat-label>
-    <input matInput formControlName="contact" #contact />
-    <mat-hint align="end">{{ contact.value.length }} / 60</mat-hint>
-    @if (form.get('contact')?.hasError('required')) {
-    <mat-error>
-      {{
-        'app.dialog.required' | translate : { value: ('model.adopter.contact' | translate) }
-      }}</mat-error
-    >
-    }
-  </mat-form-field>
+    <!-- Contact -->
+    <mat-form-field appearance="fill" floatLabel="always">
+      <mat-label>{{ 'model.adopter.contact' | translate }}</mat-label>
+      <input matInput formControlName="contact" #contact />
+      <mat-hint align="end">{{ contact.value.length }} / 60</mat-hint>
+      @if (form.get('contact')?.hasError('required')) {
+      <mat-error>
+        {{
+          'app.dialog.required' | translate : { value: ('model.adopter.contact' | translate) }
+        }}</mat-error
+      >
+      }
+    </mat-form-field>
 
-  <!-- Address -->
-  <mat-form-field appearance="fill" floatLabel="always">
-    <mat-label>{{ 'model.adopter.address' | translate }}</mat-label>
-    <input matInput formControlName="address" #address />
-    <mat-hint align="end">{{ address.value.length }} / 60</mat-hint>
-    @if (form.get('address')?.hasError('required')) {
-    <mat-error>
-      {{
-        'app.dialog.required' | translate : { value: ('model.adopter.address' | translate) }
-      }}</mat-error
-    >
-    }
-  </mat-form-field>
+    <!-- Address -->
+    <mat-form-field appearance="fill" floatLabel="always">
+      <mat-label>{{ 'model.adopter.address' | translate }}</mat-label>
+      <input matInput formControlName="address" #address />
+      <mat-hint align="end">{{ address.value.length }} / 60</mat-hint>
+      @if (form.get('address')?.hasError('required')) {
+      <mat-error>
+        {{
+          'app.dialog.required' | translate : { value: ('model.adopter.address' | translate) }
+        }}</mat-error
+      >
+      }
+    </mat-form-field>
 
-  <!-- Housing -->
-  <mat-form-field appearance="fill" floatLabel="always">
-    <mat-label>{{ 'model.adopter.housing' | translate }}</mat-label>
-    <input matInput formControlName="housing" #housing />
-    <mat-hint align="end">{{ housing.value.length }} / 60</mat-hint>
-    @if (form.get('housing')?.hasError('required')) {
-    <mat-error>
-      {{
-        'app.dialog.required' | translate : { value: ('model.adopter.housing' | translate) }
-      }}</mat-error
-    >
-    }
-  </mat-form-field>
+    <!-- Housing -->
+    <mat-form-field appearance="fill" floatLabel="always">
+      <mat-label>{{ 'model.adopter.housing' | translate }}</mat-label>
+      <input matInput formControlName="housing" #housing />
+      <mat-hint align="end">{{ housing.value.length }} / 60</mat-hint>
+      @if (form.get('housing')?.hasError('required')) {
+      <mat-error>
+        {{
+          'app.dialog.required' | translate : { value: ('model.adopter.housing' | translate) }
+        }}</mat-error
+      >
+      }
+    </mat-form-field>
 
-  <!-- Experience -->
-  <mat-form-field appearance="fill" floatLabel="always">
-    <mat-label>{{ 'model.adopter.experience' | translate }}</mat-label>
-    <input matInput formControlName="experience" #experience />
-    <mat-hint align="end">{{ experience.value.length }} / 60</mat-hint>
-    @if (form.get('experience')?.hasError('required')) {
-    <mat-error>
-      {{
-        'app.dialog.required' | translate : { value: ('model.adopter.experience' | translate) }
-      }}</mat-error
-    >
-    }
-  </mat-form-field>
-</form>
+    <!-- Experience -->
+    <mat-form-field appearance="fill" floatLabel="always">
+      <mat-label>{{ 'model.adopter.experience' | translate }}</mat-label>
+      <input matInput formControlName="experience" #experience />
+      <mat-hint align="end">{{ experience.value.length }} / 60</mat-hint>
+      @if (form.get('experience')?.hasError('required')) {
+      <mat-error>
+        {{
+          'app.dialog.required' | translate : { value: ('model.adopter.experience' | translate) }
+        }}</mat-error
+      >
+      }
+    </mat-form-field>
+  </form>
+</app-loading>
 
 <app-form-actions
   [form]="form"

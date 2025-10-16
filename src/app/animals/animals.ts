@@ -12,6 +12,9 @@ import { TableToolbarComponent } from '../../shared/table-toolbar.component';
 import { TableActionsComponent } from '../../shared/table-actions.component';
 import { PetShopDao } from '../../dao/petShop.dao';
 import { AnimalDao } from '../../dao/animal.dao';
+import { TableTitleComponent } from "../../shared/table-title/table-title.component";
+import { LoadingComponent } from "../../shared/loading.component";
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-animals',
@@ -25,12 +28,14 @@ import { AnimalDao } from '../../dao/animal.dao';
     AgePipe,
     TableToolbarComponent,
     TableActionsComponent,
-  ],
+    TableTitleComponent,
+    LoadingComponent
+],
   templateUrl: './animals.html',
   styleUrl: './animals.scss',
 })
 export class Animals extends TableComponent<Animal, AnimalDao> {
-  constructor(private petShopDao: PetShopDao) {
+  constructor(private petShopDao: PetShopDao, public userService: UserService) {
     super(
       petShopDao.animalDao,
       'id species breed birthDate age sex intakeDate healthStatus enclosureId photos adoptable'

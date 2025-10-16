@@ -1,40 +1,37 @@
-<app-dialog-title
-  [form]="form"
-  [mode]="mode()"
-  [modelKey]="'model.animal.single'"
-></app-dialog-title>
+<app-dialog-title [form]="form" [mode]="mode()" [modelKey]="'model.shelter'"></app-dialog-title>
 
-<form [formGroup]="form" (ngSubmit)="save()" class="form-grid">
-  <!-- Name -->
-  <mat-form-field appearance="fill" floatLabel="always">
-    <mat-label>{{ 'model.shelter.name' | translate }}</mat-label>
-    <input matInput formControlName="name" #name />
-    <mat-hint align="end">{{ name.value.length }} / 60</mat-hint>
-    @if (form.get('name')?.hasError('required')) {
-    <mat-error>
-      {{ 'app.dialog.required' | translate : { value: ('model.shelter.name' | translate) } }}
-    </mat-error>
-    }
-  </mat-form-field>
+<app-loading [loading]="loading()">
+  <form [formGroup]="form" (ngSubmit)="save()" class="form-grid">
+    <!-- Name -->
+    <mat-form-field appearance="fill" floatLabel="always">
+      <mat-label>{{ 'model.shelter.name' | translate }}</mat-label>
+      <input matInput formControlName="name" #name />
+      <mat-hint align="end">{{ name.value.length }} / 60</mat-hint>
+      @if (form.get('name')?.hasError('required')) {
+      <mat-error>
+        {{ 'app.dialog.required' | translate : { value: ('model.shelter.name' | translate) } }}
+      </mat-error>
+      }
+    </mat-form-field>
 
-  <!-- Location -->
-  <mat-form-field appearance="fill" floatLabel="always">
-    <mat-label>{{ 'model.shelter.location' | translate }}</mat-label>
-    <input matInput formControlName="location" #location />
-    <mat-hint align="end">{{ location.value.length }} / 60</mat-hint>
-    @if (form.get('location')?.hasError('required')) {
-    <mat-error>
-      {{ 'app.dialog.required' | translate : { value: ('model.shelter.location' | translate) } }}
-    </mat-error>
-    }
-  </mat-form-field>
+    <!-- Location -->
+    <mat-form-field appearance="fill" floatLabel="always">
+      <mat-label>{{ 'model.shelter.location' | translate }}</mat-label>
+      <input matInput formControlName="location" #location />
+      <mat-hint align="end">{{ location.value.length }} / 60</mat-hint>
+      @if (form.get('location')?.hasError('required')) {
+      <mat-error>
+        {{ 'app.dialog.required' | translate : { value: ('model.shelter.location' | translate) } }}
+      </mat-error>
+      }
+    </mat-form-field>
 
-  <!-- EnclosureId -->
-  <div>
-    <h2 style="color: red">FIXME: {{ 'model.shelter.enclosureIds' | translate }} missing</h2>
-  </div>
+    <!-- EnclosureId -->
+    <div>
+      <h2 style="color: red">FIXME: {{ 'model.shelter.enclosureIds' | translate }} missing</h2>
+    </div>
 
-  <!--
+    <!--
   <mat-form-field appearance="fill" floatLabel="always">
     <mat-label>Enclosure Ids</mat-label>
     <mat-select formControlName="enclosureIds" #enclosureIds multiple>
@@ -46,8 +43,8 @@
     <mat-error> EnclosureIds is required! </mat-error>
     }
   </mat-form-field>
-  -->
-</form>
+  --></form>
+</app-loading>
 
 <app-form-actions
   [form]="form"

@@ -19,9 +19,11 @@ import { TranslatePipe } from '@ngx-translate/core';
   ],
   template: `
     <mat-toolbar>
+      @if(enableEdit) {
       <button mat-icon-button [routerLink]="createLink" data-cy="btn-create">
         <mat-icon>add</mat-icon>
       </button>
+      }
       <span class="spacer"></span>
       <mat-paginator
         class="mat-elevation-z8"
@@ -43,6 +45,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 })
 export class TableToolbarComponent {
   @Input() createLink: string[] = [];
+  @Input() enableEdit: boolean = true;
   @Input() length = 0;
   @Input() pageSize = 10;
   @Input() pageSizeOptions = [5, 10, 25];

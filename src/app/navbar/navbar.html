@@ -4,7 +4,7 @@
       @for (menuItem of menuItems; track $index) { @if (user.canSee(menuItem)) {
       <a mat-list-item [routerLink]="menuItem.route">
         <mat-icon>{{ menuItem.icon }}</mat-icon>
-        <span>{{ menuItem.title }}</span>
+        <span>&nbsp;{{ menuItem.title | translate }}</span>
       </a>
       } }
     </mat-nav-list>
@@ -22,14 +22,14 @@
       @for (menuItem of menuItems; track $index) { @if(menuItem.screens && user.canSee(menuItem)) {
       <button mat-menu-item [routerLink]="menuItem.route">
         <mat-icon>{{ menuItem.icon }}</mat-icon
-        >{{ menuItem.title }}
+        >{{ menuItem.title | translate }}
       </button>
       } }
     </mat-menu>
     } @for (menuItem of menuItems; track $index) { @if(!menuItem.screens && user.canSee(menuItem)) {
     <a mat-button [routerLink]="menuItem.route">
       <mat-icon>{{ menuItem.icon }}</mat-icon>
-      <span>{{ menuItem.title }}</span>
+      <span>{{ menuItem.title | translate }}</span>
     </a>
     } } @if(user.isLoggedIn()) {
     <a mat-button (click)="changeLanguage('de')">
@@ -43,10 +43,12 @@
     }
   </mat-toolbar>
   <div class="outlet-wrapper">
+    <!--
     user.isLoggedIn: {{ user.isLoggedIn() }} <br />
     user.isLoggedOut: {{ user.isLoggedOut() }}<br />
     user.roles.admin: {{ user.roles().admin }}<br />
     user.roles.adopter: {{ user.roles().adopter }}<br />
+  -->
     <router-outlet />
   </div>
 </mat-sidenav-container>

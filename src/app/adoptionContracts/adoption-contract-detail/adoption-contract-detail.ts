@@ -15,6 +15,7 @@ import { Router } from '@angular/router';
 import { FormActionsComponent } from '../../../shared/form-actions/form-actions.component';
 import { DialogTitleComponent } from '../../../shared/dialog-title/dialog-title.component';
 import { AdoptionContractDao } from '../../../dao/adoptionContract.dao';
+import { LoadingComponent } from "../../../shared/loading.component";
 
 @Component({
   selector: 'app-adoption-contract-detail',
@@ -28,7 +29,8 @@ import { AdoptionContractDao } from '../../../dao/adoptionContract.dao';
     TranslatePipe,
     FormActionsComponent,
     DialogTitleComponent,
-  ],
+    LoadingComponent
+],
   templateUrl: './adoption-contract-detail.html',
   styleUrl: './adoption-contract-detail.scss',
 })

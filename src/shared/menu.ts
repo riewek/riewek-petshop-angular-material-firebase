@@ -56,7 +56,7 @@ export const defaultMenuItems: MenuItem[] = [
     icon: 'smart_toy',
     route: '/demo',
     needsLogin: true,
-    needsAdmin: false,
+    needsAdmin: true,
     screens: false,
   },
 ];

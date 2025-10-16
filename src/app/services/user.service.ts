@@ -48,6 +48,11 @@ export class UserService {
     return true;
   }
 
+  //FIXME: Rollen Rechte
+  isAdmin(): boolean {
+    return this.roles().admin ?? false;
+  }
+
   logout() {
     this.auth.signOut();
     this.router.navigateByUrl('/login');

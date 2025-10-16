@@ -10,6 +10,8 @@ import { TableToolbarComponent } from '../../shared/table-toolbar.component';
 import { TableActionsComponent } from '../../shared/table-actions.component';
 import { PetShopDao } from '../../dao/petShop.dao';
 import { ShelterDao } from '../../dao/shelter.dao';
+import { TableTitleComponent } from "../../shared/table-title/table-title.component";
+import { LoadingComponent } from "../../shared/loading.component";
 
 @Component({
   selector: 'app-shelters',
@@ -21,7 +23,9 @@ import { ShelterDao } from '../../dao/shelter.dao';
     TranslatePipe,
     TableToolbarComponent,
     TableActionsComponent,
-  ],
+    TableTitleComponent,
+    LoadingComponent
+],
   templateUrl: './shelters.html',
   styleUrl: './shelters.scss',
 })

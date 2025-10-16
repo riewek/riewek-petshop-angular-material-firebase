@@ -18,6 +18,7 @@ import { Router } from '@angular/router';
 import { FormActionsComponent } from '../../../shared/form-actions/form-actions.component';
 import { DialogTitleComponent } from '../../../shared/dialog-title/dialog-title.component';
 import { AnimalDao } from '../../../dao/animal.dao';
+import { LoadingComponent } from "../../../shared/loading.component";
 
 @Component({
   selector: 'app-animal-detail',
@@ -34,7 +35,8 @@ import { AnimalDao } from '../../../dao/animal.dao';
     TranslatePipe,
     FormActionsComponent,
     DialogTitleComponent,
-  ],
+    LoadingComponent
+],
   templateUrl: './animal-detail.html',
   styleUrl: './animal-detail.scss',
 })

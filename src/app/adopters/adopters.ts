@@ -8,6 +8,8 @@ import { TableToolbarComponent } from '../../shared/table-toolbar.component';
 import { TableActionsComponent } from '../../shared/table-actions.component';
 import { PetShopDao } from '../../dao/petShop.dao';
 import { AdopterDao } from '../../dao/adopter.dao';
+import { TableTitleComponent } from "../../shared/table-title/table-title.component";
+import { LoadingComponent } from "../../shared/loading.component";
 
 @Component({
   selector: 'app-adopters',
@@ -17,7 +19,9 @@ import { AdopterDao } from '../../dao/adopter.dao';
     TranslatePipe,
     TableToolbarComponent,
     TableActionsComponent,
-  ],
+    TableTitleComponent,
+    LoadingComponent
+],
   templateUrl: './adopters.html',
   styleUrl: './adopters.scss',
 })

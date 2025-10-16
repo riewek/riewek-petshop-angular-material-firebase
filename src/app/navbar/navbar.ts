@@ -9,7 +9,7 @@ import { RouterLink } from '@angular/router';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { menuItems } from '../../config/menu/menu.items';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -24,6 +24,7 @@ import { UserService } from '../services/user.service';
     MatListModule,
     MatMenuModule,
     RouterLink,
+    TranslatePipe,
   ],
   templateUrl: './navbar.html',
   styleUrl: './navbar.scss',

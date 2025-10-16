@@ -1,65 +1,68 @@
 <app-dialog-title
   [form]="form"
   [mode]="mode()"
-  [modelKey]="'model.adoptionContract.single'"
+  [modelKey]="'model.adoptionContract'"
 ></app-dialog-title>
 
-<form [formGroup]="form" (ngSubmit)="save()" class="form-grid">
-  <!-- Adoption Application Id -->
-  <mat-form-field appearance="fill" floatLabel="always">
-    <mat-label>{{ 'model.adoptionContract.adoptionApplicationId' | translate }}</mat-label>
-    <mat-select formControlName="adoptionApplicationId" #adoptionApplicationId>
-      <mat-option>--</mat-option>
-      @for (adoptionApplicationId of adoptionApplications(); track adoptionApplicationId.id) {
-      <mat-option [value]="adoptionApplicationId.id">{{ adoptionApplicationId.id }}</mat-option>
+<app-loading [loading]="loading()">
+  <form [formGroup]="form" (ngSubmit)="save()" class="form-grid">
+    <!-- Adoption Application Id -->
+    <mat-form-field appearance="fill" floatLabel="always">
+      <mat-label>{{ 'model.adoptionContract.adoptionApplicationId' | translate }}</mat-label>
+      <mat-select formControlName="adoptionApplicationId" #adoptionApplicationId>
+        <mat-option>--</mat-option>
+        @for (adoptionApplicationId of adoptionApplications(); track adoptionApplicationId.id) {
+        <mat-option [value]="adoptionApplicationId.id">{{ adoptionApplicationId.id }}</mat-option>
+        }
+      </mat-select>
+      @if (form.get('adoptionApplicationId')?.hasError('required')) {
+      <mat-error
+        >{{
+          'app.dialog.required'
+            | translate : { value: ('model.adoptionContract.adoptionApplicationId' | translate) }
+        }}
+      </mat-error>
       }
-    </mat-select>
-    @if (form.get('adoptionApplicationId')?.hasError('required')) {
-    <mat-error
-      >{{
-        'app.dialog.required'
-          | translate : { value: ('model.adoptionContract.adoptionApplicationId' | translate) }
-      }}
-    </mat-error>
-    }
-  </mat-form-field>
+    </mat-form-field>
 
-  <!-- Contract Url -->
-  <mat-form-field appearance="fill" floatLabel="always">
-    <mat-label>{{ 'model.adoptionContract.contractUrl' | translate }}</mat-label>
-    <input matInput formControlName="contractUrl" #contractUrl />
-    <mat-hint align="end">{{ contractUrl.value.length }} / 60</mat-hint>
-  </mat-form-field>
+    <!-- Contract Url -->
+    <mat-form-field appearance="fill" floatLabel="always">
+      <mat-label>{{ 'model.adoptionContract.contractUrl' | translate }}</mat-label>
+      <input matInput formControlName="contractUrl" #contractUrl />
+      <mat-hint align="end">{{ contractUrl.value.length }} / 60</mat-hint>
+    </mat-form-field>
 
-  <!-- Signed At -->
-  <mat-form-field appearance="fill" floatLabel="always">
-    <mat-label>{{ 'model.adoptionContract.signedAt' | translate }}</mat-label>
-    <input matInput [matDatepicker]="signedAtPicker" formControlName="signedAt" />
-    <mat-hint align="end">MM/DD/YYYY</mat-hint>
-    <mat-datepicker-toggle matIconSuffix [for]="signedAtPicker"></mat-datepicker-toggle>
-    <mat-datepicker #signedAtPicker></mat-datepicker>
-  </mat-form-field>
+    <!-- Signed At -->
+    <mat-form-field appearance="fill" floatLabel="always">
+      <mat-label>{{ 'model.adoptionContract.signedAt' | translate }}</mat-label>
+      <input matInput [matDatepicker]="signedAtPicker" formControlName="signedAt" />
+      <mat-hint align="end">MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="signedAtPicker"></mat-datepicker-toggle>
+      <mat-datepicker #signedAtPicker></mat-datepicker>
+    </mat-form-field>
 
-  <!-- Fee -->
-  <mat-form-field appearance="fill" floatLabel="always">
-    <mat-label>{{ 'model.adoptionContract.fee' | translate }}</mat-label>
-    <input matInput type="number" formControlName="fee" #fee />
-    <mat-hint align="end">{{ fee.value.length }} / 60</mat-hint>
-    @if (form.get('fee')?.hasError('required')) {
-    <mat-error>
-      {{
-        'app.dialog.required' | translate : { value: ('model.adoptionContract.fee' | translate) }
-      }}
-    </mat-error>
-    } @if (form.get('fee')?.hasError('min')) {
-    <mat-error>
-      {{
-        'app.dialog.min' | translate : { value: ('model.adoptionContract.fee' | translate), min: 0 }
-      }}
-    </mat-error>
-    }
-  </mat-form-field>
-</form>
+    <!-- Fee -->
+    <mat-form-field appearance="fill" floatLabel="always">
+      <mat-label>{{ 'model.adoptionContract.fee' | translate }}</mat-label>
+      <input matInput type="number" formControlName="fee" #fee />
+      <mat-hint align="end">{{ fee.value.length }} / 60</mat-hint>
+      @if (form.get('fee')?.hasError('required')) {
+      <mat-error>
+        {{
+          'app.dialog.required' | translate : { value: ('model.adoptionContract.fee' | translate) }
+        }}
+      </mat-error>
+      } @if (form.get('fee')?.hasError('min')) {
+      <mat-error>
+        {{
+          'app.dialog.min'
+            | translate : { value: ('model.adoptionContract.fee' | translate), min: 0 }
+        }}
+      </mat-error>
+      }
+    </mat-form-field>
+  </form>
+</app-loading>
 
 <app-form-actions
   [form]="form"

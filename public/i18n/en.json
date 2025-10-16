@@ -16,6 +16,7 @@
     "adopter": {
       "single": "adopter",
       "many": "adopters",
+      "icon": "groups",
       "name": "name",
       "contact": "contact",
       "address": "address",
@@ -46,6 +47,7 @@
     "adoptionContract": {
       "single": "contract",
       "many": "contracts",
+      "icon": "favorite",
       "adoptionApplicationId": "application",
       "contractUrl": "contract url",
       "signedAt": "signed at",
@@ -54,6 +56,7 @@
     "animal": {
       "single": "animal",
       "many": "animals",
+      "icon": "pets",
       "species": "species",
       "breed": "breed",
       "birthDate": "birth date",
@@ -88,6 +91,7 @@
     "animalHealth": {
       "single": "health report",
       "many": "health reports",
+      "icon": "local_hospital",
       "animalId": "animal",
       "date": "date",
       "type": {
@@ -106,6 +110,7 @@
     "enclosure": {
       "single": "enclosure",
       "many": "enclosures",
+      "icon": "domain",
       "name": "name",
       "type": {
         "label": "type",
@@ -121,6 +126,7 @@
     "shelter": {
       "single": "shelter",
       "many": "shelters",
+      "icon": "home",
       "name": "name",
       "location": "location",
       "enclosureIds": "enclosures"

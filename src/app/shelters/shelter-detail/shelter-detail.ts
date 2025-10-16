@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 import { FormActionsComponent } from '../../../shared/form-actions/form-actions.component';
 import { DialogTitleComponent } from '../../../shared/dialog-title/dialog-title.component';
 import { ShelterDao } from '../../../dao/shelter.dao';
+import { LoadingComponent } from "../../../shared/loading.component";
 
 @Component({
   selector: 'app-shelter-detail',
@@ -26,7 +27,8 @@ import { ShelterDao } from '../../../dao/shelter.dao';
     TranslatePipe,
     FormActionsComponent,
     DialogTitleComponent,
-  ],
+    LoadingComponent
+],
   templateUrl: './shelter-detail.html',
   styleUrl: './shelter-detail.scss',
 })

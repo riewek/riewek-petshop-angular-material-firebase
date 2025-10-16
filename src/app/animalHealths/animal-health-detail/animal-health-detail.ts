@@ -17,6 +17,7 @@ import { FormActionsComponent } from '../../../shared/form-actions/form-actions.
 import { DialogTitleComponent } from '../../../shared/dialog-title/dialog-title.component';
 import { AnimalHealthDao } from '../../../dao/animalHealth.dao';
 import { MatIcon } from '@angular/material/icon';
+import { LoadingComponent } from "../../../shared/loading.component";
 
 @Component({
   selector: 'app-animal-health-detail',
@@ -32,7 +33,8 @@ import { MatIcon } from '@angular/material/icon';
     TranslatePipe,
     FormActionsComponent,
     DialogTitleComponent,
-  ],
+    LoadingComponent
+],
   templateUrl: './animal-health-detail.html',
   styleUrl: './animal-health-detail.scss',
 })

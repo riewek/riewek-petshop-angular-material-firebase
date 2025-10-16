@@ -1,137 +1,137 @@
-<app-dialog-title
-  [form]="form"
-  [mode]="mode()"
-  [modelKey]="'model.animal.single'"
-></app-dialog-title>
+<app-dialog-title [form]="form" [mode]="mode()" [modelKey]="'model.animal'"></app-dialog-title>
 
-<form [formGroup]="form" (ngSubmit)="save()" class="form-grid">
-  <!-- Species -->
-  <mat-form-field appearance="fill" floatLabel="always">
-    <mat-label>{{ 'model.animal.species' | translate }}</mat-label>
-    <input matInput formControlName="species" #species />
-    <mat-hint align="end">{{ species.value.length }} / 60</mat-hint>
-    @if (form.get('species')?.hasError('required')) {
-    <mat-error>
-      {{ 'app.dialog.required' | translate : { value: ('model.animal.species' | translate) } }}
-    </mat-error>
-    }
-  </mat-form-field>
-
-  <!-- Breed -->
-  <mat-form-field appearance="fill" floatLabel="always">
-    <mat-label>{{ 'model.animal.breed' | translate }}</mat-label>
-    <input matInput formControlName="breed" #breed />
-    <mat-hint align="end">{{ breed.value.length }} / 60</mat-hint>
-    @if (form.get('breed')?.hasError('required')) {
-    <mat-error>
-      {{ 'app.dialog.required' | translate : { value: ('model.animal.breed' | translate) } }}
-    </mat-error>
-    }
-  </mat-form-field>
-
-  <!-- Birth Date -->
-  <mat-form-field appearance="fill" floatLabel="always">
-    <mat-label>{{ 'model.animal.birthDate' | translate }}</mat-label>
-    <input matInput [matDatepicker]="birthDatePicker" formControlName="birthDate" />
-    <mat-hint align="end">MM/DD/YYYY</mat-hint>
-    <mat-datepicker-toggle matIconSuffix [for]="birthDatePicker"></mat-datepicker-toggle>
-    <mat-datepicker #birthDatePicker></mat-datepicker>
-    @if (form.get('birthDate')?.hasError('required')) {
-    <mat-error>
-      {{ 'app.dialog.required' | translate : { value: ('model.animal.birthDate' | translate) } }}
-    </mat-error>
-    }
-  </mat-form-field>
-
-  <!-- Sex -->
-  <div>
-    <mat-label>{{ 'model.animal.sex.label' | translate }}</mat-label>
-    <br />
-    <mat-radio-group formControlName="sex">
-      <mat-radio-button value="male">
-        <mat-icon>{{ 'model.animal.sex.male_icon' | translate }}</mat-icon>
-        {{ 'model.animal.sex.male' | translate }}</mat-radio-button
-      >
-      <mat-radio-button value="female">
-        <mat-icon>{{ 'model.animal.sex.female_icon' | translate }}</mat-icon>
-        {{ 'model.animal.sex.female' | translate }}</mat-radio-button
-      >
-      <mat-radio-button value="unknown">
-        <mat-icon>{{ 'model.animal.sex.unknown_icon' | translate }}</mat-icon>
-        {{ 'model.animal.sex.unknown' | translate }}</mat-radio-button
-      >
-    </mat-radio-group>
-  </div>
-
-  <!-- Intake Date -->
-  <mat-form-field appearance="fill" floatLabel="always">
-    <mat-label>{{ 'model.animal.intakeDate' | translate }}</mat-label>
-    <input matInput [matDatepicker]="intakeDatePicker" formControlName="intakeDate" />
-    <mat-hint align="end">MM/DD/YYYY</mat-hint>
-    <mat-datepicker-toggle matIconSuffix [for]="intakeDatePicker"></mat-datepicker-toggle>
-    <mat-datepicker #intakeDatePicker></mat-datepicker>
-    @if (form.get('intakeDate')?.hasError('required')) {
-    <mat-error>
-      {{ 'app.dialog.required' | translate : { value: ('model.animal.intakeDate' | translate) } }}
-    </mat-error>
-    }
-  </mat-form-field>
-
-  <!-- Health Status -->
-  <div>
-    <mat-label>{{ 'model.animal.healthStatus.label' | translate }}</mat-label>
-    <br />
-    <mat-radio-group formControlName="healthStatus">
-      <mat-radio-button value="Healthy">
-        <mat-icon>{{ 'model.animal.healthStatus.healthy_icon' | translate }}</mat-icon>
-        {{ 'model.animal.healthStatus.healthy' | translate }}</mat-radio-button
-      >
-      <mat-radio-button value="Warning">
-        <mat-icon>{{ 'model.animal.healthStatus.warning_icon' | translate }}</mat-icon
-        >{{ 'model.animal.healthStatus.warning' | translate }}</mat-radio-button
-      >
-      <mat-radio-button value="Critical">
-        <mat-icon>{{ 'model.animal.healthStatus.critical_icon' | translate }}</mat-icon
-        >{{ 'model.animal.healthStatus.critical' | translate }}</mat-radio-button
-      >
-      <mat-radio-button value="Unknown">
-        <mat-icon>{{ 'model.animal.healthStatus.unknown_icon' | translate }}</mat-icon
-        >{{ 'model.animal.healthStatus.unknown' | translate }}</mat-radio-button
-      >
-    </mat-radio-group>
-  </div>
-
-  <!-- EnclosureId -->
-  <mat-form-field appearance="fill" floatLabel="always">
-    <mat-label>{{ 'model.animal.enclosureId' | translate }}</mat-label>
-    <mat-select formControlName="enclosureId" #enclosureId>
-      <mat-option>--</mat-option>
-      @for (enclosure of enclosures(); track enclosure.id) {
-      <mat-option [value]="enclosure.id">{{ enclosure.name }}</mat-option>
+<app-loading [loading]="loading()">
+  <form [formGroup]="form" (ngSubmit)="save()" class="form-grid">
+    <!-- Species -->
+    <mat-form-field appearance="fill" floatLabel="always">
+      <mat-label>{{ 'model.animal.species' | translate }}</mat-label>
+      <input matInput formControlName="species" #species />
+      <mat-hint align="end">{{ species.value.length }} / 60</mat-hint>
+      @if (form.get('species')?.hasError('required')) {
+      <mat-error>
+        {{ 'app.dialog.required' | translate : { value: ('model.animal.species' | translate) } }}
+      </mat-error>
       }
-    </mat-select>
-    @if (form.get('enclosureId')?.hasError('required')) {
-    <mat-error>
-      {{ 'app.dialog.required' | translate : { value: ('model.animal.enclosureId' | translate) } }}
-    </mat-error>
-    }
-  </mat-form-field>
+    </mat-form-field>
 
-  <!-- Photos -->
-  <div>
-    <h2 style="color: red">FIXME: {{ 'model.animal.photos' | translate }} missing</h2>
-  </div>
+    <!-- Breed -->
+    <mat-form-field appearance="fill" floatLabel="always">
+      <mat-label>{{ 'model.animal.breed' | translate }}</mat-label>
+      <input matInput formControlName="breed" #breed />
+      <mat-hint align="end">{{ breed.value.length }} / 60</mat-hint>
+      @if (form.get('breed')?.hasError('required')) {
+      <mat-error>
+        {{ 'app.dialog.required' | translate : { value: ('model.animal.breed' | translate) } }}
+      </mat-error>
+      }
+    </mat-form-field>
 
-  <!-- Adoptable -->
-  <div>
-    <mat-checkbox formControlName="adoptable">
-      @if (form.get('adoptable')?.value) {
-      <mat-icon>{{ 'model.animal.adoptable_true_icon' | translate }}</mat-icon> } @else {
-      <mat-icon>{{ 'model.animal.adoptable_false_icon' | translate }}</mat-icon> }
-      {{ 'model.animal.adoptable' | translate }}
-    </mat-checkbox>
-  </div>
-</form>
+    <!-- Birth Date -->
+    <mat-form-field appearance="fill" floatLabel="always">
+      <mat-label>{{ 'model.animal.birthDate' | translate }}</mat-label>
+      <input matInput [matDatepicker]="birthDatePicker" formControlName="birthDate" />
+      <mat-hint align="end">MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="birthDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #birthDatePicker></mat-datepicker>
+      @if (form.get('birthDate')?.hasError('required')) {
+      <mat-error>
+        {{ 'app.dialog.required' | translate : { value: ('model.animal.birthDate' | translate) } }}
+      </mat-error>
+      }
+    </mat-form-field>
+
+    <!-- Sex -->
+    <div>
+      <mat-label>{{ 'model.animal.sex.label' | translate }}</mat-label>
+      <br />
+      <mat-radio-group formControlName="sex">
+        <mat-radio-button value="male">
+          <mat-icon>{{ 'model.animal.sex.male_icon' | translate }}</mat-icon>
+          {{ 'model.animal.sex.male' | translate }}</mat-radio-button
+        >
+        <mat-radio-button value="female">
+          <mat-icon>{{ 'model.animal.sex.female_icon' | translate }}</mat-icon>
+          {{ 'model.animal.sex.female' | translate }}</mat-radio-button
+        >
+        <mat-radio-button value="unknown">
+          <mat-icon>{{ 'model.animal.sex.unknown_icon' | translate }}</mat-icon>
+          {{ 'model.animal.sex.unknown' | translate }}</mat-radio-button
+        >
+      </mat-radio-group>
+    </div>
+
+    <!-- Intake Date -->
+    <mat-form-field appearance="fill" floatLabel="always">
+      <mat-label>{{ 'model.animal.intakeDate' | translate }}</mat-label>
+      <input matInput [matDatepicker]="intakeDatePicker" formControlName="intakeDate" />
+      <mat-hint align="end">MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="intakeDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #intakeDatePicker></mat-datepicker>
+      @if (form.get('intakeDate')?.hasError('required')) {
+      <mat-error>
+        {{ 'app.dialog.required' | translate : { value: ('model.animal.intakeDate' | translate) } }}
+      </mat-error>
+      }
+    </mat-form-field>
+
+    <!-- Health Status -->
+    <div>
+      <mat-label>{{ 'model.animal.healthStatus.label' | translate }}</mat-label>
+      <br />
+      <mat-radio-group formControlName="healthStatus">
+        <mat-radio-button value="Healthy">
+          <mat-icon>{{ 'model.animal.healthStatus.healthy_icon' | translate }}</mat-icon>
+          {{ 'model.animal.healthStatus.healthy' | translate }}</mat-radio-button
+        >
+        <mat-radio-button value="Warning">
+          <mat-icon>{{ 'model.animal.healthStatus.warning_icon' | translate }}</mat-icon
+          >{{ 'model.animal.healthStatus.warning' | translate }}</mat-radio-button
+        >
+        <mat-radio-button value="Critical">
+          <mat-icon>{{ 'model.animal.healthStatus.critical_icon' | translate }}</mat-icon
+          >{{ 'model.animal.healthStatus.critical' | translate }}</mat-radio-button
+        >
+        <mat-radio-button value="Unknown">
+          <mat-icon>{{ 'model.animal.healthStatus.unknown_icon' | translate }}</mat-icon
+          >{{ 'model.animal.healthStatus.unknown' | translate }}</mat-radio-button
+        >
+      </mat-radio-group>
+    </div>
+
+    <!-- EnclosureId -->
+    <mat-form-field appearance="fill" floatLabel="always">
+      <mat-label>{{ 'model.animal.enclosureId' | translate }}</mat-label>
+      <mat-select formControlName="enclosureId" #enclosureId>
+        <mat-option>--</mat-option>
+        @for (enclosure of enclosures(); track enclosure.id) {
+        <mat-option [value]="enclosure.id">{{ enclosure.name }}</mat-option>
+        }
+      </mat-select>
+      @if (form.get('enclosureId')?.hasError('required')) {
+      <mat-error>
+        {{
+          'app.dialog.required' | translate : { value: ('model.animal.enclosureId' | translate) }
+        }}
+      </mat-error>
+      }
+    </mat-form-field>
+
+    <!-- Photos -->
+    <div>
+      <h2 style="color: red">FIXME: {{ 'model.animal.photos' | translate }} missing</h2>
+    </div>
+
+    <!-- Adoptable -->
+    <div>
+      <mat-checkbox formControlName="adoptable">
+        @if (form.get('adoptable')?.value) {
+        <mat-icon>{{ 'model.animal.adoptable_true_icon' | translate }}</mat-icon> } @else {
+        <mat-icon>{{ 'model.animal.adoptable_false_icon' | translate }}</mat-icon> }
+        {{ 'model.animal.adoptable' | translate }}
+      </mat-checkbox>
+    </div>
+  </form>
+</app-loading>
 
 <app-form-actions
   [form]="form"

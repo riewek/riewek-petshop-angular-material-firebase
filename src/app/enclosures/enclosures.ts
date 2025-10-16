@@ -9,6 +9,8 @@ import { TableToolbarComponent } from '../../shared/table-toolbar.component';
 import { TableActionsComponent } from '../../shared/table-actions.component';
 import { PetShopDao } from '../../dao/petShop.dao';
 import { EnclosureDao } from '../../dao/enclosure.dao';
+import { TableTitleComponent } from "../../shared/table-title/table-title.component";
+import { LoadingComponent } from "../../shared/loading.component";
 
 @Component({
   selector: 'app-enclosures',
@@ -19,7 +21,9 @@ import { EnclosureDao } from '../../dao/enclosure.dao';
     TranslatePipe,
     TableToolbarComponent,
     TableActionsComponent,
-  ],
+    TableTitleComponent,
+    LoadingComponent
+],
   templateUrl: './enclosures.html',
   styleUrl: './enclosures.scss',
 })

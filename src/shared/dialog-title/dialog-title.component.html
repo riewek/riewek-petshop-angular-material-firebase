@@ -1,12 +1,15 @@
 @if(mode === "create") {
 <h1 class="dialog-title">
-  {{ 'app.dialog.create' | translate : { value: (modelKey | translate) } }}
+  <mat-icon>{{ modelKey + '.icon' | translate }}</mat-icon>
+  {{ 'app.dialog.create' | translate : { value: (modelKey + '.single' | translate) } }}
 </h1>
 } @else {
 <h1 class="dialog-title">
-  {{ 'app.dialog.edit' | translate : { value: (modelKey | translate) } }}
+  <mat-icon>{{ modelKey + '.icon' | translate }}</mat-icon>
+  {{ 'app.dialog.edit' | translate : { value: (modelKey + '.single' | translate) } }}
 </h1>
 }
+<!--
 <div>
   <pre>
     pristine: {{ form.pristine }}
@@ -15,3 +18,4 @@
     dirty: {{ form.dirty }}
   </pre>
 </div>
+-->

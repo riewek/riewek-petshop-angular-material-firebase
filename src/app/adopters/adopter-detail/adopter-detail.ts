@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 import { FormActionsComponent } from '../../../shared/form-actions/form-actions.component';
 import { DialogTitleComponent } from '../../../shared/dialog-title/dialog-title.component';
 import { AdopterDao } from '../../../dao/adopter.dao';
+import { LoadingComponent } from "../../../shared/loading.component";
 
 @Component({
   selector: 'app-adopter-detail',
@@ -21,7 +22,8 @@ import { AdopterDao } from '../../../dao/adopter.dao';
     TranslatePipe,
     FormActionsComponent,
     DialogTitleComponent,
-  ],
+    LoadingComponent
+],
   templateUrl: './adopter-detail.html',
   styleUrl: './adopter-detail.scss',
 })

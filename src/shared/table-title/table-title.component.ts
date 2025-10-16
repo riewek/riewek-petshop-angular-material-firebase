@@ -10,5 +10,5 @@ import { TranslatePipe } from '@ngx-translate/core';
   standalone: true,
 })
 export class TableTitleComponent {
-  @Input() model: string = '';
+  @Input() modelKey: string = '';
 }

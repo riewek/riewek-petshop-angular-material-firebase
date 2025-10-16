@@ -1,11 +1,10 @@
 <app-dialog-title
   [form]="form"
   [mode]="mode()"
-  [modelKey]="'model.adoptionApplication.single'"
+  [modelKey]="'model.adoptionApplication'"
 ></app-dialog-title>
 
 <app-loading [loading]="loading()">
-
   <form [formGroup]="form" (ngSubmit)="save()" class="form-grid">
     <!-- Adopter Id -->
     <mat-form-field appearance="fill" floatLabel="always">

@@ -14,6 +14,7 @@ import { FormActionsComponent } from '../../../shared/form-actions/form-actions.
 import { DialogTitleComponent } from '../../../shared/dialog-title/dialog-title.component';
 import { EnclosureDao } from '../../../dao/enclosure.dao';
 import { MatIcon } from '@angular/material/icon';
+import { LoadingComponent } from "../../../shared/loading.component";
 
 @Component({
   selector: 'app-enclosure-detail',
@@ -28,7 +29,8 @@ import { MatIcon } from '@angular/material/icon';
     TranslatePipe,
     FormActionsComponent,
     DialogTitleComponent,
-  ],
+    LoadingComponent
+],
   templateUrl: './enclosure-detail.html',
   styleUrl: './enclosure-detail.scss',
 })
