@@ -13,14 +13,14 @@ export function createPetShopSecurity() {
 function createPublicRole(): Role {
   const publicRole = new Role();
   publicRole.name = 'public';
-  publicRole.pageRights = [page('animalsPage')];
+  publicRole.pageRights = [page('animalsPage'), page('register'), page('login'), page('about')];
   return publicRole;
 }
 
 function createAdminRole(): Role {
   const adminRole = new Role();
   adminRole.name = 'admin';
-  adminRole.pageRights = [page('dashboard'), page('demo')];
+  adminRole.pageRights = [page('dashboard'), page('demo'), page('logout')];
   adminRole.modelRights = [
     fullAccess('adopter'),
     fullAccess('adoptionApplication'),
@@ -36,7 +36,7 @@ function createAdminRole(): Role {
 function createUserRole(): Role {
   const userRole = new Role();
   userRole.name = 'user';
-  userRole.pageRights = [page('dashboard')];
+  userRole.pageRights = [page('dashboard'), page('logout')];
   userRole.modelRights = [readOnly('animal')];
   return userRole;
 }

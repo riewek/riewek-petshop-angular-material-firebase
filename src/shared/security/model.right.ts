@@ -20,8 +20,8 @@ export function readOnly(model: string): ModelRight {
   return {
     model: model,
     read: true,
-    create: true,
-    edit: true,
-    delete: true,
+    create: false,
+    edit: false,
+    delete: false,
   };
 }

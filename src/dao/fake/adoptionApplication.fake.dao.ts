@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { AdoptionApplication } from '../../model/adoptionApplication';
-import { FakeDataDao } from '../../shared/fake-data-dao';
+import { FakeDao } from '../../shared/fake.dao';
 import { FakeDataService } from './fake.data.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AdoptionApplicationFakeDataDao extends FakeDataDao<AdoptionApplication> {
+export class AdoptionApplicationFakeDao extends FakeDao<AdoptionApplication> {
   constructor(private fakeDataService: FakeDataService) {
     super(fakeDataService.adoptionApplications);
   }

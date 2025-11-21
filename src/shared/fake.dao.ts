@@ -2,7 +2,7 @@ import { FirebaseEntity } from './firebase.model';
 import { Observable, of } from 'rxjs';
 import { Dao } from './dao';
 
-export abstract class FakeDataDao<T extends FirebaseEntity> implements Dao<T> {
+export abstract class FakeDao<T extends FirebaseEntity> implements Dao<T> {
   constructor(private data: T[]) {}
 
   async empty(): Promise<boolean> {

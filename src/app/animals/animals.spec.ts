@@ -3,6 +3,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { Animals } from './animals';
 import { PetShopDao } from '../../dao/petShop.dao';
 import { daoMock, translatePipeMock } from '../../shared/test.util';
+import { UserService } from '../services/user.service';
 
 describe('Animals', () => {
   let component: Animals;
@@ -17,6 +18,10 @@ describe('Animals', () => {
           useValue: {
             animalDao: daoMock(),
           },
+        },
+        {
+          provide: UserService,
+          useValue: { isAdmin: () => true },
         },
       ],
     }).compileComponents();

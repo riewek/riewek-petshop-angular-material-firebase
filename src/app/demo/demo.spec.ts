@@ -2,31 +2,18 @@ import { provideZonelessChangeDetection } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 import { Demo } from './demo';
-jest.mock('.././services/firebase.service', () => ({
-  FirebaseService: jest.fn().mockImplementation(() => ({
-    getItems: jest.fn().mockReturnValue({ subscribe: () => {} }),
-  })),
-}));
-import { FirebaseService } from '.././services/firebase.service';
 import { PetShopDao } from '../../dao/petShop.dao';
 import { daoMock, translatePipeMock } from '../../shared/test.util';
 
 xdescribe('Demo', () => {
   let component: Demo;
   let fixture: ComponentFixture<Demo>;
-  let firebaseServiceMock: jest.Mocked<FirebaseService>;
 
   beforeEach(async () => {
-    // Service-Mock mit Jest
-    firebaseServiceMock = {
-      getItems: jest.fn().mockReturnValue(of([{ id: '1', value: 'Test Item' }])),
-    } as unknown as jest.Mocked<FirebaseService>;
-
     await TestBed.configureTestingModule({
       imports: [Demo, translatePipeMock()],
       providers: [
         provideZonelessChangeDetection(),
-        { provide: FirebaseService, useValue: firebaseServiceMock },
         {
           provide: PetShopDao,
           useValue: {

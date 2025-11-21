@@ -8,7 +8,7 @@ import { TranslateService, TranslatePipe, TranslateDirective } from '@ngx-transl
 import translationsEN from '../../../public/i18n/en.json';
 import translationsDE from '../../../public/i18n/de.json';
 import { PetShopDao } from '../../dao/petShop.dao';
-import { Item } from '../services/firebase.service';
+import { Item } from '../../model/item';
 
 @Component({
   selector: 'app-demo',

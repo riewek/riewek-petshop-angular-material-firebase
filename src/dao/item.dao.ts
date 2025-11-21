@@ -1,6 +1,6 @@
 import { InjectionToken } from '@angular/core';
-import { Item } from '../app/services/firebase.service';
 import { Dao } from '../shared/dao';
+import { Item } from '../model/item';
 
 export const ITEM_DAO = new InjectionToken<Dao<Item>>('ItemDao');
 
