@@ -1,8 +1,9 @@
 // DummyComponent für RouterTestingModule
-import { expect } from '@jest/globals';
+import { vi, expect } from 'vitest';
 import { Component } from '@angular/core';
 import { ComponentFixture } from '@angular/core/testing';
 import { of } from 'rxjs';
+import { Auth } from '@angular/fire/auth';
 
 @Component({ template: '' })
 export class DummyComponent {}
@@ -29,6 +30,7 @@ export function linkAndClick(name: string, fixture: ComponentFixture<any>) {
 
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { ActivatedRoute } from '@angular/router';
+import { FirebaseEntity } from './firebase.model';
 
 class FakeLoader implements TranslateLoader {
   getTranslation(lang: string) {
@@ -45,6 +47,11 @@ export function translatePipeMock(): any {
 export function daoMock(): any {
   return {
     findAllAsObservable: () => of([]),
+    find: (id: string) => Promise.resolve(null),
+    empty: () => Promise.resolve(true),
+    size: () => Promise.resolve(0),
+    save: (e: FirebaseEntity) => Promise.resolve(),
+    remove: (id: string) => Promise.resolve(),
   };
 }
 
@@ -56,4 +63,18 @@ export function activatedRouteMock(): any {
       snapshot: { paramMap: { get: (key: string) => '123' } },
     },
   };
+}
+
+export const authMock = {
+  onAuthStateChanged: vi.fn((callback: (user: any) => void) => {
+    callback(null);
+    return () => {};
+  }),
+  currentUser: null,
+  signInWithEmailAndPassword: vi.fn(),
+  signOut: vi.fn(),
+};
+
+export function authMockProvider() {
+  return { provide: Auth, useValue: authMock };
 }

@@ -5,7 +5,7 @@ import { Demo } from './demo';
 import { PetShopDao } from '../../dao/petShop.dao';
 import { daoMock, translatePipeMock } from '../../shared/test.util';
 
-xdescribe('Demo', () => {
+describe.skip('Demo', () => {
   let component: Demo;
   let fixture: ComponentFixture<Demo>;
 

@@ -1,16 +1,13 @@
 import { provideZonelessChangeDetection } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { of } from 'rxjs';
 import { App } from './app';
+import { authMockProvider, translatePipeMock } from '../shared/test.util';
 
 describe('App', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [App],
-      providers: [
-        provideZonelessChangeDetection(),
-        //      { provide: FirebaseService, useValue: firebaseServiceMock },
-      ],
+      imports: [App, translatePipeMock()],
+      providers: [provideZonelessChangeDetection(), authMockProvider()],
     }).compileComponents();
   });
 

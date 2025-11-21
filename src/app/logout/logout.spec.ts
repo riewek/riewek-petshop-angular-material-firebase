@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { Logout } from './logout';
 
-xdescribe('Logout', () => {
+describe.skip('Logout', () => {
   let component: Logout;
   let fixture: ComponentFixture<Logout>;
 
