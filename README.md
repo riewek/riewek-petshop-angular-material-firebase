@@ -36,6 +36,12 @@ AngularFirestore
 - Besser zum mocken als Firestore
 - firebase.config.ts: AngularFirestore registrieren
 
+Data
+
+- admin@pet.de; 123456; {"admin": true}
+- user@pet.de; 123456
+- Admin einloggen; Demo, Daten hochladen (passiert im Hintergrund)
+
 ## Setup Angular Material
 
 - styles.scss

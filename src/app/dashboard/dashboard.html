@@ -1,1 +1,97 @@
-<p>dashboard works!</p>
+<app-table-title [modelKey]="'model.animal'"></app-table-title>
+
+<mat-form-field appearance="outline" class="search-field full-width">
+  <mat-label>Tiersuche (Spezies, Rasse, Geschlecht oder Gesundheitsstatus )</mat-label>
+  <input
+    matInput
+    (input)="search.set($any($event.target).value); pageIndex.set(0)"
+    placeholder="Geben sie einen Suchbegriff ein"
+  />
+  <button mat-icon-button matSuffix aria-label="Clear" (click)="search.set('')">
+    <mat-icon>close</mat-icon>
+  </button>
+</mat-form-field>
+
+<app-loading [loading]="loading()">
+  <mat-paginator
+    [length]="filteredAnimals().length"
+    [pageSize]="pageSize()"
+    [pageSizeOptions]="[5, 10, 20]"
+    (page)="onPageChange($event)"
+  >
+  </mat-paginator>
+
+  <div class="card-grid">
+    @for (animal of pagedAnimals(); track $index) {
+    <mat-card class="example-card" appearance="outlined">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>{{ animal.species }}</mat-card-title>
+        <mat-card-subtitle>{{ animal.breed }}</mat-card-subtitle>
+      </mat-card-header>
+      <img
+        mat-card-image
+        src="https://material.angular.dev/assets/img/examples/shiba2.jpg"
+        alt="Photo of a Shiba Inu"
+      />
+      <mat-card-content>
+        <div class="info-row">
+          <div class="icons">
+            @switch (animal.sex ) { @case ('male') {
+            <mat-icon [matTooltip]="'model.animal.sex.male' | translate">{{
+              'model.animal.sex.male_icon' | translate
+            }}</mat-icon>
+            } @case ('female') {
+            <mat-icon [matTooltip]="'model.animal.sex.female' | translate">{{
+              'model.animal.sex.female_icon' | translate
+            }}</mat-icon>
+            } @default{
+            <mat-icon [matTooltip]="'model.animal.sex.unknown' | translate">{{
+              'model.animal.sex.unknown_icon' | translate
+            }}</mat-icon>
+            } } @switch (animal.healthStatus ) { @case ('Healthy') {
+            <mat-icon [matTooltip]="'model.animal.healthStatus.healthy' | translate">{{
+              'model.animal.healthStatus.healthy_icon' | translate
+            }}</mat-icon>
+            } @case ('Warning') {
+            <mat-icon [matTooltip]="'model.animal.healthStatus.warning' | translate">{{
+              'model.animal.healthStatus.warning_icon' | translate
+            }}</mat-icon>
+            } @case ('Critical') {
+            <mat-icon [matTooltip]="'model.animal.healthStatus.critical' | translate">{{
+              'model.animal.healthStatus.critical_icon' | translate
+            }}</mat-icon>
+            } @default{
+            <mat-icon [matTooltip]="'model.animal.healthStatus.healthy' | translate">{{
+              'model.animal.healthStatus.healthy_icon' | translate
+            }}</mat-icon>
+            } }
+            <!--
+          @if(animal.adoptable) {
+          <mat-icon [matTooltip]="'model.animal.adoptable' | translate">{{
+            'model.animal.adoptable_true_icon' | translate
+          }}</mat-icon>
+          } @else {
+          <mat-icon [matTooltip]="'model.animal.adoptable' | translate">{{
+            'model.animal.adoptable_false_icon' | translate
+          }}</mat-icon>
+          }
+          --></div>
+          <div class="birth">
+            Geburtsdatum: {{ animal.birthDate | date : dateFormat }} ({{ animal.birthDate | age }})
+          </div>
+        </div>
+        <p>
+          The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from
+          Japan. A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was
+          originally bred for hunting.
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button matButton>LIKE</button>
+        <button matButton>SHARE</button>
+      </mat-card-actions>
+    </mat-card>
+    }
+  </div>
+</app-loading>
