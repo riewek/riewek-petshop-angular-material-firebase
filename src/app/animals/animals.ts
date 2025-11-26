@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Animal } from '../../model/animal';
+import { Animal, filterAnimal } from '../../model/animal';
 import { MatTableModule } from '@angular/material/table';
 import { DatePipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
@@ -12,9 +12,10 @@ import { TableToolbarComponent } from '../../shared/table-toolbar.component';
 import { TableActionsComponent } from '../../shared/table-actions.component';
 import { PetShopDao } from '../../dao/petShop.dao';
 import { AnimalDao } from '../../dao/animal.dao';
-import { TableTitleComponent } from "../../shared/table-title/table-title.component";
-import { LoadingComponent } from "../../shared/loading.component";
+import { TableTitleComponent } from '../../shared/table-title/table-title.component';
+import { LoadingComponent } from '../../shared/loading.component';
 import { UserService } from '../services/user.service';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-animals',
@@ -29,8 +30,9 @@ import { UserService } from '../services/user.service';
     TableToolbarComponent,
     TableActionsComponent,
     TableTitleComponent,
-    LoadingComponent
-],
+    LoadingComponent,
+    MatInputModule,
+  ],
   templateUrl: './animals.html',
   styleUrl: './animals.scss',
 })
@@ -41,4 +43,6 @@ export class Animals extends TableComponent<Animal, AnimalDao> {
       'id species breed birthDate age sex intakeDate healthStatus enclosureId photos adoptable'
     );
   }
+
+  override filter = filterAnimal;
 }

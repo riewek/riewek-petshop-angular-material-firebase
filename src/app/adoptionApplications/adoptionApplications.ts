@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AdoptionApplication } from '../../model/adoptionApplication';
+import { AdoptionApplication, filterAdoptionApplication } from '../../model/adoptionApplication';
 import { MatTableModule } from '@angular/material/table';
 import { DatePipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
@@ -12,7 +12,8 @@ import { TableActionsComponent } from '../../shared/table-actions.component';
 import { PetShopDao } from '../../dao/petShop.dao';
 import { AdoptionApplicationDao } from '../../dao/adoptionApplication.dao';
 import { LoadingComponent } from '../../shared/loading.component';
-import { TableTitleComponent } from "../../shared/table-title/table-title.component";
+import { TableTitleComponent } from '../../shared/table-title/table-title.component';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-adoptionApplications',
@@ -26,8 +27,9 @@ import { TableTitleComponent } from "../../shared/table-title/table-title.compon
     TableToolbarComponent,
     TableActionsComponent,
     LoadingComponent,
-    TableTitleComponent
-],
+    TableTitleComponent,
+    MatInputModule,
+  ],
   templateUrl: './adoptionApplications.html',
   styleUrl: './adoptionApplications.scss',
 })
@@ -38,4 +40,6 @@ export class AdoptionApplications extends TableComponent<
   constructor(private petShopDao: PetShopDao) {
     super(petShopDao.adoptionApplicationDao, 'id adopterId animalId createdAt status');
   }
+
+  override filter = filterAdoptionApplication;
 }

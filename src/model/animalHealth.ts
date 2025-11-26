@@ -10,3 +10,11 @@ export interface AnimalHealth extends FirebaseEntity {
   vet?: string;
   meds?: string[];
 }
+
+export function filterAnimalHealth(animalHealth: AnimalHealth, term: string): boolean {
+  return (
+    animalHealth.animalId.toLowerCase().includes(term) ||
+    animalHealth.type.toLowerCase().includes(term) ||
+    animalHealth.notes.toLowerCase().includes(term)
+  );
+}

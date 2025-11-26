@@ -9,3 +9,7 @@ export interface Enclosure extends FirebaseEntity {
   occupied: number;
   notes?: string;
 }
+
+export function filterEnclosure(enclosure: Enclosure, term: string): boolean {
+  return enclosure.name.toLowerCase().includes(term) || enclosure.type.toLowerCase().includes(term);
+}

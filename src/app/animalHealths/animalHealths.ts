@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AnimalHealth } from '../../model/animalHealth';
+import { AnimalHealth, filterAnimalHealth } from '../../model/animalHealth';
 import { MatTableModule } from '@angular/material/table';
 import { DatePipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
@@ -11,8 +11,9 @@ import { TableToolbarComponent } from '../../shared/table-toolbar.component';
 import { TableActionsComponent } from '../../shared/table-actions.component';
 import { PetShopDao } from '../../dao/petShop.dao';
 import { AnimalHealthDao } from '../../dao/animalHealth.dao';
-import { TableTitleComponent } from "../../shared/table-title/table-title.component";
-import { LoadingComponent } from "../../shared/loading.component";
+import { TableTitleComponent } from '../../shared/table-title/table-title.component';
+import { LoadingComponent } from '../../shared/loading.component';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-animalHealths',
@@ -26,8 +27,9 @@ import { LoadingComponent } from "../../shared/loading.component";
     TableToolbarComponent,
     TableActionsComponent,
     TableTitleComponent,
-    LoadingComponent
-],
+    LoadingComponent,
+    MatInputModule,
+  ],
   templateUrl: './animalHealths.html',
   styleUrl: './animalHealths.scss',
 })
@@ -35,4 +37,6 @@ export class AnimalHealths extends TableComponent<AnimalHealth, AnimalHealthDao>
   constructor(private petShopDao: PetShopDao) {
     super(petShopDao.animalHealthDao, 'id animalId type notes vet meds');
   }
+
+  override filter = filterAnimalHealth;
 }

@@ -13,3 +13,14 @@ export interface AdoptionApplication extends FirebaseEntity {
   createdAt: Date;
   status: AdoptionApplicationStatus;
 }
+
+export function filterAdoptionApplication(
+  adoptionApplication: AdoptionApplication,
+  term: string
+): boolean {
+  return (
+    adoptionApplication.adopterId.toLowerCase().includes(term) ||
+    adoptionApplication.animalId.toLowerCase().includes(term) ||
+    adoptionApplication.status.toLowerCase().includes(term)
+  );
+}

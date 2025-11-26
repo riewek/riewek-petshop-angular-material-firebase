@@ -15,6 +15,7 @@
     "adopter": {
       "single": "Interessent",
       "many": "Interessenten",
+      "search": "Interessentsuche (Name, Kontakt, Adresse, Wohnsituation oder Erfahrung)",
       "name": "Name",
       "contact": "Kontakt",
       "address": "Adresse",
@@ -24,6 +25,7 @@
     "adoptionApplication": {
       "single": "Antrag",
       "many": "Anträge",
+      "search": "Antragsuche (Interessent, Tier oder Status)",
       "adopterId": "Interessent",
       "animalId": "Tier",
       "createdAt": "Erstellt am",
@@ -39,6 +41,7 @@
     "adoptionContract": {
       "single": "Vertrag",
       "many": "Verträge",
+      "search": "Vertragsuche (Antrag)",
       "adoptionApplicationId": "Antrag",
       "contractUrl": "Vertrags-URL",
       "signedAt": "Unterzeichnet am",
@@ -47,6 +50,7 @@
     "animal": {
       "single": "Tier",
       "many": "Tiere",
+      "search": "Tiersuche (Spezies, Rasse, Geschlecht oder Gesundheitsstatus)",
       "species": "Tierart",
       "breed": "Rasse",
       "birthDate": "Geburtsdatum",
@@ -72,6 +76,7 @@
     "animalHealth": {
       "single": "Gesundheitsreport",
       "many": "Gesundheitsreports",
+      "search": "Gesundheitsuche (Tier, Typ oder Notizen)",
       "animalId": "Tier",
       "date": "Datum",
       "type": {
@@ -87,6 +92,7 @@
     "enclosure": {
       "single": "Gehege",
       "many": "Gehege",
+      "search": "Gehegesuche (Name oder Typ)",
       "name": "Name",
       "type": {
         "label": "Typ",
@@ -100,6 +106,7 @@
     "shelter": {
       "single": "Tierheim",
       "many": "Tierheime",
+      "search": "Tierheimsuche (Name)",
       "name": "Name",
       "location": "Ort",
       "enclosureIds": "Gehege"

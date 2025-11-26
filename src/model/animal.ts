@@ -15,3 +15,12 @@ export interface Animal extends FirebaseEntity {
   photos: string[];
   adoptable: boolean;
 }
+
+export function filterAnimal(animal: Animal, term: string): boolean {
+  return (
+    animal.species.toLowerCase().includes(term) ||
+    animal.breed.toLowerCase().includes(term) ||
+    animal.sex?.toLowerCase().includes(term) ||
+    animal.healthStatus?.toLowerCase().includes(term)
+  );
+}

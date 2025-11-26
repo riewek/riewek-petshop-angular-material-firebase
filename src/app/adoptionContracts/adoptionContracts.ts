@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AdoptionContract } from '../../model/adoptionContract';
+import { AdoptionContract, filterAdoptionContract } from '../../model/adoptionContract';
 import { MatTableModule } from '@angular/material/table';
 import { DatePipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
@@ -11,8 +11,9 @@ import { TableToolbarComponent } from '../../shared/table-toolbar.component';
 import { TableActionsComponent } from '../../shared/table-actions.component';
 import { PetShopDao } from '../../dao/petShop.dao';
 import { AdoptionContractDao } from '../../dao/adoptionContract.dao';
-import { TableTitleComponent } from "../../shared/table-title/table-title.component";
-import { LoadingComponent } from "../../shared/loading.component";
+import { TableTitleComponent } from '../../shared/table-title/table-title.component';
+import { LoadingComponent } from '../../shared/loading.component';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-adoptionContracts',
@@ -26,8 +27,9 @@ import { LoadingComponent } from "../../shared/loading.component";
     TableToolbarComponent,
     TableActionsComponent,
     TableTitleComponent,
-    LoadingComponent
-],
+    LoadingComponent,
+    MatInputModule,
+  ],
   templateUrl: './adoptionContracts.html',
   styleUrl: './adoptionContracts.scss',
 })
@@ -35,4 +37,6 @@ export class AdoptionContracts extends TableComponent<AdoptionContract, Adoption
   constructor(private petShopDao: PetShopDao) {
     super(petShopDao.adoptionContractDao, 'id adoptionApplicationId contractUrl signedAt fee');
   }
+
+  override filter = filterAdoptionContract;
 }

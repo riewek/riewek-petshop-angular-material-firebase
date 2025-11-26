@@ -1,11 +1,24 @@
 <app-table-title [modelKey]="'model.adoptionContract'"></app-table-title>
 
+<mat-form-field appearance="outline" class="search-field full-width">
+  <mat-label>{{ 'model.adoptionContract.search' | translate }}</mat-label>
+  <input
+    matInput
+    [value]="search()"
+    (input)="search.set($any($event.target).value); pageIndex.set(0)"
+    placeholder="Geben sie einen Suchbegriff ein"
+  />
+  <button mat-icon-button matSuffix aria-label="Clear" (click)="search.set('')">
+    <mat-icon>close</mat-icon>
+  </button>
+</mat-form-field>
+
 <app-loading [loading]="loading()">
   <app-table-toolbar
     [createLink]="['create']"
-    [length]="dataAll().length"
-    [pageSize]="pageSize"
-    [pageSizeOptions]="pageSizeOptions"
+    [length]="dataFiltered().length"
+    [pageSize]="pageSize()"
+    [pageSizeOptions]="pageSizeOptions()"
     (pageChange)="onPageChange($event)"
   ></app-table-toolbar>
 

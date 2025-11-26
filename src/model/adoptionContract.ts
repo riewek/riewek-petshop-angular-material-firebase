@@ -6,3 +6,7 @@ export interface AdoptionContract extends FirebaseEntity {
   signedAt?: Date;
   fee: number;
 }
+
+export function filterAdoptionContract(adoptionContract: AdoptionContract, term: string): boolean {
+  return adoptionContract.adoptionApplicationId.toLowerCase().includes(term);
+}

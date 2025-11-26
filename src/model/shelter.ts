@@ -5,3 +5,7 @@ export interface Shelter extends FirebaseEntity {
   location: string;
   enclosureIds: string[];
 }
+
+export function filterShelter(shelter: Shelter, term: string): boolean {
+  return shelter.name.toLowerCase().includes(term) || shelter.location.toLowerCase().includes(term);
+}

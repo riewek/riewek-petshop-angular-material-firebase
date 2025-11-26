@@ -4,6 +4,7 @@
   <mat-label>Tiersuche (Spezies, Rasse, Geschlecht oder Gesundheitsstatus )</mat-label>
   <input
     matInput
+    [value]="search()"
     (input)="search.set($any($event.target).value); pageIndex.set(0)"
     placeholder="Geben sie einen Suchbegriff ein"
   />
@@ -14,15 +15,15 @@
 
 <app-loading [loading]="loading()">
   <mat-paginator
-    [length]="filteredAnimals().length"
+    [length]="dataFiltered().length"
     [pageSize]="pageSize()"
-    [pageSizeOptions]="[5, 10, 20]"
+    [pageSizeOptions]="pageSizeOptions()"
     (page)="onPageChange($event)"
   >
   </mat-paginator>
 
   <div class="card-grid">
-    @for (animal of pagedAnimals(); track $index) {
+    @for (animal of dataPagedSortedFiltered(); track $index) {
     <mat-card class="example-card" appearance="outlined">
       <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
